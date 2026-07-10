@@ -1,226 +1,264 @@
-/* ===== Syclient — Intelligence for the Real World ===== */
+/* ===== Syclient — broadsheet edition ===== */
 
 :root {
   --bg: #f4f1e8;
   --bg-card: #f7f4ec;
   --ink: #171512;
-  --ink-soft: #3d3a34;
-  --line: #d9d4c6;
-  --line-soft: #e4e0d3;
+  --ink-soft: #4a463e;
+  --line: #c9c3b2;
+  --line-soft: #ddd8c9;
   --serif: "Computer Modern Serif", "Latin Modern Roman", Georgia, "Times New Roman", serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; text-decoration: none; }
 
-.star { font-size: 15px; line-height: 1; }
+/* ===== Ear bar ===== */
 
-/* ===== Top bar ===== */
-
-.topbar {
+.earbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  padding: 18px 32px;
-  border-bottom: 1px solid var(--line);
-}
-
-.topbar-nav {
-  display: flex;
-  gap: 28px;
-}
-
-.topbar-nav a,
-.label-text,
-.note-meta,
-.footer p,
-.footer-links a {
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  gap: 16px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.topbar-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
-
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.tagline { font-size: 14px; font-style: normal; }
-
 .lang {
   font-family: var(--serif);
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   background: transparent;
   border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 6px 12px;
+  border-radius: 2px;
+  padding: 2px 7px;
+  margin-left: 8px;
   cursor: pointer;
   color: var(--ink);
 }
 
 .lang:hover { background: var(--line-soft); }
 
-.caret { font-size: 9px; }
+/* ===== Masthead ===== */
 
-/* ===== Brand ===== */
-
-.brand {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 28px;
-  padding: 90px 24px 30px;
+.masthead {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 26px 24px 14px;
+  text-align: center;
+  border-bottom: 3px double var(--ink);
 }
 
-.brand-logo { height: 96px; width: auto; }
-
-.brand-name {
-  font-size: 72px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-/* ===== Mission ===== */
-
-.mission { text-align: center; padding: 30px 24px 40px; }
-
-.mission-label {
+.masthead-title {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 18px;
-  margin-bottom: 60px;
 }
 
-.mission-label .rule {
-  display: inline-block;
-  width: 56px;
-  height: 1px;
-  background: var(--ink);
-  opacity: 0.6;
-}
+.masthead-logo { height: 44px; width: auto; }
 
-.headline {
-  font-size: clamp(52px, 9vw, 104px);
+.masthead-name {
+  font-size: 58px;
   font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: 0.005em;
+  line-height: 1;
+  letter-spacing: 0.02em;
 }
 
-/* ===== Note card ===== */
-
-.note-card {
-  max-width: 900px;
-  margin: 90px auto 0;
-  padding: 0 24px;
-}
-
-.note-inner {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  outline: 1px solid var(--line);
-  outline-offset: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  padding: 26px 34px 44px;
-}
-
-.note-meta {
+.dateline {
+  margin-top: 14px;
+  padding-top: 8px;
+  border-top: 1px solid var(--ink);
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 34px;
+  justify-content: center;
+  gap: 12px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ink-soft);
 }
 
-.note-title {
-  text-align: center;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 26px;
-}
+.dateline-sep { opacity: 0.5; }
 
-.note-body {
-  text-align: center;
-  max-width: 720px;
+/* ===== Section nav ===== */
+
+.sections {
+  max-width: 1080px;
   margin: 0 auto;
-  font-size: 17.5px;
-  line-height: 1.7;
+  padding: 7px 24px;
+  border-bottom: 1px solid var(--ink);
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-/* ===== Manifesto ===== */
+.sections a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-.manifesto {
-  max-width: 820px;
-  margin: 70px auto 0;
-  padding: 0 24px 110px;
+/* ===== Page ===== */
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 34px 24px 70px;
 }
 
-.manifesto p {
-  font-size: 17.5px;
-  line-height: 1.65;
-  color: var(--ink);
+/* ===== Lead ===== */
+
+.lead {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 30px;
 }
 
-.manifesto hr {
-  border: none;
-  border-top: 1px solid var(--line-soft);
-  margin: 26px 0;
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
 }
+
+.kicker::before,
+.kicker::after {
+  content: "—";
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+.headline {
+  font-size: clamp(30px, 4.4vw, 46px);
+  font-weight: 400;
+  line-height: 1.12;
+  margin-bottom: 12px;
+}
+
+.deck {
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ===== Notice (manifesto box) ===== */
+
+.notice {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  background: var(--bg-card);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--line);
+  outline-offset: 3px;
+  padding: 14px 22px 20px;
+}
+
+.notice-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.notice-title {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.notice-body {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ===== Columns ===== */
+
+.body-columns {
+  column-count: 3;
+  column-gap: 34px;
+  column-rule: 1px solid var(--line-soft);
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  font-size: 14.5px;
+  line-height: 1.55;
+  border-top: 1px solid var(--ink);
+  padding-top: 22px;
+}
+
+.body-columns p { margin-bottom: 13px; }
+
+.body-columns p:not(.has-dropcap) { text-indent: 1.4em; }
+
+.has-dropcap::first-letter {
+  float: left;
+  font-size: 52px;
+  line-height: 0.85;
+  padding: 4px 8px 0 0;
+}
+
+.end-mark { font-size: 10px; vertical-align: 1px; }
 
 /* ===== Footer ===== */
 
 .footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 24px 26px;
+  border-top: 3px double var(--ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  padding: 26px 32px;
-  border-top: 1px solid var(--line);
+  gap: 20px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.footer p { line-height: 1.8; }
+.footer-links { display: flex; gap: 20px; }
 
-.footer-center {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  text-align: left;
-}
-
-.footer-links {
-  display: flex;
-  gap: 26px;
-  padding-bottom: 8px;
-  border-bottom: 1px dotted var(--line);
-}
-
-.footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ===== Responsive ===== */
 
-@media (max-width: 820px) {
-  .topbar { flex-direction: column; gap: 14px; }
-  .tagline { display: none; }
-  .brand { gap: 16px; padding-top: 60px; }
-  .brand-logo { height: 60px; }
-  .brand-name { font-size: 46px; }
-  .footer { flex-direction: column; text-align: center; }
-  .footer-center { flex-direction: column; gap: 8px; }
-  .footer-left p, .footer-center p { text-align: center; }
+@media (max-width: 900px) {
+  .body-columns { column-count: 2; }
+}
+
+@media (max-width: 640px) {
+  .earbar { justify-content: center; }
+  .earbar-motto { display: none; }
+  .masthead-logo { height: 32px; }
+  .masthead-name { font-size: 40px; }
+  .dateline { flex-wrap: wrap; gap: 6px; }
+  .sections { gap: 22px; flex-wrap: wrap; }
+  .body-columns { column-count: 1; column-rule: none; }
+  .footer { flex-direction: column; text-align: center; gap: 8px; }
 }
