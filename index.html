@@ -1,174 +1,148 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Syclient — advanced intelligence systems for research, reasoning and defense.">
-  <title>Syclient — Intelligence Systems</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header shell">
-    <a class="brand" href="#top" aria-label="Syclient home">
-      <svg class="brand-mark" viewBox="0 0 72 34" aria-hidden="true">
-        <path d="M31 10.5C25.5 2.5 15.5 2 9.5 8.5c-5 5.4-3.5 14.2 2.9 17 5.8 2.6 11.1-.5 15-5.3l14-16.2"/>
-        <path d="M41 23.5c5.5 8 15.5 8.5 21.5 2 5-5.4 3.5-14.2-2.9-17-5.8-2.6-11.1.5-15 5.3l-14 16.2"/>
-      </svg>
-      <span>Syclient</span>
-    </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Frontier AI systems that reason deeper and compute further." />
+    <meta property="og:title" content="Syclient — Deep Computing Intelligence" />
+    <meta property="og:description" content="Frontier AI systems that reason deeper and compute further." />
+    <meta property="og:image" content="public/og.png" />
+    <link rel="icon" href="public/logo-transparent.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Syclient — Deep Computing Intelligence</title>
+  </head>
+  <body>
+    <main>
+      <div class="scroll-progress" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="#research">Research</a>
-      <a href="#systems">Systems</a>
-      <a href="#publications">Publications</a>
-      <a href="#company">Company</a>
-      <a href="#careers">Careers</a>
-    </nav>
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Syclient home">
+          <span class="brand-logo" aria-hidden="true"></span>
+          <span class="brand-name">SYCLIENT</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a class="nav-cta" href="vanta.html">Vanta <span aria-hidden="true">⟶</span></a>
+        </nav>
+      </header>
 
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-      <span></span><span></span>
-    </button>
-  </header>
-
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
-    <a href="#research">Research</a>
-    <a href="#systems">Systems</a>
-    <a href="#publications">Publications</a>
-    <a href="#company">Company</a>
-    <a href="#careers">Careers</a>
-  </nav>
-
-  <main id="top">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Advanced intelligence systems</p>
-        <h1>Building intelligence<br>systems for research,<br>reasoning and defense.</h1>
-        <p class="hero-intro">Syclient is an independent AI research company developing frontier models, autonomous research systems, and decision intelligence for consequential domains.</p>
-        <div class="hero-actions">
-          <a class="button button-dark" href="#research">Explore Research <span>→</span></a>
-          <a class="button button-light" href="#systems">View Systems</a>
+      <section class="hero" id="top">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow"><i></i> Syclient Labs</p>
+          <h1 aria-label="Deep Computing Intelligence">
+            <span>Deep</span><span>Computing</span><span>Intelligence</span>
+          </h1>
+          <p class="lead">We build frontier AI systems that reason deeper, compute further, and solve what others cannot.</p>
+          <a class="pill-button" href="#research">Explore our research <span aria-hidden="true">⟶</span></a>
         </div>
-</div>
+        <a class="scroll-cue" href="#research"><b></b> Scroll <span></span></a>
+      </section>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-grid"></div>
-        <img src="images/1-clean.png" alt="">
-        <div class="data-readout"><span>X&nbsp;&nbsp;&nbsp;0.712</span><span>Y&nbsp;&nbsp;&nbsp;-0.241</span><span>Z&nbsp;&nbsp;&nbsp;0.386</span></div>
-      </div>
-    </section>
+      <section class="research section-grid" id="research">
+        <div class="section-intro" data-reveal>
+          <p class="section-label"><span>01</span><i></i> Research</p>
+          <h2>Pushing the boundaries of computation and intelligence.</h2>
+          <p>We explore deep reasoning, long-horizon planning, self-improving systems, and the next generation of foundational models. Our research is rigorous, open-minded, and driven by real-world impact.</p>
+          <p>We do not follow the frontier.<br />We compute beyond it.</p>
+          <a class="text-link" href="#areas">View research areas <span aria-hidden="true">⟶</span></a>
+        </div>
+        <div class="research-cards" id="areas" data-reveal>
+          <article class="research-card" data-index="01">
+            <div class="card-symbol symbol-01" aria-hidden="true"><span>01</span></div>
+            <h3>Advanced Reasoning</h3>
+            <p>Models that reason deeper, plan longer, and handle real-world complexity.</p>
+          </article>
+          <article class="research-card" data-index="02">
+            <div class="card-symbol symbol-02" aria-hidden="true"><span>02</span></div>
+            <h3>Compute Systems</h3>
+            <p>Scalable training infrastructure and reliable compute architectures for next-generation systems.</p>
+          </article>
+          <article class="research-card" data-index="03">
+            <div class="card-symbol symbol-03" aria-hidden="true"><span>03</span></div>
+            <h3>Foundational Models</h3>
+            <p>Next-generation models with strong generalization and emerging capabilities.</p>
+          </article>
+          <article class="research-card" data-index="04">
+            <div class="card-symbol symbol-04" aria-hidden="true"><span>04</span></div>
+            <h3>Safety &amp; Alignment</h3>
+            <p>Robustness, interpretability, and controllability in powerful AI systems.</p>
+          </article>
+        </div>
+      </section>
 
-    <section class="thesis shell" id="research">
-      <div>
-        <p class="eyebrow">Our research thesis</p>
-        <span class="short-rule"></span>
-      </div>
-      <p class="thesis-statement">Today’s AI systems generate answers.<br><em>We are researching systems that investigate before they answer.</em></p>
-      <div class="dot-field" aria-hidden="true"></div>
-    </section>
+      <section class="systems section-grid" id="systems">
+        <div class="section-intro compact" data-reveal>
+          <p class="section-label"><span>02</span><i></i> Systems</p>
+          <h2>From research to real-world capability.</h2>
+          <p>We turn research into dependable systems, focusing on performance, reliability, low latency, and meaningful deployment.</p>
+          <a class="text-link" href="#impact">Explore systems <span aria-hidden="true">⟶</span></a>
+        </div>
+        <figure class="systems-visual" data-reveal>
+          <img src="public/systems-landscape.png" alt="A single path reaching toward light across a dark computational landscape" />
+          <div class="visual-topline" aria-hidden="true"><span>Compute field</span><span>Model / 04</span></div>
+          <span class="visual-corner" aria-hidden="true"></span>
+          <figcaption>From a landscape of possibilities to one reliable path.</figcaption>
+        </figure>
+      </section>
 
-    <section class="programs shell" id="systems">
-      <p class="section-label">Research programs</p>
-      <div class="program-grid">
-        <article class="program-card">
-          <div class="program-icon"><svg viewBox="0 0 48 48"><circle cx="9" cy="25" r="3"/><circle cx="23" cy="10" r="3"/><circle cx="38" cy="18" r="3"/><circle cx="28" cy="37" r="3"/><circle cx="13" cy="39" r="3"/><path d="M11 23l10-11m5-1 10 6M36 21l-7 13m-4 2-9-1M11 28l2 8m2-13 19-4m-11-6 4 21"/></svg></div>
-          <h3>Reasoning Systems</h3>
-          <p>Building models that reason deeply, verify rigorously, and adapt across domains.</p>
-        </article>
-        <article class="program-card">
-          <div class="program-icon"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="17" ry="9"/><ellipse cx="24" cy="24" rx="17" ry="9" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="17" ry="9" transform="rotate(120 24 24)"/></svg></div>
-          <h3>Autonomous Research</h3>
-          <p>Systems that plan, investigate, and synthesize across large bodies of knowledge.</p>
-        </article>
-        <article class="program-card">
-          <div class="program-icon"><svg viewBox="0 0 48 48"><path d="M8 39h32M11 36V10m4 20 8-13 7 9 8-14"/><circle cx="15" cy="30" r="2"/><circle cx="23" cy="17" r="2"/><circle cx="30" cy="26" r="2"/></svg></div>
-          <h3>Decision Intelligence</h3>
-          <p>From data to decisions with calibrated forecasts and uncertainty-aware reasoning.</p>
-        </article>
-        <article class="program-card">
-          <div class="program-icon"><svg viewBox="0 0 48 48"><path d="M24 6 38 12v10c0 10-5 16-14 21-9-5-14-11-14-21V12zM24 10v29"/></svg></div>
-          <h3>Cyber Intelligence</h3>
-          <p>AI for cyber defense, threat detection, and adversarial resilience.</p>
-        </article>
-        <article class="program-card">
-          <div class="program-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c6 5 9 11 9 17s-3 12-9 17c-6-5-9-11-9-17s3-12 9-17zM9 16h30M9 32h30"/></svg></div>
-          <h3>World Models &amp; Simulation</h3>
-          <p>Learning and simulating complex systems to stress-test decisions before they’re made.</p>
-        </article>
-      </div>
-    </section>
+      <section class="impact" id="impact">
+        <div class="impact-intro" data-reveal>
+          <p class="section-label"><span>03</span><i></i> Impact</p>
+          <h2>Solving hard problems that matter.</h2>
+          <p>Our mission is to accelerate human progress through safe and powerful intelligence. We focus on problems that are hard, important, and overlooked.</p>
+          <a class="text-link" href="#contact">Our mission <span aria-hidden="true">⟶</span></a>
+        </div>
+        <div class="principles" data-reveal>
+          <article><span class="principle-number">01</span><h3>Frontier Research</h3><p>Exploring the next paradigms in artificial intelligence.</p></article>
+          <article><span class="principle-number">02</span><h3>Long-Term Impact</h3><p>Building systems that create enduring value.</p></article>
+          <article><span class="principle-number">03</span><h3>Human Progress</h3><p>Designing intelligence that amplifies human potential.</p></article>
+        </div>
+      </section>
 
-    <section class="featured shell">
-      <div class="featured-image"><img src="images/2.png" alt="Abstract data landscape for Lambda"></div>
-      <div class="featured-copy">
-        <p class="eyebrow">Featured system</p>
-        <h2>Lambda</h2>
-        <p>Lambda is our financial research and decision intelligence system that combines market history, macro data, calibrated forecasting, and correlation-aware simulation to support high-consequence decision making.</p>
-        <a class="text-link" href="#">Learn more about Lambda <span>→</span></a>
-      </div>
-    </section>
+      <section class="contact-band" id="contact">
+        <div class="contact-orbit" aria-hidden="true"><span></span><span></span></div>
+        <p class="eyebrow"><i></i> Let&apos;s move forward</p>
+        <h2>Deep technology.<br />Real impact.</h2>
+        <a class="pill-button dark" href="mailto:hello@syclient.ai">hello@syclient.ai <span aria-hidden="true">⟶</span></a>
+      </section>
 
-    <section class="latest shell" id="publications">
-      <div class="section-heading">
-        <p class="section-label">Latest research</p>
-        <a href="#">View all publications <span>→</span></a>
-      </div>
-      <div class="paper-grid">
-        <article class="paper-card">
-          <div class="paper-meta"><time datetime="2025-05-16">May 16, 2025</time><span>Research paper</span></div>
-          <h3>Evaluating Evidence Reliability in Long-Horizon Research Agents</h3>
-          <p>We propose a framework for assessing evidence reliability in long-horizon settings and show how it improves agent decision quality.</p>
-          <a href="#">Read paper <b>→</b></a>
-        </article>
-        <article class="paper-card">
-          <div class="paper-meta"><time datetime="2025-04-28">Apr 28, 2025</time><span>Research paper</span></div>
-          <h3>Calibration Under Regime Shifts</h3>
-          <p>We study probability calibration when underlying data distributions shift and introduce methods to maintain calibrated forecasts in non-stationary environments.</p>
-          <a href="#">Read paper <b>→</b></a>
-        </article>
-        <article class="paper-card">
-          <div class="paper-meta"><time datetime="2025-04-10">Apr 10, 2025</time><span>Research paper</span></div>
-          <h3>Adversarial Evaluation of Tool-Using Models</h3>
-          <p>We present a systematic approach to red-team and evaluate tool-using models under adaptive adversarial conditions.</p>
-          <a href="#">Read paper <b>→</b></a>
-        </article>
-      </div>
-    </section>
+      <footer>
+        <div class="footer-brand"><strong>SYCLIENT LABS</strong><span>© 2026 Syclient. All rights reserved.</span></div>
+        <p>Backed by curiosity.<br />Built for the future.</p>
+        <div class="footer-links"><a href="#research">Research</a><a href="#systems">Systems</a><a href="mailto:hello@syclient.ai">Contact</a></div>
+      </footer>
+    </main>
 
-    <section class="cta shell" id="company">
-      <div class="cta-copy">
-        <h2>We work on difficult and consequential<br>problems across intelligence, research, and defense.</h2>
-        <a class="button button-dark" href="mailto:contact@syclient.ai">Contact Syclient <span>→</span></a>
-      </div>
-      <img src="images/3.png" alt="Abstract orbit sculpture with a glowing amber sphere">
-    </section>
-  </main>
+    <script>
+      document.documentElement.classList.add("motion-ready");
 
-  <footer class="site-footer shell" id="careers">
-    <div class="footer-brand">
-      <a class="brand" href="#top">
-        <svg class="brand-mark" viewBox="0 0 72 34" aria-hidden="true"><path d="M31 10.5C25.5 2.5 15.5 2 9.5 8.5c-5 5.4-3.5 14.2 2.9 17 5.8 2.6 11.1-.5 15-5.3l14-16.2"/><path d="M41 23.5c5.5 8 15.5 8.5 21.5 2 5-5.4 3.5-14.2-2.9-17-5.8-2.6-11.1.5-15 5.3l-14 16.2"/></svg>
-        <span>Syclient</span>
-      </a>
-      <p>Independent AI research for a safer and more capable future.</p>
-      <small>© 2025 Syclient. All rights reserved.</small>
-    </div>
-    <div class="footer-links"><a href="#research">Research</a><a href="#systems">Systems</a><a href="#publications">Publications</a></div>
-    <div class="footer-links"><a href="#company">Company</a><a href="#careers">Careers</a><a href="mailto:contact@syclient.ai">Contact</a></div>
-    <div class="social-links" aria-label="Social media"><a href="#" aria-label="X">𝕏</a><a href="#" aria-label="LinkedIn">in</a><a href="mailto:contact@syclient.ai" aria-label="Email">✉</a></div>
-  </footer>
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -7%" });
+      revealItems.forEach((item) => observer.observe(item));
 
-  <script>
-    const menuButton = document.querySelector('.menu-button');
-    const mobileNav = document.querySelector('.mobile-nav');
-    menuButton.addEventListener('click', () => {
-      const open = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', String(!open));
-      mobileNav.classList.toggle('is-open', !open);
-    });
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      menuButton.setAttribute('aria-expanded', 'false');
-      mobileNav.classList.remove('is-open');
-    }));
-  </script>
-</body>
+      let frame = 0;
+      const updateScroll = () => {
+        frame = 0;
+        const scrollable = document.documentElement.scrollHeight - innerHeight;
+        const progress = scrollable > 0 ? scrollY / scrollable : 0;
+        document.documentElement.style.setProperty("--scroll-progress", progress);
+        document.documentElement.style.setProperty("--page-y", `${Math.min(scrollY * 0.045, 42)}px`);
+      };
+      addEventListener("scroll", () => {
+        if (!frame) frame = requestAnimationFrame(updateScroll);
+      }, { passive: true });
+      updateScroll();
+    </script>
+  </body>
 </html>
