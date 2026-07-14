@@ -54,7 +54,9 @@ a {
   z-index: -6;
   background: url("vanta-background.png") center center / cover no-repeat;
   transform: scale(1.012);
-  animation: camera-breathe 14s ease-in-out infinite alternate;
+  animation:
+    scene-power-on 2.35s cubic-bezier(0.2, 0.8, 0.25, 1) both,
+    camera-breathe 14s 2.35s ease-in-out infinite alternate;
 }
 
 .scene-shade {
@@ -63,11 +65,13 @@ a {
     linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, transparent 39%, transparent 70%, rgba(0, 0, 0, 0.24) 100%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, transparent 48%, rgba(0, 0, 0, 0.68) 100%),
     radial-gradient(circle at 50% 48%, transparent 28%, rgba(0, 0, 0, 0.3) 85%);
+  animation: atmosphere-in 1.2s 1.25s ease-out both;
 }
 
 .lighting {
   z-index: -4;
   mix-blend-mode: screen;
+  animation: lighting-start 2.35s linear both;
 }
 
 .lamp-glow {
@@ -130,6 +134,7 @@ a {
   overflow: hidden;
   filter: contrast(1.05);
   mix-blend-mode: screen;
+  animation: atmosphere-in 1.4s 1.45s ease-out both;
 }
 
 .smoke-field::before,
@@ -219,6 +224,77 @@ a {
   mix-blend-mode: soft-light;
 }
 
+.startup-sequence {
+  position: absolute;
+  z-index: 100;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #010202;
+  animation: startup-clear 2.45s linear both;
+}
+
+.startup-sequence::before,
+.startup-sequence::after {
+  position: absolute;
+  content: "";
+}
+
+.startup-sequence::before {
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(231, 255, 109, 0.85), transparent);
+  box-shadow: 0 0 18px rgba(231, 255, 109, 0.42);
+  transform: scaleX(0);
+  animation: startup-line 1.15s 0.2s cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+
+.startup-sequence::after {
+  inset: 0;
+  background: rgba(240, 246, 233, 0.42);
+  mix-blend-mode: screen;
+  animation: startup-flash 2.35s steps(1, end) both;
+}
+
+.startup-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(231, 255, 109, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 255, 109, 0.055) 1px, transparent 1px);
+  background-size: 3.75rem 3.75rem;
+  opacity: 0;
+  mask-image: radial-gradient(circle at center, #000 0%, transparent 72%);
+  animation: startup-grid-in 1.45s 0.25s ease-out both;
+}
+
+.startup-scan {
+  position: absolute;
+  top: -8%;
+  right: 0;
+  left: 0;
+  height: 12vh;
+  background: linear-gradient(180deg, transparent, rgba(231, 255, 109, 0.12), rgba(231, 255, 109, 0.58), transparent);
+  filter: blur(1px);
+  animation: startup-scan 1.45s 0.35s cubic-bezier(0.45, 0, 0.35, 1) both;
+}
+
+.startup-label {
+  position: absolute;
+  top: calc(50% + 1.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--signal);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.57rem;
+  letter-spacing: 0.28em;
+  white-space: nowrap;
+  opacity: 0;
+  animation: startup-label-in 1.35s 0.42s steps(8, end) both;
+}
+
 .topbar {
   position: relative;
   z-index: 20;
@@ -228,6 +304,7 @@ a {
   min-height: 6.6rem;
   padding: 0 var(--page-pad);
   border-bottom: 1px solid var(--line);
+  animation: interface-reveal 0.8s 1.85s ease-out both;
 }
 
 .wordmark {
@@ -272,6 +349,39 @@ a {
   text-transform: uppercase;
 }
 
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.72rem;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid var(--line);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.back-link span {
+  color: var(--signal);
+  font-size: 0.9rem;
+  transition: transform 180ms ease;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  border-color: rgba(231, 255, 109, 0.48);
+  background: rgba(231, 255, 109, 0.06);
+  color: #fff;
+}
+
+.back-link:hover span,
+.back-link:focus-visible span {
+  transform: translateX(-0.2rem);
+}
+
 .hero {
   position: absolute;
   z-index: 5;
@@ -280,6 +390,7 @@ a {
   width: min(64rem, 82vw);
   transform: translateX(-50%);
   text-align: center;
+  animation: interface-reveal 1s 2.05s ease-out both;
 }
 
 .kicker {
@@ -393,6 +504,7 @@ h1 span {
   background: rgba(5, 7, 7, 0.34);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  animation: panel-reveal 0.9s 2.25s ease-out both;
 }
 
 .status-heading {
@@ -482,9 +594,84 @@ h1 span {
   font-size: 0.5rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  animation: interface-reveal 0.8s 2.4s ease-out both;
 }
 
 .footer span:last-child { justify-self: end; }
+
+@keyframes scene-power-on {
+  0%, 13% { opacity: 0; filter: brightness(0) contrast(1.35); }
+  15% { opacity: 0.18; filter: brightness(0.2) contrast(1.35); }
+  17% { opacity: 0.02; filter: brightness(0.03) contrast(1.35); }
+  23% { opacity: 0.44; filter: brightness(0.46) contrast(1.25); }
+  25% { opacity: 0.08; filter: brightness(0.08) contrast(1.3); }
+  33% { opacity: 0.78; filter: brightness(0.82) contrast(1.12); }
+  36% { opacity: 0.32; filter: brightness(0.34) contrast(1.2); }
+  48%, 100% { opacity: 1; filter: brightness(1) contrast(1); }
+}
+
+@keyframes lighting-start {
+  0%, 15% { opacity: 0; }
+  16% { opacity: 0.26; }
+  18% { opacity: 0.02; }
+  24% { opacity: 0.58; }
+  26% { opacity: 0.08; }
+  34% { opacity: 0.9; }
+  37% { opacity: 0.24; }
+  46%, 100% { opacity: 1; }
+}
+
+@keyframes atmosphere-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes startup-clear {
+  0%, 30% { opacity: 1; visibility: visible; }
+  48% { opacity: 0.82; visibility: visible; }
+  72% { opacity: 0.36; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes startup-line {
+  0% { opacity: 0; transform: scaleX(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0.65; transform: scaleX(1); }
+}
+
+@keyframes startup-grid-in {
+  0% { opacity: 0; transform: scale(1.08); }
+  45% { opacity: 0.62; }
+  100% { opacity: 0.16; transform: scale(1); }
+}
+
+@keyframes startup-scan {
+  0% { opacity: 0; transform: translateY(0); }
+  12% { opacity: 1; }
+  82% { opacity: 0.76; }
+  100% { opacity: 0; transform: translateY(108vh); }
+}
+
+@keyframes startup-label-in {
+  0% { opacity: 0; }
+  18%, 78% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes startup-flash {
+  0%, 14%, 18%, 24%, 28%, 37%, 44%, 100% { opacity: 0; }
+  15%, 25%, 38% { opacity: 0.32; }
+}
+
+@keyframes interface-reveal {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); filter: blur(5px); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); filter: blur(0); }
+}
+
+@keyframes panel-reveal {
+  from { opacity: 0; clip-path: inset(100% 0 0 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
 
 @keyframes camera-breathe {
   from { transform: scale(1.012); }
@@ -577,6 +764,13 @@ h1 span {
     padding: 0 1.25rem;
   }
 
+  .back-link {
+    gap: 0.45rem;
+    padding: 0.65rem 0.7rem;
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+  }
+
   .hero {
     position: relative;
     top: auto;
@@ -630,11 +824,19 @@ h1 span {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .startup-sequence { display: none; }
   .background,
+  .scene-shade,
+  .lighting,
+  .smoke-field,
   .lamp-glow,
   .light-cone,
   .smoke,
   .smoke-field::before,
-  .smoke-field::after { animation: none; }
+  .smoke-field::after,
+  .topbar,
+  .hero,
+  .program-status,
+  .footer { animation: none; }
   .smoke { opacity: 0.22; }
 }
