@@ -12,18 +12,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geomini:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      const cleanPath = location.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+      if (cleanPath !== location.pathname) history.replaceState(null, "", cleanPath + location.search + location.hash);
+    </script>
     <title>Syclient — Deep Computing Intelligence</title>
   </head>
   <body>
     <main>
       <div class="scroll-progress" aria-hidden="true"></div>
       <header class="site-header">
-        <a class="brand" href="#top" aria-label="Syclient home">
+        <a class="brand" href="/#top" aria-label="Syclient home">
           <span class="brand-logo" aria-hidden="true"></span>
           <span class="brand-name">SYCLIENT</span>
         </a>
         <nav aria-label="Main navigation">
-          <a class="nav-cta" href="vanta.html">Vanta <span aria-hidden="true">⟶</span></a>
+          <a class="nav-cta" href="/vanta">Vanta <span aria-hidden="true">⟶</span></a>
         </nav>
       </header>
 
