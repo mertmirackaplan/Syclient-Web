@@ -1,85 +1,13 @@
-(() => {
-  const start = () => {
-    const root = document.documentElement;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const reveals = Array.from(document.querySelectorAll("[data-reveal]"));
-    const mobileNav = document.querySelector("[data-mobile-nav]");
-    const mobileLinks = Array.from(mobileNav?.querySelectorAll("a") || []);
-    const closeMenu = () => {
-      mobileNav?.removeAttribute("open");
-      document.body.classList.remove("mobile-menu-open");
-    };
-    mobileNav?.addEventListener("toggle", () => {
-      document.body.classList.toggle("mobile-menu-open", Boolean(mobileNav.open));
-    });
-    mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
-    });
-
-    root.classList.add("motion-ready");
-    if (reduced) {
-      reveals.forEach((element) => element.classList.add("is-visible"));
-      return;
-    }
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.13, rootMargin: "0px 0px -8% 0px" });
-    reveals.forEach((element) => revealObserver.observe(element));
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("section-active");
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll("[data-section-active]").forEach((element) => {
-      sectionObserver.observe(element);
-    });
-
-    const parallaxElements = Array.from(document.querySelectorAll("[data-parallax]"));
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const viewport = window.innerHeight;
-      const scrollable = document.documentElement.scrollHeight - viewport;
-      root.style.setProperty("--scroll-progress", String(scrollable > 0 ? window.scrollY / scrollable : 0));
-      parallaxElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        if (rect.bottom < -160 || rect.top > viewport + 160) return;
-        const offset = (rect.top + rect.height / 2 - viewport / 2) / viewport;
-        const distance = Math.max(-22, Math.min(22, offset * -34));
-        element.style.setProperty("--parallax-y", distance.toFixed(2) + "px");
-      });
-    };
-    const requestUpdate = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    addEventListener("scroll", requestUpdate, { passive: true });
-    addEventListener("resize", () => {
-      if (innerWidth > 1040) closeMenu();
-      requestUpdate();
-    });
-    update();
-
-    const tilt = document.querySelector("[data-tilt]");
-    tilt?.addEventListener("pointermove", (event) => {
-      if (event.pointerType === "touch") return;
-      const rect = tilt.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      tilt.style.setProperty("--tilt-x", (-y * 5).toFixed(2) + "deg");
-      tilt.style.setProperty("--tilt-y", (x * 6).toFixed(2) + "deg");
-    });
-    tilt?.addEventListener("pointerleave", () => {
-      tilt.style.setProperty("--tilt-x", "0deg");
-      tilt.style.setProperty("--tilt-y", "0deg");
-    });
-  };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
-  else start();
-})();
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Mosaic Agent is Syclient's memory-native AI agent for planning, tool use, persistent context, and cost-efficient work." />
+    <title>Mosaic Agent | Syclient</title>
+    <link rel="icon" href="../syclient-mark.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../animations.js" defer></script>
+  </head>
+  <body><div class="site-shell agent-page" id="top"><div class="scroll-progress" aria-hidden="true"></div><header class="site-header agent-site-header"><div class="header-inner"><a class="brand" href="../" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="../syclient-wordmark.png" alt="" draggable="false"/></span></a><nav class="desktop-nav" aria-label="Primary navigation"><div class="product-menu"><a class="product-menu-trigger" href="../#mosaic-one">Mosaic Family<span aria-hidden="true">⌄</span></a><div class="product-menu-panel" aria-label="Mosaic products"><a href="../#mosaic-one"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic One<small>AI processor</small></span><span aria-hidden="true">↘</span></a><a href="../spm/index.html"><span class="product-menu-number">02</span><span class="product-menu-name">SPM<small>Syclient models</small></span><span aria-hidden="true">↘</span></a><span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">03</span><span class="product-menu-name">Black Falcon<small>Coming soon</small></span><span aria-hidden="true">—</span></span></div></div><a href="../#research">Research</a><a href="../#news">News</a><a href="../#about">About</a></nav><a class="contact-button" href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer">Contact</a><details class="mobile-nav" data-mobile-nav="true"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><p class="mobile-product-label"><span>01</span>Mosaic Family</p><a class="mobile-product-link" href="../#mosaic-one"><span>01.1</span>Mosaic One</a><a class="mobile-product-link" href="../spm/index.html"><span>01.2</span>SPM</a><p class="mobile-product-disabled" aria-disabled="true"><span>01.3</span>Black Falcon <small>Coming soon</small></p><a href="../#research"><span>02</span>Research</a><a href="../#news"><span>03</span>News</a><a href="../#about"><span>04</span>About</a><a href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer"><span>05</span>Contact ↗</a></div></details></div></header><main class="agent-stage agent-hero" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-hero-card"><div class="agent-orb" aria-hidden="true"></div><p class="agent-kicker" data-type="true">Mosaic Agent / Syclient</p><h1 data-reveal="up">The cost-efficient AI agent for <span class="agent-word-highlight">real work.</span></h1><p class="agent-lead" data-type="true">Plan, use tools, remember context, and complete tasks with minimal token consumption.</p><a class="agent-scroll-cue" href="#efficiency" data-reveal="up">Do more work with fewer tokens<span class="agent-scroll-icon" aria-hidden="true">↓</span></a></div></div></main><section class="agent-stage agent-light" id="efficiency" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-content-frame"><header class="agent-section-heading"><p data-reveal="up">01 / Token efficiency</p><h2 class="agent-key-heading" data-reveal="up"><span class="agent-heading-line">Every token</span><span class="agent-heading-line">should have a purpose.</span></h2></header><div class="agent-efficiency-grid"><article><span data-type="true">01</span><h3 data-type="true">Memory-aware context</h3><p data-type="true">Retrieve only what the task needs.</p></article><article><span data-type="true">02</span><h3 data-type="true">Right-sized models</h3><p data-type="true">Use the smallest capable intelligence layer.</p></article><article><span data-type="true">03</span><h3 data-type="true">Tool-first execution</h3><p data-type="true">Act with tools when generation is not enough.</p></article></div></div></div></section><section class="agent-stage agent-dark" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-content-frame"><header class="agent-section-heading"><p data-reveal="up">02 / Agent architecture</p><h2 class="agent-key-heading" data-reveal="up"><span class="agent-heading-line">A smarter path</span><span class="agent-heading-line">from request to result.</span></h2></header><div class="agent-flow" aria-label="Mosaic Agent workflow"><div><span data-type="true">01</span><p data-type="true">Intent</p></div><div><span data-type="true">02</span><p data-type="true">Memory</p></div><div><span data-type="true">03</span><p data-type="true">Plan</p></div><div><span data-type="true">04</span><p data-type="true">Route</p></div><div><span data-type="true">05</span><p data-type="true">Tools</p></div><div><span data-type="true">06</span><p data-type="true">Evaluate</p></div><div><span data-type="true">07</span><p data-type="true">Remember</p></div></div></div></div></section><section class="agent-stage agent-light" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-content-frame"><header class="agent-section-heading agent-stack-heading"><p data-reveal="up">03 / System</p><h2 data-reveal="up">One agent. Five focused layers.</h2></header><div class="agent-stack-list"><article><span data-type="true">01</span><h3 data-type="true">Mosaic Core</h3><p data-type="true">Fast, efficient everyday intelligence.</p></article><article><span data-type="true">02</span><h3 data-type="true">Mosaic Memory</h3><p data-type="true">Persistent context without repeated prompts.</p></article><article><span data-type="true">03</span><h3 data-type="true">Mosaic Planner</h3><p data-type="true">Complex work divided into clear steps.</p></article><article><span data-type="true">04</span><h3 data-type="true">Mosaic Tools</h3><p data-type="true">Action across files, code, search, and systems.</p></article><article><span data-type="true">05</span><h3 data-type="true">Mosaic Evaluator</h3><p data-type="true">Verification before task completion.</p></article></div></div></div></section><section class="agent-stage agent-dark agent-two" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-two-card"><p class="agent-kicker" data-reveal="up">04 / Mosaic Two research</p><h2 data-reveal="up">Sparse intelligence without wasteful compute.</h2><div class="agent-two-metrics"><div><strong data-count="3" data-suffix="T">3T</strong><span data-type="true">Planned total parameters</span></div><div><strong data-count="64" data-suffix="B">64B</strong><span data-type="true">Planned active compute</span></div></div><p class="agent-two-note" data-type="true">Activate the right intelligence for the right task.</p></div></div></section><section class="agent-stage agent-dark agent-work" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-content-frame"><header class="agent-section-heading"><p data-reveal="up">05 / Real work</p><h2 class="agent-key-heading" data-reveal="up"><span class="agent-heading-line">Built to continue</span><span class="agent-heading-line">where you left off.</span></h2></header><div class="agent-use-grid"><article><span data-type="true">01</span><h3 data-type="true">Personal work</h3></article><article><span data-type="true">02</span><h3 data-type="true">Software assistance</h3></article><article><span data-type="true">03</span><h3 data-type="true">Research</h3></article><article><span data-type="true">04</span><h3 data-type="true">Project memory</h3></article></div></div></div></section><section class="agent-stage agent-dark agent-final" data-agent-stage="true"><div class="agent-stage-sticky"><div class="agent-stage-card agent-final-card"><p data-reveal="up">Mosaic Agent</p><h2 data-reveal="up">Think. Act. Remember. Spend fewer tokens.</h2><a href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer" data-reveal="up">Follow development<span aria-hidden="true">↗</span></a></div></div></section><footer class="agent-footer"><p>© 2026 Syclient</p><a href="../">Back to Syclient ↖</a></footer></div></body>
+</html>
