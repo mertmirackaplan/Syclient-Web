@@ -1,2 +1,251 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="../assets/syclient-wordmark.png" as="image"/><link rel="stylesheet" href="../styles.css"><title>Mosaic Chat 1 | Syclient</title><meta name="description" content="Meet Mosaic Chat 1, Syclient&#x27;s compact 1.5B language model."/><link rel="shortcut icon" href="../assets/syclient-mark.png"/><link rel="icon" href="../assets/syclient-mark.png"/>
-</head><body><div class="site-shell spm-shell" id="top"><div class="scroll-progress" aria-hidden="true"></div><header class="site-header"><div class="header-inner"><a class="brand" href="../index.html" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="../assets/syclient-wordmark.png" alt="" draggable="false"/></span></a><nav class="desktop-nav" aria-label="Primary navigation"><div class="product-menu"><a class="product-menu-trigger" href="../index.html#mosaic-one">Mosaic Family<span aria-hidden="true">⌄</span></a><div class="product-menu-panel" aria-label="Mosaic products"><a href="../index.html#mosaic-one"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic One<small>AI processor</small></span><span aria-hidden="true">↘</span></a><a href="../mosaic-agent/index.html"><span class="product-menu-number">02</span><span class="product-menu-name">Mosaic Agent<small>Memory-native agent</small></span><span aria-hidden="true">↘</span></a><a href="../spm/index.html" aria-current="page"><span class="product-menu-number">03</span><span class="product-menu-name">SPM<small>Syclient models</small></span><span aria-hidden="true">↘</span></a><span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">04</span><span class="product-menu-name">Black Falcon<small>Coming soon</small></span><span aria-hidden="true">—</span></span></div></div><a href="../index.html#research">Research</a><a href="../index.html#news">News</a><a href="../index.html#about">About</a></nav><a class="contact-button" href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer">Contact</a><details class="mobile-nav" data-mobile-nav="true"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><p class="mobile-product-label"><span>01</span>Mosaic Family</p><a class="mobile-product-link" href="../index.html#mosaic-one"><span>01.1</span>Mosaic One</a><a class="mobile-product-link" href="../mosaic-agent/index.html"><span>01.2</span>Mosaic Agent</a><a class="mobile-product-link" href="../spm/index.html" aria-current="page"><span>01.3</span>SPM</a><p class="mobile-product-disabled" aria-disabled="true"><span>01.4</span>Black Falcon <small>Coming soon</small></p><a href="../index.html#research"><span>02</span>Research</a><a href="../index.html#news"><span>03</span>News</a><a href="../index.html#about"><span>04</span>About</a><a href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer"><span>05</span>Contact ↗</a></div></details></div></header><main class="spm-hero"><section class="spm-copy" aria-labelledby="spm-title"><p class="spm-kicker">SPM / Syclient Language Models</p><h1 class="spm-title" id="spm-title">Mosaic Chat 1</h1><div class="spm-parameter" aria-label="1.5 billion parameters"><strong>1.5B</strong><span>Parameters</span></div><p class="spm-summary">A compact language model built by Syclient.</p><a class="spm-cta" href="https://huggingface.co/Syclient" target="_blank" rel="noreferrer">View model<span aria-hidden="true">↗</span></a></section></main><section class="spm-overview" id="model-overview" data-section-active="true"><div class="spm-section-inner"><header class="spm-section-header" data-reveal="up"><p>01 / Model foundation</p><div><p class="spm-light-kicker">Mosaic Chat 1</p><h2>Built from clean data. Designed to scale with purpose.</h2><p class="spm-section-intro">An English-first language model for efficient experimentation and reliable AI systems.</p></div></header><div class="spm-spec-grid"><article data-reveal="up"><p>Architecture</p><h3>Dense Transformer</h3></article><article data-reveal="up"><p>Language</p><h3>English-first</h3></article><article data-reveal="up"><p>Objective</p><h3>Decoder-only</h3></article><article data-reveal="up"><p>Training</p><h3>BF16</h3></article></div></div></section><section class="spm-principles"><div class="spm-principles-inner"><header class="spm-dark-header" data-reveal="up"><p>02 / System thinking</p><h2>Train. Serve.<br/>Remember. Adapt.</h2></header><div class="spm-principle-grid"><article data-reveal="up"><span>01</span><h3>Train</h3><p>Clean, carefully prepared data.</p></article><article data-reveal="up"><span>02</span><h3>Serve</h3><p>Efficient real-world inference.</p></article><article data-reveal="up"><span>03</span><h3>Remember</h3><p>Structured context and trusted knowledge.</p></article><article data-reveal="up"><span>04</span><h3>Adapt</h3><p>Controlled learning from verified data.</p></article></div></div></section><section class="spm-architecture" data-section-active="true"><div class="spm-section-inner"><header class="spm-architecture-header" data-reveal="up"><p>03 / Architecture</p><div><p class="spm-light-kicker">Compact by design</p><h2>Modern building blocks. Clear foundations.</h2></div></header><div class="spm-architecture-list"><div data-reveal="up"><span>01</span><p>Grouped Query Attention</p></div><div data-reveal="up"><span>02</span><p>SwiGLU</p></div><div data-reveal="up"><span>03</span><p>RMSNorm</p></div><div data-reveal="up"><span>04</span><p>RoPE</p></div></div></div></section><section class="spm-closing"><div data-reveal="scale"><p>SPM / Mosaic series</p><h2>From language models to memory-native AI infrastructure.</h2><a class="spm-cta" href="https://huggingface.co/Syclient" target="_blank" rel="noreferrer">View model<span aria-hidden="true">↗</span></a></div></section><footer class="spm-footer"><p>© 2026 Syclient</p><a href="../index.html">Mosaic One ↖</a></footer></div><script src="../animations.js" defer></script></body></html>
+(() => {
+  const clamp = (value, min = 0, max = 1) =>
+    Math.min(max, Math.max(min, value));
+
+  const startSharedExperience = () => {
+    const root = document.documentElement;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const revealElements = Array.from(
+      document.querySelectorAll("[data-reveal]"),
+    );
+    const sectionElements = Array.from(
+      document.querySelectorAll("[data-section-active]"),
+    );
+    const parallaxElements = Array.from(
+      document.querySelectorAll("[data-parallax]"),
+    );
+    const agentStages = Array.from(
+      document.querySelectorAll("[data-agent-stage]"),
+    );
+    const mobileNav = document.querySelector("[data-mobile-nav]");
+    const mobileNavLinks = Array.from(
+      mobileNav?.querySelectorAll("a") ?? [],
+    );
+
+    root.classList.add("motion-ready");
+
+    if (reducedMotion) {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+      sectionElements.forEach((element) =>
+        element.classList.add("section-active"),
+      );
+    } else {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.13, rootMargin: "0px 0px -8% 0px" },
+      );
+      revealElements.forEach((element) => revealObserver.observe(element));
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("section-active");
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      sectionElements.forEach((element) => sectionObserver.observe(element));
+    }
+
+    let frame = 0;
+    const updateMotion = () => {
+      frame = 0;
+      const viewportHeight = Math.max(window.innerHeight, 1);
+      const scrollable =
+        document.documentElement.scrollHeight - viewportHeight;
+      const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+      root.style.setProperty("--scroll-progress", String(progress));
+
+      parallaxElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < -160 || rect.top > viewportHeight + 160) return;
+        const centerOffset =
+          (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
+        const distance = Math.max(-22, Math.min(22, centerOffset * -34));
+        element.style.setProperty("--parallax-y", `${distance.toFixed(2)}px`);
+      });
+
+      agentStages.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < -viewportHeight || rect.top > viewportHeight * 2) {
+          return;
+        }
+        const travel = Math.max(1, rect.height - viewportHeight);
+        const stageProgress = clamp(-rect.top / travel);
+        const enter = clamp(
+          (viewportHeight - rect.top) / (viewportHeight * 0.55),
+        );
+        const exit = clamp(rect.bottom / (viewportHeight * 0.65));
+        element.style.setProperty(
+          "--agent-progress",
+          stageProgress.toFixed(4),
+        );
+        element.style.setProperty("--agent-focus", Math.min(enter, exit).toFixed(4));
+      });
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateMotion);
+    };
+
+    const closeMobileNav = () => {
+      mobileNav?.removeAttribute("open");
+      document.body.classList.remove("mobile-menu-open");
+    };
+    const handleMobileToggle = () => {
+      document.body.classList.toggle(
+        "mobile-menu-open",
+        Boolean(mobileNav?.open),
+      );
+    };
+    const handleEscape = (event) => {
+      if (event.key === "Escape" && mobileNav?.open) closeMobileNav();
+    };
+    const handleViewportChange = () => {
+      if (window.innerWidth > 1040 && mobileNav?.open) closeMobileNav();
+      requestUpdate();
+    };
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", handleViewportChange);
+    document.addEventListener("keydown", handleEscape);
+    mobileNav?.addEventListener("toggle", handleMobileToggle);
+    mobileNavLinks.forEach((link) =>
+      link.addEventListener("click", closeMobileNav),
+    );
+    updateMotion();
+
+    const tiltElement = document.querySelector("[data-tilt]");
+    const handlePointerMove = (event) => {
+      if (!tiltElement || event.pointerType === "touch") return;
+      const rect = tiltElement.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      tiltElement.style.setProperty("--tilt-x", `${(-y * 5).toFixed(2)}deg`);
+      tiltElement.style.setProperty("--tilt-y", `${(x * 6).toFixed(2)}deg`);
+    };
+    const resetTilt = () => {
+      tiltElement?.style.setProperty("--tilt-x", "0deg");
+      tiltElement?.style.setProperty("--tilt-y", "0deg");
+    };
+    tiltElement?.addEventListener("pointermove", handlePointerMove);
+    tiltElement?.addEventListener("pointerleave", resetTilt);
+  };
+
+  const startMosaicAgentExperience = () => {
+    const page = document.querySelector(".ma-page");
+    if (!page) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const capabilities = Array.from(
+      page.querySelectorAll(".ma-capability"),
+    );
+    const demos = Array.from(page.querySelectorAll(".ma-demo"));
+
+    if (reducedMotion) {
+      page.classList.add("ma-motion-reduced", "ma-loaded");
+      capabilities.forEach((section) => section.classList.add("ma-in-view"));
+      return;
+    }
+
+    page.classList.add("ma-motion-ready");
+    window.requestAnimationFrame(() => page.classList.add("ma-loaded"));
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("ma-in-view");
+          sectionObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+    );
+    capabilities.forEach((section) => sectionObserver.observe(section));
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      demos.forEach((demo) => {
+        demo.addEventListener("pointermove", (event) => {
+          const rect = demo.getBoundingClientRect();
+          const x = clamp((event.clientX - rect.left) / rect.width);
+          const y = clamp((event.clientY - rect.top) / rect.height);
+          demo.style.setProperty(
+            "--ma-tilt-y",
+            `${((x - 0.5) * 5).toFixed(2)}deg`,
+          );
+          demo.style.setProperty(
+            "--ma-tilt-x",
+            `${((0.5 - y) * 4).toFixed(2)}deg`,
+          );
+          demo.style.setProperty("--ma-glow-x", `${(x * 100).toFixed(1)}%`);
+          demo.style.setProperty("--ma-glow-y", `${(y * 100).toFixed(1)}%`);
+        });
+        demo.addEventListener("pointerleave", () => {
+          demo.style.setProperty("--ma-tilt-x", "0deg");
+          demo.style.setProperty("--ma-tilt-y", "0deg");
+          demo.style.setProperty("--ma-glow-x", "50%");
+          demo.style.setProperty("--ma-glow-y", "50%");
+        });
+      });
+    }
+
+    const hero = page.querySelector(".ma-hero");
+    let motionFrame = 0;
+    const updateMotion = () => {
+      motionFrame = 0;
+      const viewportHeight = Math.max(window.innerHeight, 1);
+
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const progress = clamp(-rect.top / Math.max(rect.height * 0.82, 1));
+        hero.style.setProperty("--ma-hero-progress", progress.toFixed(4));
+      }
+
+      capabilities.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom < -viewportHeight || rect.top > viewportHeight * 2) {
+          return;
+        }
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportHeight / 2);
+        const focus = clamp(1 - distance / (viewportHeight * 0.92));
+        const progress = clamp(
+          (viewportHeight - rect.top) / (viewportHeight + rect.height),
+        );
+        section.style.setProperty("--ma-focus", focus.toFixed(4));
+        section.style.setProperty("--ma-progress", progress.toFixed(4));
+      });
+    };
+    const requestMotion = () => {
+      if (motionFrame) return;
+      motionFrame = window.requestAnimationFrame(updateMotion);
+    };
+    updateMotion();
+    window.addEventListener("scroll", requestMotion, { passive: true });
+    window.addEventListener("resize", requestMotion);
+  };
+
+  const start = () => {
+    startSharedExperience();
+    startMosaicAgentExperience();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start, { once: true });
+  } else {
+    start();
+  }
+})();

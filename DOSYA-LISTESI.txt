@@ -1,0 +1,22 @@
+SYCLIENT TAM SITE DOSYA LISTESI
+
+HTML SAYFALARI
+1. index.html
+   Ana Syclient sitesi.
+
+2. mosaic-agent.html
+   Mosaic Agent ürün ve özellikler sayfası.
+
+3. spm.html
+   SPM / Mosaic Chat 1 ürün sayfası.
+
+ORTAK DOSYALAR
+- styles.css: Tüm sayfaların tasarımı ve mobil görünümü
+- animations.js: Tüm animasyonlar ve mobil menü davranışı
+- Geomini-*.ttf: Geomini font ailesi
+- syclient-*.png: Syclient logoları
+- mosaic-*.png: Ürün görselleri
+
+KULLANIM
+index.html dosyasını açın. Bütün sayfalar aynı dizinde kalmalıdır.
+Mosaic Family menüsü index.html, mosaic-agent.html ve spm.html arasında geçiş yapar.
