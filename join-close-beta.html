@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charSet="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="preload" href="./syclient-wordmark.png" as="image"/>
+  <link rel="stylesheet" href="./styles.css"/>
+  <link rel="stylesheet" href="./close-beta.css"/>
+  <title>Join the Close Beta | Mosaic Agent</title>
+  <meta name="description" content="Apply to test early Mosaic Agent desktop builds, local model execution, and coding, research, and browser workflows."/>
+  <link rel="shortcut icon" href="./syclient-mark.png"/>
+  <link rel="icon" href="./syclient-mark.png"/>
+</head>
+<body>
+  <div class="site-shell ma-page cb-page" id="top">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="site-header ma-site-header">
+      <div class="header-inner">
+        <a class="brand" href="./index.html" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="./syclient-wordmark.png" alt="" draggable="false"/></span></a>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <div class="product-menu">
+            <a class="product-menu-trigger" href="./index.html#mosaic-one">Mosaic Family<span aria-hidden="true">⌄</span></a>
+            <div class="product-menu-panel" aria-label="Mosaic products">
+              <a href="./index.html#mosaic-one"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic One<small>AI processor</small></span><span aria-hidden="true">↘</span></a>
+              <a href="./mosaic-agent.html"><span class="product-menu-number">02</span><span class="product-menu-name">Mosaic Agent<small>General-purpose agent</small></span><span aria-hidden="true">↘</span></a>
+              <a href="./spm.html"><span class="product-menu-number">03</span><span class="product-menu-name">SPM<small>Syclient models</small></span><span aria-hidden="true">↘</span></a>
+              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">04</span><span class="product-menu-name">Black Falcon<small>Coming soon</small></span><span aria-hidden="true">—</span></span>
+            </div>
+          </div>
+          <a href="./index.html#research">Research</a><a href="./index.html#news">News</a><a href="./index.html#about">About</a>
+        </nav>
+        <a class="contact-button" href="#application">Request access</a>
+        <details class="mobile-nav" data-mobile-nav="true">
+          <summary aria-label="Open navigation">Menu</summary>
+          <div class="mobile-nav-panel">
+            <p class="mobile-product-label"><span>01</span>Mosaic Family</p>
+            <a class="mobile-product-link" href="./index.html#mosaic-one"><span>01.1</span>Mosaic One</a>
+            <a class="mobile-product-link" href="./mosaic-agent.html"><span>01.2</span>Mosaic Agent</a>
+            <a class="mobile-product-link" href="./spm.html"><span>01.3</span>SPM</a>
+            <p class="mobile-product-disabled" aria-disabled="true"><span>01.4</span>Black Falcon <small>Coming soon</small></p>
+            <a href="./index.html#research"><span>02</span>Research</a><a href="./index.html#news"><span>03</span>News</a><a href="./index.html#about"><span>04</span>About</a><a href="#application"><span>05</span>Request access ↓</a>
+          </div>
+        </details>
+      </div>
+    </header>
+
+    <main class="ma-hero cb-hero">
+      <div class="ma-hero-inner">
+        <p class="ma-eyebrow" data-reveal="up">Mosaic Agent / Private tester program</p>
+        <h1 class="ma-title" data-reveal="up">Join the<span class="ma-title-invert">Close Beta.</span></h1>
+        <p class="ma-intro" data-reveal="up">Help us test an agent built to take responsibility for the work. The first release runs locally with Qwen 3.5 9B through Ollama.</p>
+        <div class="ma-hero-metrics" data-reveal="up"><p><strong>Local</strong><span>Ollama runtime</span></p><p><strong>Limited</strong><span>Tester cohort</span></p><p><strong>Direct</strong><span>Product feedback</span></p></div>
+        <a class="ma-scroll-link" href="#application" data-reveal="up">Request access <span aria-hidden="true">↓</span></a>
+      </div>
+    </main>
+
+    <div class="ma-capabilities">
+      <section class="ma-capability cb-application" id="application">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy cb-application-copy" data-reveal="left">
+            <p class="ma-index">01 / Request access</p>
+            <h2>Tell us how you&apos;d put Mosaic to work.</h2>
+            <p class="ma-description">We&apos;re selecting testers around concrete workflows. Tell us what you want to hand off, how you work today, and what a trustworthy result looks like.</p>
+            <blockquote class="ma-core-idea"><span>Before you apply</span>Be ready to run an early desktop build locally, test real workflows, and share clear failure evidence.</blockquote>
+            <div class="ma-tags" aria-label="Close Beta focus"><span>Coding</span><span>Research</span><span>Browser workflows</span><span>Artifact creation</span></div>
+          </div>
+          <div data-reveal="right">
+            <form class="ma-demo cb-form" id="close-beta-form">
+              <div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">close beta / application</span><span class="ma-demo-status">limited access</span></div>
+              <div class="cb-form-body">
+                <div class="cb-form-grid">
+                  <label><span>Full name *</span><input name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required placeholder="Your name"/></label>
+                  <label><span>Work email *</span><input name="email" type="email" autocomplete="email" maxlength="160" required placeholder="you@company.com"/></label>
+                  <label><span>Role *</span><select name="role" required><option value="" selected disabled>Select your role</option><option>Founder / operator</option><option>Software engineer</option><option>Researcher</option><option>Designer / creative</option><option>Student</option><option>Other</option></select></label>
+                  <label><span>Primary workflow *</span><select name="useCase" required><option value="" selected disabled>Choose a workflow</option><option>Coding workflows</option><option>Research workflows</option><option>Browser workflows</option><option>File and artifact creation</option><option>Mixed / open-ended work</option></select></label>
+                  <fieldset class="cb-field-wide"><legend>Primary platform *</legend><div class="cb-platforms"><label><input name="platform" type="radio" value="macOS" required/><span>macOS</span></label><label><input name="platform" type="radio" value="Windows" required/><span>Windows</span></label><label><input name="platform" type="radio" value="Linux" required/><span>Linux</span></label></div></fieldset>
+                  <label class="cb-field-wide"><span>What would you want Mosaic to handle end-to-end?</span><textarea name="details" maxlength="1500" rows="6" placeholder="Describe a real workflow, the tools involved, and what a verified result would look like."></textarea></label>
+                </div>
+                <label class="cb-honeypot" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"/></label>
+                <label class="cb-consent"><input name="consent" type="checkbox" required/><span>I consent to Syclient using these details to evaluate my Close Beta application and contact me about Mosaic Agent.</span></label>
+                <div class="cb-submit"><button type="submit">Submit application ↗</button><p>Submitting an application does not guarantee access. Early seats are intentionally limited.</p></div>
+                <p class="cb-form-error" id="form-error" role="alert" aria-live="polite"></p>
+              </div>
+              <div class="cb-success" role="status"><div class="cb-success-mark" aria-hidden="true">✓</div><h2>You&apos;re on the list.</h2><p>We review applications in small batches. If your workflows are a fit for the current build, the Syclient team will contact you with next steps.</p></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="ma-capability ma-capability--dark cb-benefits">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy" data-reveal="left">
+            <p class="ma-index">02 / What testers get</p><h2>Test the runtime. Shape what ships.</h2>
+            <p class="ma-description">Close Beta testers receive early builds and a direct line into product development while we harden execution, verification, repair, and recovery.</p>
+            <div class="ma-tags" aria-label="Tester benefits"><span>Early desktop builds</span><span>Local execution</span><span>New capabilities</span><span>Direct influence</span></div>
+          </div>
+          <div data-reveal="right">
+            <div class="ma-demo ma-demo--memory cb-beta-list" aria-label="Close Beta benefits">
+              <div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">tester / access</span><span class="ma-demo-status">Close Beta</span></div>
+              <div class="ma-memory-query">A working relationship, not a waitlist.</div>
+              <div class="ma-memory-list"><article><span>BUILD</span><strong>Early Mosaic desktop releases</strong><p>Access new capabilities as they ship.</p></article><article><span>WORKFLOW</span><strong>Coding, research, browser, and artifact work</strong><p>Test the agent on bounded, real-world objectives.</p></article><article><span>FEEDBACK</span><strong>Direct influence on development</strong><p>Help define reliability and product priorities.</p></article></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="ma-closing"><div data-reveal="up"><p>Mosaic Agent / Close Beta</p><h2>Bring the workflow.<br/>Mosaic will bring the work.</h2><a href="#application">Request access <span aria-hidden="true">↑</span></a></div></section>
+    <footer class="ma-footer"><p>© 2026 Syclient</p><a href="./mosaic-agent.html">Back to Mosaic Agent ↖</a></footer>
+  </div>
+  <script src="./animations.js" defer></script>
+  <script>
+    document.getElementById("close-beta-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = form.querySelector("button[type='submit']");
+      const error = document.getElementById("form-error");
+      const data = new FormData(form);
+      button.disabled = true;
+      button.textContent = "Submitting…";
+      error.textContent = "";
+      try {
+        const response = await fetch("/api/close-beta", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            name: data.get("name"), email: data.get("email"), role: data.get("role"),
+            useCase: data.get("useCase"), platform: data.get("platform"), details: data.get("details"),
+            website: data.get("website"), consent: data.get("consent") === "on"
+          })
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "We could not submit your application.");
+        form.reset();
+        form.classList.add("is-success");
+      } catch (cause) {
+        error.textContent = cause instanceof Error ? cause.message : "We could not submit your application.";
+        button.disabled = false;
+        button.textContent = "Submit application ↗";
+      }
+    });
+  </script>
+</body>
+</html>
