@@ -129,7 +129,10 @@
             website: data.get("website"), consent: data.get("consent") === "on"
           })
         });
-        const result = await response.json();
+        const contentType = response.headers.get("content-type") || "";
+        const result = contentType.includes("application/json")
+          ? await response.json()
+          : { error: "The application service is temporarily unavailable. Please try again shortly." };
         if (!response.ok) throw new Error(result.error || "We could not submit your application.");
         form.reset();
         form.classList.add("is-success");
