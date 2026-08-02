@@ -78,10 +78,10 @@
                 </div>
                 <label class="cb-honeypot" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"/></label>
                 <label class="cb-consent"><input name="consent" type="checkbox" required/><span>I consent to Syclient using these details to evaluate my Close Beta application and contact me about Mosaic Agent.</span></label>
-                <div class="cb-submit"><button type="submit">Submit application ↗</button><p>Submitting an application does not guarantee access. Early seats are intentionally limited.</p></div>
+                <div class="cb-submit"><button type="submit">Prepare application email ↗</button><p>Submitting an application does not guarantee access. Early seats are intentionally limited.</p></div>
                 <p class="cb-form-error" id="form-error" role="alert" aria-live="polite"></p>
               </div>
-              <div class="cb-success" role="status"><div class="cb-success-mark" aria-hidden="true">✓</div><h2>You&apos;re on the list.</h2><p>We review applications in small batches. If your workflows are a fit for the current build, the Syclient team will contact you with next steps.</p></div>
+              <div class="cb-success" role="status"><div class="cb-success-mark" aria-hidden="true">↗</div><h2>One last step.</h2><p>Your email app has been opened with the application prepared. Send the message to hello@syclient.ai to complete your request.</p></div>
             </form>
           </div>
         </div>
@@ -117,29 +117,28 @@
       const error = document.getElementById("form-error");
       const data = new FormData(form);
       button.disabled = true;
-      button.textContent = "Submitting…";
+      button.textContent = "Preparing…";
       error.textContent = "";
       try {
-        const response = await fetch("/api/close-beta", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            name: data.get("name"), email: data.get("email"), role: data.get("role"),
-            useCase: data.get("useCase"), platform: data.get("platform"), details: data.get("details"),
-            website: data.get("website"), consent: data.get("consent") === "on"
-          })
-        });
-        const contentType = response.headers.get("content-type") || "";
-        const result = contentType.includes("application/json")
-          ? await response.json()
-          : { error: "The application service is temporarily unavailable. Please try again shortly." };
-        if (!response.ok) throw new Error(result.error || "We could not submit your application.");
+        if (data.get("website")) return;
+        const subject = "Mosaic Agent Close Beta Application — " + data.get("name");
+        const body = [
+          "Mosaic Agent Close Beta Application", "",
+          "Name: " + data.get("name"),
+          "Email: " + data.get("email"),
+          "Role: " + data.get("role"),
+          "Primary workflow: " + data.get("useCase"),
+          "Platform: " + data.get("platform"), "",
+          "Workflow details:", data.get("details") || "Not provided", "",
+          "Consent: Yes"
+        ].join("\n");
+        window.location.href = "mailto:hello@syclient.ai?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
         form.reset();
         form.classList.add("is-success");
       } catch (cause) {
-        error.textContent = cause instanceof Error ? cause.message : "We could not submit your application.";
+        error.textContent = cause instanceof Error ? cause.message : "We could not prepare your application email.";
         button.disabled = false;
-        button.textContent = "Submit application ↗";
+        button.textContent = "Prepare application email ↗";
       }
     });
   </script>
