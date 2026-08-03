@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="preload" href="./syclient-wordmark.png" as="image"/>
+  <link rel="stylesheet" href="./styles.css"/>
+  <title>Technical Notes | Syclient Research</title>
+  <meta name="description" content="Technical notes on the Mosaic Agent runtime, verification, memory permissions, and Syclient's agent-focused model roadmap."/>
+  <link rel="shortcut icon" href="./syclient-mark.png"/>
+  <link rel="icon" href="./syclient-mark.png"/>
+</head>
+<body>
+  <div class="site-shell ma-page research-page" id="top">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="site-header ma-site-header">
+      <div class="header-inner">
+        <a class="brand" href="./index.html" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="./syclient-wordmark.png" alt="" draggable="false"/></span></a>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <div class="product-menu">
+            <a class="product-menu-trigger" href="./index.html#mosaic-agent">Products<span aria-hidden="true">⌄</span></a>
+            <div class="product-menu-panel" aria-label="Syclient products and programs">
+              <a href="./mosaic-agent.html"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic Agent<small>Close Beta · local runtime</small></span><span aria-hidden="true">↘</span></a>
+              <a href="./spm.html"><span class="product-menu-number">02</span><span class="product-menu-name">Model Lab<small>Public experiments</small></span><span aria-hidden="true">↘</span></a>
+              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">03</span><span class="product-menu-name">Mosaic Two<small>In development</small></span><span aria-hidden="true">—</span></span>
+            </div>
+          </div>
+          <a href="./research.html" aria-current="page">Research</a>
+          <a href="./about.html">Company</a>
+        </nav>
+        <a class="contact-button" href="mailto:hello@syclient.com?subject=Research%20conversation">Contact</a>
+        <details class="mobile-nav" data-mobile-nav="true"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><p class="mobile-product-label"><span>01</span>Products</p><a class="mobile-product-link" href="./mosaic-agent.html"><span>01.1</span>Mosaic Agent <small>Close Beta</small></a><a class="mobile-product-link" href="./spm.html"><span>01.2</span>Model Lab</a><p class="mobile-product-disabled" aria-disabled="true"><span>01.3</span>Mosaic Two <small>In development</small></p><a href="./research.html" aria-current="page"><span>02</span>Research</a><a href="./about.html"><span>03</span>Company</a><a href="mailto:hello@syclient.com?subject=Research%20conversation"><span>04</span>Contact ↗</a></div></details>
+      </div>
+    </header>
+
+    <main class="ma-hero research-notes-hero">
+      <div class="ma-hero-inner">
+        <p class="ma-eyebrow" data-reveal="up">Syclient Research / Technical Notes</p>
+        <h1 class="ma-title" data-reveal="up">Status before<span class="ma-title-invert">spectacle.</span></h1>
+        <p class="ma-intro" data-reveal="up">A working record of what Mosaic implements now, what we are testing next, and what remains a longer-term research direction.</p>
+        <div class="ma-hero-metrics" data-reveal="up"><p><strong>Implemented</strong><span>Runtime + verification</span></p><p><strong>In development</strong><span>Memory Plane</span></p><p><strong>Roadmap</strong><span>Agent-focused models</span></p></div>
+        <a class="ma-scroll-link" href="#runtime-note" data-reveal="up">Start with the runtime <span aria-hidden="true">↓</span></a>
+      </div>
+    </main>
+
+    <div class="ma-capabilities">
+      <section class="ma-capability" id="runtime-note">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy" data-reveal="left">
+            <p class="ma-index">Note 01 / Implemented in Close Beta</p>
+            <h2>Inside the current Mosaic Agent runtime.</h2>
+            <p class="ma-description">The first Mosaic release runs locally with Qwen 3.5 9B through Ollama. The runtime turns an objective into a task tree, matches tools to steps, executes work, and keeps logs and artifacts attached to the task.</p>
+            <blockquote class="ma-core-idea"><span>Operating loop</span>Think → Plan → Act → Verify</blockquote>
+            <div class="ma-tags" aria-label="Current runtime scope"><span>Local execution</span><span>Multi-step planning</span><span>Tool use</span><span>Task isolation</span><span>Execution evidence</span><span>Recovery</span></div>
+          </div>
+          <div data-reveal="right"><div class="ma-demo ma-demo--tokens" aria-label="Mosaic runtime status"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 01 / runtime</span><span class="ma-demo-status">Close Beta</span></div><div class="ma-token-task"><span>Current boundary</span><strong>A local beta runtime—not a released foundation model.</strong></div><div class="ma-token-bars"><div><span>Plan + route</span><i style="--ma-fill:100%"></i><b>working</b></div><div><span>Verify + repair</span><i style="--ma-fill:100%"></i><b>working</b></div></div><div class="ma-terminal-lines"><p><em>✓</em> Qwen 3.5 9B via Ollama</p><p><em>✓</em> Logs and artifacts persisted</p><p><em>→</em> Reliability hardening in progress</p></div></div></div>
+        </div>
+      </section>
+
+      <section class="ma-capability ma-capability--dark" id="verification-note">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy" data-reveal="left">
+            <p class="ma-index">Note 02 / Implemented runtime primitive</p>
+            <h2>Completion requires evidence.</h2>
+            <p class="ma-description">Mosaic treats execution and verification as one workflow. Acceptance contracts define the requested deliverables; the runtime captures stdout, stderr, exit codes, source evidence, and artifact checks before work can be accepted.</p>
+            <p class="ma-description">When a check fails, Mosaic can make a bounded repair attempt using the failure evidence. “Done” is a verified state, not just a generated sentence.</p>
+            <div class="ma-tags" aria-label="Verification mechanisms"><span>Acceptance contracts</span><span>Exact deliverables</span><span>Artifact validation</span><span>Source evidence</span><span>Bounded repair</span></div>
+          </div>
+          <div data-reveal="right"><div class="ma-demo ma-demo--tools" aria-label="Verification sequence"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 02 / verification</span><span class="ma-demo-status">Implemented</span></div><div class="ma-tool-plan"><p><span>01</span><b>Execute requested work</b><em>done</em></p><p><span>02</span><b>Validate exact deliverables</b><em>done</em></p><p class="is-active"><span>03</span><b>Repair failed checks</b><em>bounded</em></p></div><div class="ma-code-window"><p><i>›</i> run task --isolated</p><p><i>›</i> verify artifacts <small>evidence saved</small></p><p><i>›</i> repair failed acceptance check</p><code><span>15</span> stdout: artifact created</code><code class="is-added"><span>16</span> exit_code: 0 · accepted</code></div></div></div>
+        </div>
+      </section>
+
+      <section class="ma-capability" id="permission-note">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy" data-reveal="left">
+            <p class="ma-index">Note 03 / In development</p>
+            <h2>Memory needs a permission model.</h2>
+            <p class="ma-description">Long-term memory is only useful when the agent knows what it may retain, where it may reuse it, how the information was produced, and when it should be revoked. The Mosaic Memory Plane is being designed around explicit scope and provenance rather than unlimited recall.</p>
+            <blockquote class="ma-core-idea"><span>Design constraint</span>Memory must be useful, inspectable, scoped, and revocable.</blockquote>
+            <div class="ma-tags" aria-label="Memory Plane design areas"><span>Project scope</span><span>Source provenance</span><span>Permission boundaries</span><span>Revocation</span><span>Verified reuse</span></div>
+          </div>
+          <div data-reveal="right"><div class="ma-demo ma-demo--memory" aria-label="Memory permission layers"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 03 / memory plane</span><span class="ma-demo-status">In development</span></div><div class="ma-memory-query">May this result be reused in Project B?</div><div class="ma-memory-list"><article><span>SCOPE</span><strong>Project A only</strong><p>Reuse is blocked outside its original boundary.</p></article><article><span>PROVENANCE</span><strong>Verified task evidence</strong><p>The source, run, and acceptance state remain attached.</p></article><article><span>CONTROL</span><strong>Revocable memory</strong><p>Stored context can be inspected and withdrawn.</p></article></div></div></div>
+        </div>
+      </section>
+
+      <section class="ma-capability ma-capability--dark" id="model-note">
+        <div class="ma-capability-inner">
+          <div class="ma-capability-copy" data-reveal="left">
+            <p class="ma-index">Note 04 / Public evidence + roadmap</p>
+            <h2>Small model work before large model claims.</h2>
+            <p class="ma-description">Syclient’s current public checkpoint is SPM-70M-Vertigo: a ~71M-parameter English decoder-only, Llama-style foundation-model experiment trained from scratch. It is an early research artifact, not evidence of a frontier-model program.</p>
+            <p class="ma-description">The next credible steps are documented agent-task fine-tunes, reproducible evaluations, and small hybrid/MoE routing experiments. Mosaic Two remains in development with no public checkpoint today.</p>
+            <div class="ma-tags" aria-label="Model work status"><span>SPM-70M · public</span><span>Agent fine-tunes · planned</span><span>Hybrid/MoE · planned</span><span>Mosaic Two · in development</span></div>
+            <div class="ma-note-links"><a href="https://huggingface.co/Syclient/SPM-70M-Vertigo" target="_blank" rel="noreferrer">Open the public checkpoint ↗</a><a href="./spm.html">Read the Model Lab plan ↗</a></div>
+          </div>
+          <div data-reveal="right"><div class="ma-demo ma-demo--routing" aria-label="Model research release stages"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 04 / model evidence</span><span class="ma-demo-status">Staged</span></div><div class="ma-route-request"><span>Publishing rule</span><strong>No scale claim without a checkpoint, model card, and evaluation.</strong></div><div class="ma-route-map"><div class="is-selected"><span>Public</span><b>SPM-70M</b></div><div><span>Planned</span><b>Fine-tunes</b></div><div><span>Planned</span><b>Eval suites</b></div><div><span>Planned</span><b>Hybrid/MoE</b></div><div><span>In development</span><b>Mosaic Two</b></div></div><p class="ma-route-result"><i></i> Software before silicon. Hardware remains a long-term research possibility.</p></div></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="ma-closing"><div data-reveal="up"><p>Syclient Research</p><h2>We publish the boundary<br/>with the result.</h2><a href="mailto:hello@syclient.com?subject=Technical%20conversation">Start a technical conversation <span aria-hidden="true">↗</span></a></div></section>
+    <footer class="ma-footer"><p>© 2026 Syclient</p><a href="./index.html">Back to Syclient ↖</a></footer>
+  </div>
+  <script src="./animations.js" defer></script>
+</body>
+</html>

@@ -19,26 +19,24 @@
         <a class="brand" href="./index.html" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="./syclient-wordmark.png" alt="" draggable="false"/></span></a>
         <nav class="desktop-nav" aria-label="Primary navigation">
           <div class="product-menu">
-            <a class="product-menu-trigger" href="./index.html#mosaic-one">Mosaic Family<span aria-hidden="true">⌄</span></a>
-            <div class="product-menu-panel" aria-label="Mosaic products">
-              <a href="./index.html#mosaic-one"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic One<small>AI processor</small></span><span aria-hidden="true">↘</span></a>
-              <a href="./mosaic-agent.html"><span class="product-menu-number">02</span><span class="product-menu-name">Mosaic Agent<small>General-purpose agent</small></span><span aria-hidden="true">↘</span></a>
-              <a href="./spm.html"><span class="product-menu-number">03</span><span class="product-menu-name">SPM<small>Syclient models</small></span><span aria-hidden="true">↘</span></a>
-              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">04</span><span class="product-menu-name">Black Falcon<small>Coming soon</small></span><span aria-hidden="true">—</span></span>
+            <a class="product-menu-trigger" href="./index.html#mosaic-agent">Products<span aria-hidden="true">⌄</span></a>
+            <div class="product-menu-panel" aria-label="Syclient products and programs">
+              <a href="./mosaic-agent.html"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic Agent<small>Close Beta · local runtime</small></span><span aria-hidden="true">↘</span></a>
+              <a href="./spm.html"><span class="product-menu-number">02</span><span class="product-menu-name">Model Lab<small>Public experiments</small></span><span aria-hidden="true">↘</span></a>
+              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">03</span><span class="product-menu-name">Mosaic Two<small>In development</small></span><span aria-hidden="true">—</span></span>
             </div>
           </div>
-          <a href="./index.html#research">Research</a><a href="./index.html#news">News</a><a href="./index.html#about">About</a>
+          <a href="./research.html">Research</a><a href="./about.html">Company</a>
         </nav>
         <a class="contact-button" href="#application">Request access</a>
         <details class="mobile-nav" data-mobile-nav="true">
           <summary aria-label="Open navigation">Menu</summary>
           <div class="mobile-nav-panel">
-            <p class="mobile-product-label"><span>01</span>Mosaic Family</p>
-            <a class="mobile-product-link" href="./index.html#mosaic-one"><span>01.1</span>Mosaic One</a>
-            <a class="mobile-product-link" href="./mosaic-agent.html"><span>01.2</span>Mosaic Agent</a>
-            <a class="mobile-product-link" href="./spm.html"><span>01.3</span>SPM</a>
-            <p class="mobile-product-disabled" aria-disabled="true"><span>01.4</span>Black Falcon <small>Coming soon</small></p>
-            <a href="./index.html#research"><span>02</span>Research</a><a href="./index.html#news"><span>03</span>News</a><a href="./index.html#about"><span>04</span>About</a><a href="#application"><span>05</span>Request access ↓</a>
+            <p class="mobile-product-label"><span>01</span>Products</p>
+            <a class="mobile-product-link" href="./mosaic-agent.html"><span>01.1</span>Mosaic Agent <small>Close Beta</small></a>
+            <a class="mobile-product-link" href="./spm.html"><span>01.2</span>Model Lab</a>
+            <p class="mobile-product-disabled" aria-disabled="true"><span>01.3</span>Mosaic Two <small>In development</small></p>
+            <a href="./research.html"><span>02</span>Research</a><a href="./about.html"><span>03</span>Company</a><a href="#application"><span>04</span>Request access ↓</a>
           </div>
         </details>
       </div>
@@ -132,7 +130,7 @@
           "Workflow details:", data.get("details") || "Not provided", "",
           "Consent: Yes"
         ].join("\n");
-        const recipient = ["mertmiracpersonel", "gmail.com"].join("@");
+        const recipient = ["hello", "syclient.com"].join("@");
         window.location.href = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
         form.reset();
         form.classList.add("is-success");

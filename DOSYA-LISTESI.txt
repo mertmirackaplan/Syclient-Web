@@ -8,7 +8,13 @@ HTML SAYFALARI
    Mosaic Agent ürün ve özellikler sayfası.
 
 3. spm.html
-   SPM / Mosaic Chat 1 ürün sayfası.
+   Model Lab / SPM-70M-Vertigo ve model yol haritası.
+
+4. research.html
+   Teknik notlar, mevcut runtime durumu ve araştırma yol haritası.
+
+5. about.html
+   Şirket tanımı, ekip yapısı, çalışma prensipleri ve iletişim.
 
 ORTAK DOSYALAR
 - styles.css: Tüm sayfaların tasarımı ve mobil görünümü
@@ -19,4 +25,4 @@ ORTAK DOSYALAR
 
 KULLANIM
 index.html dosyasını açın. Bütün sayfalar aynı dizinde kalmalıdır.
-Mosaic Family menüsü index.html, mosaic-agent.html ve spm.html arasında geçiş yapar.
+Products menüsü index.html, mosaic-agent.html, spm.html, research.html ve about.html arasında geçiş yapar.
