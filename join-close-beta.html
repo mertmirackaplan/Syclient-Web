@@ -81,7 +81,7 @@
                 <div class="cb-submit"><button type="submit">Prepare application email ↗</button><p>Submitting an application does not guarantee access. Early seats are intentionally limited.</p></div>
                 <p class="cb-form-error" id="form-error" role="alert" aria-live="polite"></p>
               </div>
-              <div class="cb-success" role="status"><div class="cb-success-mark" aria-hidden="true">↗</div><h2>One last step.</h2><p>Your email app has been opened with the application prepared. Send the message to hello@syclient.ai to complete your request.</p></div>
+              <div class="cb-success" role="status"><div class="cb-success-mark" aria-hidden="true">↗</div><h2>One last step.</h2><p>Your email app has been opened with the application prepared. Send the message to complete your request.</p></div>
             </form>
           </div>
         </div>
@@ -132,7 +132,8 @@
           "Workflow details:", data.get("details") || "Not provided", "",
           "Consent: Yes"
         ].join("\n");
-        window.location.href = "mailto:hello@syclient.ai?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        const recipient = ["mertmiracpersonel", "gmail.com"].join("@");
+        window.location.href = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
         form.reset();
         form.classList.add("is-success");
       } catch (cause) {
