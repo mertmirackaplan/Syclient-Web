@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Syclient Omi — Multimodal AI for Understanding, Reasoning, and Interaction</title>
+  <title>Syclient Labs</title>
   <meta name="description" content="Explore Syclient Omi, a research-driven multimodal AI system built for conversation, vision, reasoning, coding, and intelligent interaction.">
-  <meta property="og:title" content="Syclient Omi — Multimodal AI for Understanding, Reasoning, and Interaction">
+  <meta property="og:title" content="Syclient Labs">
   <meta property="og:description" content="Explore Syclient Omi, a research-driven multimodal AI system built for conversation, vision, reasoning, coding, and intelligent interaction.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#000000">
@@ -27,7 +27,6 @@
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
           <a href="#top">Omi</a>
-          <a href="#playground">Playground</a>
           <a href="#research">Research</a>
         </nav>
         <a class="contact-button" href="mailto:hello@syclient.com">Contact</a>
@@ -35,9 +34,8 @@
           <summary aria-label="Open navigation">Menu</summary>
           <div class="mobile-nav-panel">
             <a href="#top"><span>01</span>Omi</a>
-            <a href="#playground"><span>02</span>Playground</a>
-            <a href="#research"><span>03</span>Research</a>
-            <a href="mailto:hello@syclient.com"><span>04</span>Contact ↗</a>
+            <a href="#research"><span>02</span>Research</a>
+            <a href="mailto:hello@syclient.com"><span>03</span>Contact ↗</a>
           </div>
         </details>
       </div>
@@ -50,73 +48,8 @@
           <p class="hero-subtitle"><em>Beyond conversation.</em></p>
           <p class="hero-body">Omi is Syclient’s multimodal AI system, built to understand, communicate, reason, create, and eventually interact with the digital world.</p>
           <div class="hero-actions">
-            <a class="primary-cta" href="#playground">Try Omi<span aria-hidden="true">↘</span></a>
-            <a class="secondary-cta" href="#capabilities">Explore Omi<span aria-hidden="true">↘</span></a>
+            <a class="primary-cta" href="#capabilities">Explore Omi<span aria-hidden="true">↘</span></a>
             <a class="ghost-cta" href="#research">Research<span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </section>
-
-      <section class="playground dark-section" id="playground" aria-labelledby="playground-title">
-        <div class="playground-inner">
-          <header class="playground-header" data-reveal="up">
-            <p class="section-label">01 / Playground</p>
-            <div>
-              <span class="status-pill status-pill--demo" data-mode-pill>Demo</span>
-              <h2 id="playground-title">Meet Omi</h2>
-              <p class="playground-lead">Talk with Omi, explore its capabilities, and experience Syclient’s multimodal intelligence.</p>
-            </div>
-          </header>
-
-          <div class="chat-shell" data-reveal="up">
-            <div class="chat-toolbar">
-              <p>Omi conversation</p>
-              <div class="chat-toolbar-actions">
-                <span class="status-pill status-pill--demo" data-mode-pill hidden>Demo</span>
-                <button type="button" class="toolbar-btn" id="new-chat">New chat</button>
-              </div>
-            </div>
-
-            <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-relevant="additions">
-              <div class="chat-empty" id="chat-empty">
-                <strong>Start a conversation</strong>
-                <p>Ask something, or pick a prompt.</p>
-              </div>
-            </div>
-
-            <p class="chat-error" id="chat-error" role="alert">
-              <span id="chat-error-text"></span>
-              <button type="button" id="chat-retry">Retry</button>
-            </p>
-
-            <div class="prompt-row" aria-label="Suggested prompts">
-              <button type="button" class="prompt-chip" data-prompt="Explain quantum computing simply.">Explain quantum computing simply.</button>
-              <button type="button" class="prompt-chip" data-prompt="Help me write a Python script.">Help me write a Python script.</button>
-              <button type="button" class="prompt-chip" data-prompt="Analyze this image.">Analyze this image.</button>
-              <button type="button" class="prompt-chip" data-prompt="Explain this code.">Explain this code.</button>
-              <button type="button" class="prompt-chip" data-prompt="Create a study plan for me.">Create a study plan for me.</button>
-              <button type="button" class="prompt-chip" data-prompt="Summarize this document.">Summarize this document.</button>
-              <button type="button" class="prompt-chip" data-prompt="What can you do?">What can you do?</button>
-            </div>
-
-            <form class="composer" id="composer" autocomplete="off">
-              <div class="vision-wrap">
-                <button type="button" class="vision-btn" id="vision-btn" disabled aria-disabled="true" aria-describedby="vision-hint" title="Vision support coming soon">
-                  <span class="sr-only">Attach image — vision support coming soon</span>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <rect x="2.2" y="3.4" width="13.6" height="11.2" rx="1.6" stroke="currentColor" stroke-width="1.3"/>
-                    <circle cx="6.4" cy="7.4" r="1.2" fill="currentColor"/>
-                    <path d="M2.6 12.6 7.2 9.2l2.6 2 2.1-1.8 3.5 3.2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-                <p class="vision-hint" id="vision-hint">Vision support coming soon</p>
-              </div>
-              <div class="composer-field">
-                <label class="sr-only" for="composer-input">Message to Omi</label>
-                <textarea id="composer-input" name="message" rows="1" placeholder="Message Omi…" maxlength="8000" required></textarea>
-              </div>
-              <button type="submit" class="send-btn" id="send-btn">Send<span aria-hidden="true">↗</span></button>
-            </form>
           </div>
         </div>
       </section>
@@ -124,7 +57,7 @@
       <section class="capabilities light-section" id="capabilities" aria-labelledby="capabilities-title">
         <div class="capabilities-inner">
           <header class="capabilities-header" data-reveal="up">
-            <p class="section-label">02 / Capabilities</p>
+            <p class="section-label">01 / Capabilities</p>
             <div>
               <h2 id="capabilities-title">Capabilities</h2>
               <p class="lead">Conversation, vision, reasoning, and interaction.</p>
@@ -181,7 +114,7 @@
       <section class="research dark-section" id="research" data-section-active="true" aria-labelledby="research-title">
         <div class="research-inner">
           <header class="research-header" data-reveal="up">
-            <p class="section-label">03 / Research</p>
+            <p class="section-label">02 / Research</p>
             <div>
               <h2 id="research-title">Research-driven intelligence</h2>
               <p class="research-intro">Language, vision, reasoning, and interaction — in one evolving system.</p>
@@ -206,7 +139,7 @@
 
       <section class="model dark-section" id="model" aria-labelledby="model-title">
         <div class="model-inner">
-          <p class="section-label" data-reveal="left">04 / Model</p>
+          <p class="section-label" data-reveal="left">03 / Model</p>
           <div class="model-copy" data-reveal="right">
             <h2 id="model-title">Omi</h2>
             <dl class="model-fields">
@@ -216,7 +149,7 @@
               </div>
               <div>
                 <dt>Status</dt>
-                <dd>Research / playground demo</dd>
+                <dd>Research</dd>
               </div>
               <div>
                 <dt>Modalities</dt>
@@ -224,11 +157,11 @@
               </div>
               <div>
                 <dt>Capabilities</dt>
-                <dd>Conversation, reasoning, coding (demo)</dd>
+                <dd>Conversation, reasoning, coding</dd>
               </div>
               <div>
                 <dt>Availability</dt>
-                <dd>Playground demo</dd>
+                <dd>Research preview</dd>
               </div>
               <div>
                 <dt>Research</dt>
@@ -249,7 +182,7 @@
 
       <section class="roadmap dark-section" id="roadmap" aria-labelledby="roadmap-title">
         <div class="roadmap-inner">
-          <p class="section-label" data-reveal="left">05 / Direction</p>
+          <p class="section-label" data-reveal="left">04 / Direction</p>
           <div class="roadmap-copy" data-reveal="right">
             <h2 id="roadmap-title">Building toward intelligent interaction</h2>
             <ol class="roadmap-list">
@@ -274,7 +207,6 @@
         <div class="footer-row">
           <nav class="footer-links" aria-label="Footer">
             <a href="#top">Omi</a>
-            <a href="#playground">Playground</a>
             <a href="#research">Research</a>
             <a href="https://github.com/Syclient" target="_blank" rel="noreferrer">GitHub</a>
             <a href="mailto:hello@syclient.com">Contact</a>
@@ -362,286 +294,8 @@
       updateMotion();
     };
 
-    const escapeHtml = (value) =>
-      String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-
-    const formatMessage = (text) => {
-      const raw = String(text ?? "");
-      const parts = raw.split(/```(?:[a-zA-Z0-9_-]+)?\n?([\s\S]*?)```/g);
-      return parts
-        .map((part, index) => {
-          if (index % 2 === 1) {
-            return "<pre><code>" + escapeHtml(part.replace(/\n$/, "")) + "</code></pre>";
-          }
-          return escapeHtml(part).replace(/\n/g, "<br>");
-        })
-        .join("");
-    };
-
-    const getApiUrl = () => {
-      const fromWindow = typeof window.OMI_API_URL === "string" ? window.OMI_API_URL.trim() : "";
-      if (fromWindow) return fromWindow;
-      try {
-        return (localStorage.getItem("OMI_API_URL") || "").trim();
-      } catch {
-        return "";
-      }
-    };
-
-    const MOCK_REPLIES = {
-      quantum:
-        "A classical bit is 0 or 1. A qubit can hold both until you measure it. Useful machines are still research.",
-      python:
-        "A tiny folder listing you can extend:\n\n```python\nfrom pathlib import Path\n\nfor item in sorted(Path(\".\").iterdir()):\n    print(item.name)\n```",
-      image:
-        "Vision support coming soon. Describe the image in text for now.",
-      code:
-        "Paste a snippet and I’ll walk through it.",
-      study:
-        "Week 1: map the field. Week 2: worked examples. Week 3: recall without notes. Week 4: teach it back. One focused block a day.",
-      document:
-        "No file attached. Paste the text you want summarized.",
-      able:
-        "Here I can talk, reason, and help with code. Vision, files, computer use, and memory are not live.",
-    };
-
-    const pickMockReply = (text) => {
-      const q = String(text || "").toLowerCase();
-      if (/quantum/.test(q)) return MOCK_REPLIES.quantum;
-      if (/python|script/.test(q)) return MOCK_REPLIES.python;
-      if (/image|vision|screenshot|photo/.test(q)) return MOCK_REPLIES.image;
-      if (/explain this code|code snippet|walk through/.test(q) || q.trim() === "explain this code.") {
-        return MOCK_REPLIES.code;
-      }
-      if (/study plan|study/.test(q)) return MOCK_REPLIES.study;
-      if (/summarize|document/.test(q)) return MOCK_REPLIES.document;
-      if (/what can you do|capabilities|what do you do/.test(q)) return MOCK_REPLIES.able;
-      return "Local demo unless OMI_API_URL is set. Ask a sharper question, or try a prompt.";
-    };
-
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    async function sendToOmi(messages) {
-      const apiUrl = getApiUrl();
-      if (apiUrl) {
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages }),
-        });
-        if (!response.ok) {
-          throw new Error("The Omi API returned " + response.status + ".");
-        }
-        let data = {};
-        try {
-          data = await response.json();
-        } catch {
-          throw new Error("The Omi API did not return JSON.");
-        }
-        const content = data.content ?? data.message;
-        if (typeof content !== "string" || !content.trim()) {
-          throw new Error("The Omi API response was missing content.");
-        }
-        return { content: content.trim(), demo: false };
-      }
-
-      const lastUser = [...messages].reverse().find((item) => item.role === "user");
-      await wait(700 + Math.floor(Math.random() * 500));
-      return { content: pickMockReply(lastUser?.content), demo: true };
-    }
-
-    const startPlayground = () => {
-      const log = document.getElementById("chat-log");
-      const empty = document.getElementById("chat-empty");
-      const form = document.getElementById("composer");
-      const input = document.getElementById("composer-input");
-      const sendBtn = document.getElementById("send-btn");
-      const newChatBtn = document.getElementById("new-chat");
-      const errorBox = document.getElementById("chat-error");
-      const errorText = document.getElementById("chat-error-text");
-      const retryBtn = document.getElementById("chat-retry");
-      const pills = document.querySelectorAll("[data-mode-pill]");
-      const visionBtn = document.getElementById("vision-btn");
-
-      const state = {
-        messages: [],
-        busy: false,
-        lastFailed: null,
-      };
-
-      const live = Boolean(getApiUrl());
-      pills.forEach((pill) => {
-        if (live) {
-          pill.hidden = true;
-          pill.textContent = "Connected";
-        } else {
-          pill.hidden = false;
-          pill.textContent = "Demo";
-        }
-      });
-      const headerPill = document.querySelector(".playground-header [data-mode-pill]");
-      if (headerPill) {
-        headerPill.hidden = false;
-        headerPill.textContent = live ? "API connected" : "Demo";
-        headerPill.classList.toggle("status-pill--live", live);
-        headerPill.classList.toggle("status-pill--demo", !live);
-      }
-
-      const hideError = () => {
-        errorBox.classList.remove("is-visible");
-        errorText.textContent = "";
-      };
-
-      const showError = (message) => {
-        errorText.textContent = message;
-        errorBox.classList.add("is-visible");
-      };
-
-      const resizeInput = () => {
-        input.style.height = "auto";
-        input.style.height = Math.min(input.scrollHeight, 160) + "px";
-      };
-
-      const scrollLog = () => {
-        log.scrollTop = log.scrollHeight;
-      };
-
-      const setBusy = (busy) => {
-        state.busy = busy;
-        sendBtn.disabled = busy || !input.value.trim();
-        input.disabled = busy;
-      };
-
-      const renderEmpty = () => {
-        if (!empty) return;
-        if (state.messages.length === 0 && !log.querySelector(".message, .message--pending")) {
-          empty.hidden = false;
-        } else {
-          empty.hidden = true;
-        }
-      };
-
-      const appendMessage = ({ role, content, demo, pending }) => {
-        if (empty) empty.hidden = true;
-        const article = document.createElement("article");
-        article.className = "message message--" + role + (pending ? " message--pending" : "") + " message-enter";
-        const meta = document.createElement("div");
-        meta.className = "message-meta";
-        const who = document.createElement("span");
-        who.className = "message-role";
-        who.textContent = role === "user" ? "You" : "Omi";
-        meta.appendChild(who);
-        if (demo && role === "assistant") {
-          const badge = document.createElement("span");
-          badge.className = "demo-badge";
-          badge.textContent = "Demo";
-          meta.appendChild(badge);
-        }
-        article.appendChild(meta);
-        const body = document.createElement("div");
-        body.className = "message-body";
-        if (pending) {
-          body.innerHTML = '<span class="typing" aria-label="Omi is responding"><i></i><i></i><i></i></span>';
-        } else {
-          body.innerHTML = formatMessage(content);
-        }
-        article.appendChild(body);
-        log.appendChild(article);
-        scrollLog();
-        return article;
-      };
-
-      const resetChat = () => {
-        state.messages = [];
-        state.lastFailed = null;
-        hideError();
-        log.querySelectorAll(".message").forEach((node) => node.remove());
-        if (empty) empty.hidden = false;
-        input.value = "";
-        resizeInput();
-        setBusy(false);
-        input.focus();
-      };
-
-      const sendMessages = async (userText) => {
-        const text = String(userText || "").trim();
-        if (!text || state.busy) return;
-        hideError();
-        state.messages.push({ role: "user", content: text });
-        appendMessage({ role: "user", content: text });
-        const pending = appendMessage({ role: "assistant", pending: true });
-        setBusy(true);
-        try {
-          const result = await sendToOmi(state.messages.map((item) => ({
-            role: item.role,
-            content: item.content,
-          })));
-          pending.remove();
-          state.messages.push({ role: "assistant", content: result.content });
-          appendMessage({ role: "assistant", content: result.content, demo: result.demo });
-          state.lastFailed = null;
-        } catch (error) {
-          pending.remove();
-          state.messages.pop();
-          state.lastFailed = text;
-          showError(error.message || "Something went wrong talking to Omi.");
-        } finally {
-          setBusy(false);
-          renderEmpty();
-          input.focus();
-        }
-      };
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const text = input.value.trim();
-        if (!text) return;
-        input.value = "";
-        resizeInput();
-        sendMessages(text);
-      });
-
-      input.addEventListener("input", () => {
-        resizeInput();
-        sendBtn.disabled = state.busy || !input.value.trim();
-      });
-
-      input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" && !event.shiftKey) {
-          event.preventDefault();
-          form.requestSubmit();
-        }
-      });
-
-      document.querySelectorAll("[data-prompt]").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          const prompt = chip.getAttribute("data-prompt") || "";
-          sendMessages(prompt);
-        });
-      });
-
-      newChatBtn.addEventListener("click", resetChat);
-      retryBtn.addEventListener("click", () => {
-        if (state.lastFailed) sendMessages(state.lastFailed);
-      });
-
-      visionBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-
-      sendBtn.disabled = true;
-      resizeInput();
-      window.sendToOmi = sendToOmi;
-    };
-
     const start = () => {
       startMotion();
-      startPlayground();
     };
 
     if (document.readyState === "loading") {
