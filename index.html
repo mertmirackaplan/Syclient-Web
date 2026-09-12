@@ -1,186 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="preload" href="./syclient-wordmark.png" as="image"/>
-  <link rel="stylesheet" href="./styles.css"/>
-  <title>Syclient | Memory-native agent infrastructure</title>
-  <meta name="description" content="Syclient builds a memory-native agent runtime and agent-focused model infrastructure. Mosaic Agent is now in Close Beta."/>
-  <meta property="og:title" content="Syclient | Memory-native agent infrastructure"/>
-  <meta property="og:description" content="A focused AI company building Mosaic Agent today and agent-focused model infrastructure for what comes next."/>
-  <meta property="og:image" content="./og.png"/>
-  <link rel="shortcut icon" href="./syclient-mark.png"/>
-  <link rel="icon" href="./syclient-mark.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syclient Omi — Multimodal AI for Understanding, Reasoning, and Interaction</title>
+  <meta name="description" content="Explore Syclient Omi, a research-driven multimodal AI system built for conversation, vision, reasoning, coding, and intelligent interaction.">
+  <meta property="og:title" content="Syclient Omi — Multimodal AI for Understanding, Reasoning, and Interaction">
+  <meta property="og:description" content="Explore Syclient Omi, a research-driven multimodal AI system built for conversation, vision, reasoning, coding, and intelligent interaction.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="./syclient-logo.png">
+  <link rel="preload" href="./syclient-logo.png" as="image">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell" id="top">
     <div class="scroll-progress" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#top" aria-label="Syclient home">
-          <span class="wordmark" aria-hidden="true"><img src="./syclient-wordmark.png" alt="" draggable="false"/></span>
+          <span class="wordmark" aria-hidden="true">
+            <img src="./syclient-logo.png" alt="" width="148" height="25" draggable="false">
+          </span>
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
-          <div class="product-menu">
-            <a class="product-menu-trigger" href="#mosaic-agent">Products<span aria-hidden="true">⌄</span></a>
-            <div class="product-menu-panel" aria-label="Syclient products and programs">
-              <a href="./mosaic-agent.html"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic Agent<small>Close Beta · local runtime</small></span><span aria-hidden="true">↘</span></a>
-              <a href="./spm.html"><span class="product-menu-number">02</span><span class="product-menu-name">Model Lab<small>Public experiments</small></span><span aria-hidden="true">↘</span></a>
-              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">03</span><span class="product-menu-name">Mosaic Two<small>In development</small></span><span aria-hidden="true">—</span></span>
-            </div>
-          </div>
-          <a href="./research.html">Research</a>
-          <a href="./about.html">Company</a>
+          <a href="#top">Omi</a>
+          <a href="#playground">Playground</a>
+          <a href="#research">Research</a>
         </nav>
-        <a class="contact-button" href="mailto:hello@syclient.com?subject=Hello%20Syclient">Contact</a>
+        <a class="contact-button" href="mailto:hello@syclient.com">Contact</a>
         <details class="mobile-nav" data-mobile-nav="true">
           <summary aria-label="Open navigation">Menu</summary>
           <div class="mobile-nav-panel">
-            <p class="mobile-product-label"><span>01</span>Products</p>
-            <a class="mobile-product-link" href="./mosaic-agent.html"><span>01.1</span>Mosaic Agent <small>Close Beta</small></a>
-            <a class="mobile-product-link" href="./spm.html"><span>01.2</span>Model Lab</a>
-            <p class="mobile-product-disabled" aria-disabled="true"><span>01.3</span>Mosaic Two <small>In development</small></p>
-            <a href="./research.html"><span>02</span>Research</a>
-            <a href="./about.html"><span>03</span>Company</a>
-            <a href="mailto:hello@syclient.com?subject=Hello%20Syclient"><span>04</span>Contact ↗</a>
+            <a href="#top"><span>01</span>Omi</a>
+            <a href="#playground"><span>02</span>Playground</a>
+            <a href="#research"><span>03</span>Research</a>
+            <a href="mailto:hello@syclient.com"><span>04</span>Contact ↗</a>
           </div>
         </details>
       </div>
     </header>
 
-    <main class="product-hero company-hero" id="mosaic-agent">
-      <section class="product-copy" aria-labelledby="hero-title">
-        <p class="company-eyebrow">Independent AI company <span>·</span> Software first</p>
-        <h1 id="hero-title">We build a <span class="agent-highlight">memory-native agent runtime</span> and agent-focused model infrastructure.</h1>
-        <p class="company-position">Our first product, Mosaic Agent, runs locally in Close Beta. It plans multi-step work, uses tools, verifies its outputs, and repairs failed checks.</p>
-        <div class="hero-actions">
-          <a class="primary-cta" href="./mosaic-agent.html">See what works today<span aria-hidden="true">↘</span></a>
-          <a class="secondary-cta" href="./research.html">Read technical notes<span aria-hidden="true">↗</span></a>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Omi</h1>
+          <p class="hero-subtitle"><em>Beyond conversation.</em></p>
+          <p class="hero-body">Omi is Syclient’s multimodal AI system, built to understand, communicate, reason, create, and eventually interact with the digital world.</p>
+          <div class="hero-actions">
+            <a class="primary-cta" href="#playground">Try Omi<span aria-hidden="true">↘</span></a>
+            <a class="secondary-cta" href="#capabilities">Explore Omi<span aria-hidden="true">↘</span></a>
+            <a class="ghost-cta" href="#research">Research<span aria-hidden="true">↗</span></a>
+          </div>
         </div>
-        <div class="hero-proof" aria-label="Mosaic Agent current status">
-          <p><strong>Close Beta</strong><span>Current release stage</span></p>
-          <p><strong>Local runtime</strong><span>Qwen 3.5 9B via Ollama</span></p>
-          <p><strong>Verified work</strong><span>Evidence, checks, and self-repair</span></p>
+      </section>
+
+      <section class="playground dark-section" id="playground" aria-labelledby="playground-title">
+        <div class="playground-inner">
+          <header class="playground-header" data-reveal="up">
+            <p class="section-label">01 / Playground</p>
+            <div>
+              <span class="status-pill status-pill--demo" data-mode-pill>Demo</span>
+              <h2 id="playground-title">Meet Omi</h2>
+              <p class="playground-lead">Talk with Omi, explore its capabilities, and experience Syclient’s multimodal intelligence.</p>
+            </div>
+          </header>
+
+          <div class="chat-shell" data-reveal="up">
+            <div class="chat-toolbar">
+              <p>Omi conversation</p>
+              <div class="chat-toolbar-actions">
+                <span class="status-pill status-pill--demo" data-mode-pill hidden>Demo</span>
+                <button type="button" class="toolbar-btn" id="new-chat">New chat</button>
+              </div>
+            </div>
+
+            <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-relevant="additions">
+              <div class="chat-empty" id="chat-empty">
+                <strong>Start a conversation</strong>
+                <p>Ask something, or pick a prompt.</p>
+              </div>
+            </div>
+
+            <p class="chat-error" id="chat-error" role="alert">
+              <span id="chat-error-text"></span>
+              <button type="button" id="chat-retry">Retry</button>
+            </p>
+
+            <div class="prompt-row" aria-label="Suggested prompts">
+              <button type="button" class="prompt-chip" data-prompt="Explain quantum computing simply.">Explain quantum computing simply.</button>
+              <button type="button" class="prompt-chip" data-prompt="Help me write a Python script.">Help me write a Python script.</button>
+              <button type="button" class="prompt-chip" data-prompt="Analyze this image.">Analyze this image.</button>
+              <button type="button" class="prompt-chip" data-prompt="Explain this code.">Explain this code.</button>
+              <button type="button" class="prompt-chip" data-prompt="Create a study plan for me.">Create a study plan for me.</button>
+              <button type="button" class="prompt-chip" data-prompt="Summarize this document.">Summarize this document.</button>
+              <button type="button" class="prompt-chip" data-prompt="What can you do?">What can you do?</button>
+            </div>
+
+            <form class="composer" id="composer" autocomplete="off">
+              <div class="vision-wrap">
+                <button type="button" class="vision-btn" id="vision-btn" disabled aria-disabled="true" aria-describedby="vision-hint" title="Vision support coming soon">
+                  <span class="sr-only">Attach image — vision support coming soon</span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                    <rect x="2.2" y="3.4" width="13.6" height="11.2" rx="1.6" stroke="currentColor" stroke-width="1.3"/>
+                    <circle cx="6.4" cy="7.4" r="1.2" fill="currentColor"/>
+                    <path d="M2.6 12.6 7.2 9.2l2.6 2 2.1-1.8 3.5 3.2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <p class="vision-hint" id="vision-hint">Vision support coming soon</p>
+              </div>
+              <div class="composer-field">
+                <label class="sr-only" for="composer-input">Message to Omi</label>
+                <textarea id="composer-input" name="message" rows="1" placeholder="Message Omi…" maxlength="8000" required></textarea>
+              </div>
+              <button type="submit" class="send-btn" id="send-btn">Send<span aria-hidden="true">↗</span></button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="capabilities light-section" id="capabilities" aria-labelledby="capabilities-title">
+        <div class="capabilities-inner">
+          <header class="capabilities-header" data-reveal="up">
+            <p class="section-label">02 / Capabilities</p>
+            <div>
+              <h2 id="capabilities-title">Capabilities</h2>
+              <p class="lead">Conversation, vision, reasoning, and interaction.</p>
+            </div>
+          </header>
+          <div class="cap-grid">
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">01</span>
+              <h3>Conversation</h3>
+              <p>Natural, context-aware interaction.</p>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">02</span>
+              <h3>Reasoning</h3>
+              <p>Logical and analytical problem solving.</p>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">03</span>
+              <h3>Vision</h3>
+              <p>Understanding images, screenshots, and visual information.</p>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">04</span>
+              <h3>Coding</h3>
+              <p>Writing, explaining, and improving code.</p>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">05</span>
+              <h3>Documents</h3>
+              <p>Working with structured documents and extracted information.</p>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">06</span>
+              <h3>Computer Use</h3>
+              <p>Understanding and interacting with digital interfaces.</p>
+              <span class="status-pill status-pill--dev-light">In development</span>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">07</span>
+              <h3>Task Execution</h3>
+              <p>Planning and completing multi-step tasks.</p>
+              <span class="status-pill status-pill--research-light">Research</span>
+            </article>
+            <article class="cap-card" data-reveal="up">
+              <span class="cap-num">08</span>
+              <h3>Memory</h3>
+              <p>Maintaining useful context across interactions.</p>
+              <span class="status-pill status-pill--dev-light">In development</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="research dark-section" id="research" data-section-active="true" aria-labelledby="research-title">
+        <div class="research-inner">
+          <header class="research-header" data-reveal="up">
+            <p class="section-label">03 / Research</p>
+            <div>
+              <h2 id="research-title">Research-driven intelligence</h2>
+              <p class="research-intro">Language, vision, reasoning, and interaction — in one evolving system.</p>
+            </div>
+          </header>
+          <div class="research-areas-heading" data-reveal="up">
+            <h3>Current areas</h3>
+            <p>Active research</p>
+          </div>
+          <div class="research-grid">
+            <article class="research-card" data-reveal="up"><span>01</span><h4>Language models</h4></article>
+            <article class="research-card" data-reveal="up"><span>02</span><h4>Multimodal learning</h4></article>
+            <article class="research-card" data-reveal="up"><span>03</span><h4>Visual understanding</h4></article>
+            <article class="research-card" data-reveal="up"><span>04</span><h4>Reasoning systems</h4></article>
+            <article class="research-card" data-reveal="up"><span>05</span><h4>Agent architectures</h4></article>
+            <article class="research-card" data-reveal="up"><span>06</span><h4>Computer interaction</h4></article>
+            <article class="research-card" data-reveal="up"><span>07</span><h4>Tool use</h4></article>
+            <article class="research-card" data-reveal="up"><span>08</span><h4>Task planning and verification</h4></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="model dark-section" id="model" aria-labelledby="model-title">
+        <div class="model-inner">
+          <p class="section-label" data-reveal="left">04 / Model</p>
+          <div class="model-copy" data-reveal="right">
+            <h2 id="model-title">Omi</h2>
+            <dl class="model-fields">
+              <div>
+                <dt>Name</dt>
+                <dd>Syclient Omi</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Research / playground demo</dd>
+              </div>
+              <div>
+                <dt>Modalities</dt>
+                <dd>Text (vision coming soon)</dd>
+              </div>
+              <div>
+                <dt>Capabilities</dt>
+                <dd>Conversation, reasoning, coding (demo)</dd>
+              </div>
+              <div>
+                <dt>Availability</dt>
+                <dd>Playground demo</dd>
+              </div>
+              <div>
+                <dt>Research</dt>
+                <dd>Active</dd>
+              </div>
+              <div>
+                <dt>Architecture</dt>
+                <dd>Details coming soon</dd>
+              </div>
+              <div>
+                <dt>Parameters</dt>
+                <dd>Details coming soon</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="roadmap dark-section" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="roadmap-inner">
+          <p class="section-label" data-reveal="left">05 / Direction</p>
+          <div class="roadmap-copy" data-reveal="right">
+            <h2 id="roadmap-title">Building toward intelligent interaction</h2>
+            <ol class="roadmap-list">
+              <li><span>01</span><strong>Natural conversation</strong></li>
+              <li><span>02</span><strong>Reasoning and coding</strong></li>
+              <li><span>03</span><strong>Vision and document understanding</strong></li>
+              <li><span>04</span><strong>Tool use and task execution</strong></li>
+              <li><span>05</span><strong>Computer interaction</strong></li>
+              <li><span>06</span><strong>Autonomous workflows</strong></li>
+            </ol>
+          </div>
         </div>
       </section>
     </main>
 
-    <section class="proof-section" aria-labelledby="proof-title">
-      <div class="proof-inner">
-        <header class="proof-header" data-reveal="up">
-          <p>01 / Working today</p>
-          <div>
-            <span class="status-pill status-pill--live">Close Beta</span>
-            <h2 id="proof-title">Useful before impressive.</h2>
-            <p>Mosaic Agent is the product we can demonstrate now: a local agent runtime organized around a Think → Plan → Act → Verify loop.</p>
-          </div>
-        </header>
-        <div class="proof-grid">
-          <article data-reveal="up"><span>01</span><h3>Plan</h3><p>Decomposes an objective into bounded tasks and selects tools for each step.</p></article>
-          <article data-reveal="up"><span>02</span><h3>Act</h3><p>Runs coding, browser, research, file, and artifact workflows in an isolated local runtime.</p></article>
-          <article data-reveal="up"><span>03</span><h3>Verify</h3><p>Checks exact deliverables against acceptance conditions and saves execution evidence.</p></article>
-          <article data-reveal="up"><span>04</span><h3>Repair</h3><p>Uses failed checks, logs, and artifact validation to make bounded corrective attempts.</p></article>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>Syclient</strong>
+          <p>Building intelligent systems that understand, communicate, and act.</p>
         </div>
-        <a class="inline-arrow-link" href="./mosaic-agent.html">Explore the Close Beta runtime <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-
-    <section class="model-section roadmap-section" id="model-roadmap" data-section-active="true">
-      <div class="model-section-inner">
-        <div class="roadmap-layout" data-reveal="up">
-          <div class="roadmap-heading">
-            <p>02 / Model roadmap</p>
-            <span class="status-pill status-pill--roadmap">In development</span>
-          </div>
-          <div class="model-copy roadmap-copy">
-            <h2>Mosaic Two is a direction—not a released system.</h2>
-            <p>We are developing an agent-focused model program and exploring hybrid Mixture-of-Experts architectures for tool use, verification, and long-running work. There is no public Mosaic Two checkpoint today.</p>
-            <div class="roadmap-boundary">
-              <p><strong>Now</strong><span>Mosaic Agent Close Beta on a local Qwen 3.5 9B runtime.</span></p>
-              <p><strong>Next</strong><span>Small, documented fine-tunes, evals, and hybrid/MoE experiments.</span></p>
-              <p><strong>Long term</strong><span>Purpose-built model infrastructure. Processor work remains a future research possibility, not a current product claim.</span></p>
-            </div>
-            <a class="model-cta" href="./spm.html">Open Model Lab<span aria-hidden="true">↗</span></a>
-          </div>
+        <div class="footer-row">
+          <nav class="footer-links" aria-label="Footer">
+            <a href="#top">Omi</a>
+            <a href="#playground">Playground</a>
+            <a href="#research">Research</a>
+            <a href="https://github.com/Syclient" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="mailto:hello@syclient.com">Contact</a>
+          </nav>
+          <p class="footer-copy">© 2026 Syclient</p>
         </div>
       </div>
-    </section>
-
-    <section class="research-section" id="research" data-section-active="true">
-      <div class="research-inner">
-        <header class="research-header" data-reveal="up">
-          <div class="research-meta"><p>03 / Technical work</p></div>
-          <div class="research-title-block">
-            <p class="research-kicker">Mosaic Research</p>
-            <h2>Claims need a status and a test.</h2>
-            <p class="research-intro">Our technical notes separate implemented runtime behavior from active research and long-term direction.</p>
-          </div>
-        </header>
-        <div class="research-thesis" data-reveal="up">
-          <p>Research principle</p>
-          <blockquote><strong>Build the smallest system</strong> that can prove or disprove the idea.</blockquote>
-        </div>
-        <div class="research-areas-heading"><h3>Current areas</h3><p>Status attached</p></div>
-        <div class="research-grid">
-          <article class="research-card" data-reveal="up"><p class="research-number">01 / Implemented</p><h4>Agent runtime, execution evidence, and bounded recovery</h4></article>
-          <article class="research-card" data-reveal="up"><p class="research-number">02 / In development</p><h4>Memory Plane with explicit scope and permission boundaries</h4></article>
-          <article class="research-card" data-reveal="up"><p class="research-number">03 / Research roadmap</p><h4>Agent-focused fine-tunes and hybrid/MoE experiments</h4></article>
-        </div>
-        <div class="research-direction" data-reveal="up">
-          <div><h3>Technical notes are written to be inspected, not just announced.</h3></div>
-          <div class="research-planes">
-            <article><span>NOTE 01 · CLOSE BETA</span><h4>Runtime milestone</h4><p>What the local runtime executes today, how it records evidence, and where it still fails.</p></article>
-            <article><span>NOTE 02 · IN DEVELOPMENT</span><h4>Memory with permission</h4><p>A working direction for project memory, provenance, scope, revocation, and trusted reuse.</p></article>
-            <article><span>NOTE 03 · IMPLEMENTED</span><h4>Verification before completion</h4><p>Acceptance contracts, artifact checks, and bounded self-repair in the agent loop.</p></article>
-          </div>
-        </div>
-        <a class="research-open-link" href="./research.html">Read all technical notes <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-
-    <section class="model-evidence-section" id="model-evidence">
-      <div class="model-evidence-inner">
-        <header class="dark-section-header" data-reveal="up"><p>04 / Public model work</p><h2>Evidence first. Scale later.</h2></header>
-        <div class="model-evidence-list">
-          <article data-reveal="up"><span class="evidence-status evidence-status--public">Public</span><div><p>SPM-70M-Vertigo</p><h3>~71M-parameter English foundation-model experiment trained from scratch.</h3></div><a href="https://huggingface.co/Syclient/SPM-70M-Vertigo" target="_blank" rel="noreferrer" aria-label="Open SPM-70M-Vertigo on Hugging Face">↗</a></article>
-          <article data-reveal="up"><span class="evidence-status evidence-status--planned">Planned</span><div><p>Agent task fine-tunes</p><h3>Small task-specific releases with model cards, evals, limitations, and reproducible inference instructions.</h3></div><span aria-hidden="true">—</span></article>
-          <article data-reveal="up"><span class="evidence-status evidence-status--planned">Planned</span><div><p>Hybrid / MoE experiments</p><h3>Small-scale routing and specialist experiments before any larger model claim.</h3></div><span aria-hidden="true">—</span></article>
-        </div>
-        <div class="model-evidence-actions"><a href="./spm.html">See the Model Lab <span aria-hidden="true">↗</span></a><a href="https://huggingface.co/Syclient" target="_blank" rel="noreferrer">Hugging Face <span aria-hidden="true">↗</span></a></div>
-      </div>
-    </section>
-
-    <section class="news-section" id="notes">
-      <div class="news-inner">
-        <header class="dark-section-header" data-reveal="up"><p>05 / Research notes</p><h2>Concrete work, in public language.</h2></header>
-        <div class="news-list">
-          <a class="news-item" data-reveal="up" href="./research.html#runtime-note"><span class="news-order">01</span><div class="news-copy"><p>Engineering note / Close Beta</p><h3>Inside the current Mosaic Agent runtime</h3></div><span class="news-arrow" aria-hidden="true">↗</span></a>
-          <a class="news-item" data-reveal="up" href="./research.html#permission-note"><span class="news-order">02</span><div class="news-copy"><p>Design note / In development</p><h3>Why AI memory needs a permission model</h3></div><span class="news-arrow" aria-hidden="true">↗</span></a>
-          <a class="news-item" data-reveal="up" href="./research.html#verification-note"><span class="news-order">03</span><div class="news-copy"><p>Runtime note / Implemented</p><h3>Verification and self-repair before completion</h3></div><span class="news-arrow" aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section" id="about">
-      <div class="about-inner">
-        <div class="about-title" data-reveal="left"><p>06 / About Syclient</p><h2>Small, technical, focused.</h2></div>
-        <div class="about-copy" data-reveal="right">
-          <p>Syclient is a founder-led, independent AI company building a memory-native agent runtime and the model infrastructure that supports agent work. The team works end to end across runtime engineering, memory, verification, product, and small-scale model experiments.</p>
-          <p class="about-detail">We are not presenting a processor or a frontier model as a finished product. Our current product is Mosaic Agent in Close Beta; our model work is an openly staged research program.</p>
-          <div class="about-principles">
-            <p><span>01</span> Useful before impressive</p>
-            <p><span>02</span> Software before silicon</p>
-            <p><span>03</span> Memory with permission</p>
-            <p><span>04</span> Adaptation with evaluation</p>
-          </div>
-          <div class="about-actions"><a class="about-cta" href="./about.html">Meet Syclient<span aria-hidden="true">↗</span></a><a class="about-text-link" href="https://www.linkedin.com/company/syclient" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
-        </div>
-      </div>
-      <footer class="site-footer"><p>© 2026 Syclient</p><div><a href="mailto:hello@syclient.com">hello@syclient.com</a><a href="#top">Back to top ↑</a></div></footer>
-    </section>
+    </footer>
   </div>
-  <script src="./animations.js" defer></script>
+
+  <script>
+  (() => {
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+
+    const startMotion = () => {
+      const root = document.documentElement;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealElements = Array.from(document.querySelectorAll("[data-reveal]"));
+      const sectionElements = Array.from(document.querySelectorAll("[data-section-active]"));
+      const mobileNav = document.querySelector("[data-mobile-nav]");
+      const mobileNavLinks = Array.from(mobileNav?.querySelectorAll("a") ?? []);
+
+      root.classList.add("motion-ready");
+
+      if (reducedMotion) {
+        revealElements.forEach((el) => el.classList.add("is-visible"));
+        sectionElements.forEach((el) => el.classList.add("section-active"));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.13, rootMargin: "0px 0px -8% 0px" }
+        );
+        revealElements.forEach((el) => revealObserver.observe(el));
+
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("section-active");
+            });
+          },
+          { threshold: 0.08 }
+        );
+        sectionElements.forEach((el) => sectionObserver.observe(el));
+      }
+
+      let frame = 0;
+      const updateMotion = () => {
+        frame = 0;
+        const viewportHeight = Math.max(window.innerHeight, 1);
+        const scrollable = document.documentElement.scrollHeight - viewportHeight;
+        const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+        root.style.setProperty("--scroll-progress", String(clamp(progress)));
+      };
+      const requestUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(updateMotion);
+      };
+
+      const closeMobileNav = () => {
+        mobileNav?.removeAttribute("open");
+        document.body.classList.remove("mobile-menu-open");
+      };
+      const handleMobileToggle = () => {
+        document.body.classList.toggle("mobile-menu-open", Boolean(mobileNav?.open));
+      };
+      const handleEscape = (event) => {
+        if (event.key === "Escape" && mobileNav?.open) closeMobileNav();
+      };
+      const handleViewportChange = () => {
+        if (window.innerWidth > 1040 && mobileNav?.open) closeMobileNav();
+        requestUpdate();
+      };
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", handleViewportChange);
+      document.addEventListener("keydown", handleEscape);
+      mobileNav?.addEventListener("toggle", handleMobileToggle);
+      mobileNavLinks.forEach((link) => link.addEventListener("click", closeMobileNav));
+      updateMotion();
+    };
+
+    const escapeHtml = (value) =>
+      String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
+    const formatMessage = (text) => {
+      const raw = String(text ?? "");
+      const parts = raw.split(/```(?:[a-zA-Z0-9_-]+)?\n?([\s\S]*?)```/g);
+      return parts
+        .map((part, index) => {
+          if (index % 2 === 1) {
+            return "<pre><code>" + escapeHtml(part.replace(/\n$/, "")) + "</code></pre>";
+          }
+          return escapeHtml(part).replace(/\n/g, "<br>");
+        })
+        .join("");
+    };
+
+    const getApiUrl = () => {
+      const fromWindow = typeof window.OMI_API_URL === "string" ? window.OMI_API_URL.trim() : "";
+      if (fromWindow) return fromWindow;
+      try {
+        return (localStorage.getItem("OMI_API_URL") || "").trim();
+      } catch {
+        return "";
+      }
+    };
+
+    const MOCK_REPLIES = {
+      quantum:
+        "A classical bit is 0 or 1. A qubit can hold both until you measure it. Useful machines are still research.",
+      python:
+        "A tiny folder listing you can extend:\n\n```python\nfrom pathlib import Path\n\nfor item in sorted(Path(\".\").iterdir()):\n    print(item.name)\n```",
+      image:
+        "Vision support coming soon. Describe the image in text for now.",
+      code:
+        "Paste a snippet and I’ll walk through it.",
+      study:
+        "Week 1: map the field. Week 2: worked examples. Week 3: recall without notes. Week 4: teach it back. One focused block a day.",
+      document:
+        "No file attached. Paste the text you want summarized.",
+      able:
+        "Here I can talk, reason, and help with code. Vision, files, computer use, and memory are not live.",
+    };
+
+    const pickMockReply = (text) => {
+      const q = String(text || "").toLowerCase();
+      if (/quantum/.test(q)) return MOCK_REPLIES.quantum;
+      if (/python|script/.test(q)) return MOCK_REPLIES.python;
+      if (/image|vision|screenshot|photo/.test(q)) return MOCK_REPLIES.image;
+      if (/explain this code|code snippet|walk through/.test(q) || q.trim() === "explain this code.") {
+        return MOCK_REPLIES.code;
+      }
+      if (/study plan|study/.test(q)) return MOCK_REPLIES.study;
+      if (/summarize|document/.test(q)) return MOCK_REPLIES.document;
+      if (/what can you do|capabilities|what do you do/.test(q)) return MOCK_REPLIES.able;
+      return "Local demo unless OMI_API_URL is set. Ask a sharper question, or try a prompt.";
+    };
+
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function sendToOmi(messages) {
+      const apiUrl = getApiUrl();
+      if (apiUrl) {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages }),
+        });
+        if (!response.ok) {
+          throw new Error("The Omi API returned " + response.status + ".");
+        }
+        let data = {};
+        try {
+          data = await response.json();
+        } catch {
+          throw new Error("The Omi API did not return JSON.");
+        }
+        const content = data.content ?? data.message;
+        if (typeof content !== "string" || !content.trim()) {
+          throw new Error("The Omi API response was missing content.");
+        }
+        return { content: content.trim(), demo: false };
+      }
+
+      const lastUser = [...messages].reverse().find((item) => item.role === "user");
+      await wait(700 + Math.floor(Math.random() * 500));
+      return { content: pickMockReply(lastUser?.content), demo: true };
+    }
+
+    const startPlayground = () => {
+      const log = document.getElementById("chat-log");
+      const empty = document.getElementById("chat-empty");
+      const form = document.getElementById("composer");
+      const input = document.getElementById("composer-input");
+      const sendBtn = document.getElementById("send-btn");
+      const newChatBtn = document.getElementById("new-chat");
+      const errorBox = document.getElementById("chat-error");
+      const errorText = document.getElementById("chat-error-text");
+      const retryBtn = document.getElementById("chat-retry");
+      const pills = document.querySelectorAll("[data-mode-pill]");
+      const visionBtn = document.getElementById("vision-btn");
+
+      const state = {
+        messages: [],
+        busy: false,
+        lastFailed: null,
+      };
+
+      const live = Boolean(getApiUrl());
+      pills.forEach((pill) => {
+        if (live) {
+          pill.hidden = true;
+          pill.textContent = "Connected";
+        } else {
+          pill.hidden = false;
+          pill.textContent = "Demo";
+        }
+      });
+      const headerPill = document.querySelector(".playground-header [data-mode-pill]");
+      if (headerPill) {
+        headerPill.hidden = false;
+        headerPill.textContent = live ? "API connected" : "Demo";
+        headerPill.classList.toggle("status-pill--live", live);
+        headerPill.classList.toggle("status-pill--demo", !live);
+      }
+
+      const hideError = () => {
+        errorBox.classList.remove("is-visible");
+        errorText.textContent = "";
+      };
+
+      const showError = (message) => {
+        errorText.textContent = message;
+        errorBox.classList.add("is-visible");
+      };
+
+      const resizeInput = () => {
+        input.style.height = "auto";
+        input.style.height = Math.min(input.scrollHeight, 160) + "px";
+      };
+
+      const scrollLog = () => {
+        log.scrollTop = log.scrollHeight;
+      };
+
+      const setBusy = (busy) => {
+        state.busy = busy;
+        sendBtn.disabled = busy || !input.value.trim();
+        input.disabled = busy;
+      };
+
+      const renderEmpty = () => {
+        if (!empty) return;
+        if (state.messages.length === 0 && !log.querySelector(".message, .message--pending")) {
+          empty.hidden = false;
+        } else {
+          empty.hidden = true;
+        }
+      };
+
+      const appendMessage = ({ role, content, demo, pending }) => {
+        if (empty) empty.hidden = true;
+        const article = document.createElement("article");
+        article.className = "message message--" + role + (pending ? " message--pending" : "") + " message-enter";
+        const meta = document.createElement("div");
+        meta.className = "message-meta";
+        const who = document.createElement("span");
+        who.className = "message-role";
+        who.textContent = role === "user" ? "You" : "Omi";
+        meta.appendChild(who);
+        if (demo && role === "assistant") {
+          const badge = document.createElement("span");
+          badge.className = "demo-badge";
+          badge.textContent = "Demo";
+          meta.appendChild(badge);
+        }
+        article.appendChild(meta);
+        const body = document.createElement("div");
+        body.className = "message-body";
+        if (pending) {
+          body.innerHTML = '<span class="typing" aria-label="Omi is responding"><i></i><i></i><i></i></span>';
+        } else {
+          body.innerHTML = formatMessage(content);
+        }
+        article.appendChild(body);
+        log.appendChild(article);
+        scrollLog();
+        return article;
+      };
+
+      const resetChat = () => {
+        state.messages = [];
+        state.lastFailed = null;
+        hideError();
+        log.querySelectorAll(".message").forEach((node) => node.remove());
+        if (empty) empty.hidden = false;
+        input.value = "";
+        resizeInput();
+        setBusy(false);
+        input.focus();
+      };
+
+      const sendMessages = async (userText) => {
+        const text = String(userText || "").trim();
+        if (!text || state.busy) return;
+        hideError();
+        state.messages.push({ role: "user", content: text });
+        appendMessage({ role: "user", content: text });
+        const pending = appendMessage({ role: "assistant", pending: true });
+        setBusy(true);
+        try {
+          const result = await sendToOmi(state.messages.map((item) => ({
+            role: item.role,
+            content: item.content,
+          })));
+          pending.remove();
+          state.messages.push({ role: "assistant", content: result.content });
+          appendMessage({ role: "assistant", content: result.content, demo: result.demo });
+          state.lastFailed = null;
+        } catch (error) {
+          pending.remove();
+          state.messages.pop();
+          state.lastFailed = text;
+          showError(error.message || "Something went wrong talking to Omi.");
+        } finally {
+          setBusy(false);
+          renderEmpty();
+          input.focus();
+        }
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = "";
+        resizeInput();
+        sendMessages(text);
+      });
+
+      input.addEventListener("input", () => {
+        resizeInput();
+        sendBtn.disabled = state.busy || !input.value.trim();
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          form.requestSubmit();
+        }
+      });
+
+      document.querySelectorAll("[data-prompt]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const prompt = chip.getAttribute("data-prompt") || "";
+          sendMessages(prompt);
+        });
+      });
+
+      newChatBtn.addEventListener("click", resetChat);
+      retryBtn.addEventListener("click", () => {
+        if (state.lastFailed) sendMessages(state.lastFailed);
+      });
+
+      visionBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+
+      sendBtn.disabled = true;
+      resizeInput();
+      window.sendToOmi = sendToOmi;
+    };
+
+    const start = () => {
+      startMotion();
+      startPlayground();
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", start, { once: true });
+    } else {
+      start();
+    }
+  })();
+  </script>
 </body>
 </html>
