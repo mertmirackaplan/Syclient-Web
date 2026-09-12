@@ -144,7 +144,7 @@ textarea:focus-visible {
   position: relative;
   z-index: 20;
   width: 100%;
-  animation: header-in 680ms var(--ease) both;
+  animation: header-in 620ms var(--ease) both;
 }
 
 .header-inner {
@@ -202,28 +202,17 @@ textarea:focus-visible {
 }
 
 .desktop-nav a {
-  position: relative;
   display: inline-flex;
   align-items: center;
   padding: 10px 0;
   color: #ffffff;
-  transition: color 160ms ease;
+  transition: color 160ms ease, opacity 160ms ease;
 }
 
-.desktop-nav a::after {
-  content: "";
-  position: absolute;
-  right: 100%;
-  bottom: 3px;
-  left: 0;
-  height: 1px;
-  background: var(--white);
-  transition: right 220ms var(--ease);
-}
-
-.desktop-nav a:hover::after,
-.desktop-nav a:focus-visible::after {
-  right: 0;
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible {
+  color: #ffffff;
+  opacity: 0.72;
 }
 
 .contact-button {
@@ -249,6 +238,10 @@ textarea:focus-visible {
 
 .mobile-nav {
   display: none;
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 /* ——— Shared type / layout ——— */
@@ -455,8 +448,7 @@ textarea:focus-visible {
 
 .primary-cta:active,
 .secondary-cta:active,
-.ghost-cta:active,
-.contact-button:active {
+.ghost-cta:active {
   transform: scale(0.98);
 }
 
@@ -520,7 +512,7 @@ textarea:focus-visible {
   color: var(--ink);
   background: var(--cream);
   border-top: 6px solid var(--signal);
-  scroll-margin-top: 0;
+  scroll-margin-top: 24px;
 }
 
 .capabilities-inner {
@@ -614,7 +606,7 @@ textarea:focus-visible {
 
 .research {
   border-top: 1px solid var(--line);
-  scroll-margin-top: 0;
+  scroll-margin-top: 24px;
 }
 
 .research-inner {
@@ -718,7 +710,7 @@ textarea:focus-visible {
 
 .model {
   border-top: 1px solid var(--line);
-  scroll-margin-top: 16px;
+  scroll-margin-top: 24px;
 }
 
 .model-inner {
@@ -781,7 +773,7 @@ textarea:focus-visible {
 
 .roadmap {
   border-top: 1px solid var(--line);
-  scroll-margin-top: 16px;
+  scroll-margin-top: 24px;
 }
 
 .roadmap-inner {
@@ -1019,8 +1011,7 @@ textarea:focus-visible {
   .ghost-cta:hover,
   .primary-cta:active,
   .secondary-cta:active,
-  .ghost-cta:active,
-  .contact-button:active {
+  .ghost-cta:active {
     transform: none !important;
   }
 }
@@ -1054,6 +1045,9 @@ textarea:focus-visible {
     list-style: none;
     font-size: 11px;
     font-weight: 600;
+    color: var(--white);
+    background: transparent;
+    transition: color 160ms ease, background 160ms ease;
   }
 
   .mobile-nav summary::-webkit-details-marker {
@@ -1067,10 +1061,10 @@ textarea:focus-visible {
 
   .mobile-nav-panel {
     position: fixed;
-    top: 66px;
+    top: 78px;
     right: 20px;
     width: min(340px, calc(100vw - 40px));
-    max-height: calc(100svh - 86px);
+    max-height: calc(100svh - 98px);
     padding: 12px 20px;
     display: grid;
     overflow-y: auto;
@@ -1080,24 +1074,27 @@ textarea:focus-visible {
     border: 1px solid var(--line);
     border-radius: 8px;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58);
+    scrollbar-width: thin;
   }
 
   .mobile-nav-panel a {
     padding: 17px 0;
-    display: grid;
-    grid-template-columns: 42px 1fr;
+    display: block;
     border-bottom: 1px solid var(--line);
     color: #ffffff;
     font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    transition: opacity 160ms ease;
   }
 
   .mobile-nav-panel a:last-child {
     border-bottom: 0;
   }
 
-  .mobile-nav-panel span {
-    color: var(--muted);
-    font-size: 9px;
+  .mobile-nav-panel a:hover,
+  .mobile-nav-panel a:focus-visible {
+    opacity: 0.72;
   }
 
   .capabilities-header,
@@ -1156,6 +1153,31 @@ textarea:focus-visible {
   .roadmap-inner,
   .footer-inner {
     width: min(var(--max), calc(100% - 32px));
+  }
+
+  .header-inner {
+    height: 76px;
+  }
+
+  .brand,
+  .wordmark {
+    width: 142px;
+    height: 24px;
+  }
+
+  .wordmark img {
+    top: -45px;
+    left: -10px;
+    width: 169px;
+  }
+
+  .hero {
+    min-height: calc(100svh - 76px);
+  }
+
+  .mobile-nav-panel {
+    top: 66px;
+    max-height: calc(100svh - 86px);
   }
 
   .hero-proof {
