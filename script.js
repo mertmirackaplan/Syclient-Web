@@ -152,6 +152,9 @@
   ['keydown', 'click', 'touchstart'].forEach(ev =>
     loader.addEventListener(ev, () => { clearInterval(loadTimer); finishLoader(); }, { once: true }));
   window.addEventListener('keydown', () => { if (!loaderDone) { clearInterval(loadTimer); finishLoader(); } }, { once: true });
+  // dev/preview: ?nointro skips the loader, &y=1200 jumps to a scroll position
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('nointro')) { clearInterval(loadTimer); loaderDone = true; loader.classList.add('done'); setTimeout(startHero); if (qs.get('y')) setTimeout(() => window.scrollTo(0, +qs.get('y')), 50); }
 
   /* ---------------- BACKGROUND: SKY + DAY/NIGHT CYCLE ---------------- */
   const bg = $('#bg'), bctx = bg.getContext('2d');
@@ -414,24 +417,31 @@
     }
   }
 
-  /* ---------------- HERO PARTICLE LOGO ---------------- */
+  /* ---------------- HERO 2.5D VOXEL LOGO ---------------- */
   const hero = $('#heroLogo'), hctx = hero.getContext('2d');
-  const LW = 40, LH = 20;
+  const LW = 40, LH = 20, PAD = 3, DEPTH = 5;
+  const DEPTH_COLS = ['#3a1060', '#5a1a7a', '#8a1f8f', '#c2189a', '#ff4fd8'];
   const logoPts = logoPixels(LW, LH);
   let S = 12, logoParts = [], heroStarted = false;
+  const tiltV = { x: 0.6, y: 0.6 };
   function sizeHero() {
-    S = clamp(Math.floor((Math.min(window.innerWidth, 900) * 0.6) / LW), 5, 14);
-    hero.width = (LW + 2) * S; hero.height = (LH + 2) * S;
+    const byW = Math.min(window.innerWidth * 0.78, 1100) / (LW + PAD * 2);
+    const byH = (window.innerHeight * 0.3) / (LH + PAD * 2);
+    S = clamp(Math.floor(Math.min(byW, byH)), 4, 18);
+    hero.width = (LW + PAD * 2) * S; hero.height = (LH + PAD * 2) * S;
+  }
+  function setLogoTargets(scale = 1) {
+    logoParts.forEach((p, i) => {
+      p.tx = (logoPts[i][0] + PAD + 0.5) * S; p.ty = (logoPts[i][1] + PAD + 0.5) * S;
+      p.x *= scale; p.y *= scale;
+    });
   }
   function startHero() {
     if (heroStarted) return;
     heroStarted = true;
     sizeHero();
-    logoParts = logoPts.map(([x, y]) => ({
-      tx: (x + 0.5) * S, ty: (y + 0.5) * S,
-      x: rand(-200, hero.width + 200), y: rand(-300, hero.height + 300),
-      vx: 0, vy: 0, d: rand(0, 40),
-    }));
+    logoParts = logoPts.map(() => ({ tx: 0, ty: 0, x: rand(-200, hero.width + 200), y: rand(-300, hero.height + 300), vx: 0, vy: 0, d: rand(0, 40) }));
+    setLogoTargets();
     $$('.hero .reveal').forEach(el => el.classList.add('in'));
   }
   function explodeLogo() {
@@ -446,57 +456,95 @@
     const scaleX = hero.width / rect.width;
     const mx = (mouse.x - rect.left) * scaleX, my = (mouse.y - rect.top) * scaleX;
     hctx.clearRect(0, 0, hero.width, hero.height);
+
+    // extrusion direction: away from the pointer (2.5D parallax), idle sway otherwise
+    let ex, ey;
+    if (mouse.x > -500) {
+      ex = clamp(-(mouse.x - (rect.left + rect.width / 2)) / (window.innerWidth / 2), -1, 1);
+      ey = clamp(-(mouse.y - (rect.top + rect.height / 2)) / (window.innerHeight / 2), -1, 1);
+    } else { ex = Math.sin(time * 0.0008) * 0.8; ey = 0.7; }
+    tiltV.x += (ex - tiltV.x) * 0.08; tiltV.y += (ey - tiltV.y) * 0.08;
+
     for (const p of logoParts) {
       if (p.d > 0) { p.d--; continue; }
-      // spring to target
       p.vx += (p.tx - p.x) * 0.06; p.vy += (p.ty - p.y) * 0.06;
-      // mouse repel
       const dx = p.x - mx, dy = p.y - my, dist = Math.hypot(dx, dy), R = S * 6;
       if (dist < R && dist > 0.1) { const f = (1 - dist / R) * 6; p.vx += (dx / dist) * f; p.vy += (dy / dist) * f; }
       p.vx *= 0.8; p.vy *= 0.8;
       p.x += p.vx; p.y += p.vy;
     }
-    // shadow pass
-    hctx.fillStyle = '#ff4fd8';
-    for (const p of logoParts) hctx.fillRect(Math.round(p.x / S) * S - S / 2 + S, Math.round(p.y / S) * S - S / 2 + S, S, S);
-    // main pass with travelling color wave
+    const half = S / 2;
+    const step = Math.max(1, Math.round(S / 3));
+    // voxel depth layers, back to front
+    for (let k = DEPTH; k >= 1; k--) {
+      const ox = Math.round(tiltV.x * k * step), oy = Math.round(tiltV.y * k * step);
+      hctx.fillStyle = DEPTH_COLS[DEPTH - k];
+      for (const p of logoParts) hctx.fillRect(Math.round(p.x / S) * S - half + ox, Math.round(p.y / S) * S - half + oy, S, S);
+    }
+    // front face with travelling shine + bevel highlight
     for (const p of logoParts) {
       const w = Math.sin(p.tx / (S * 4) - time * 0.004);
+      const fx0 = Math.round(p.x / S) * S - half, fy0 = Math.round(p.y / S) * S - half;
       hctx.fillStyle = w > 0.88 ? '#3ef0ff' : w > 0.75 ? '#bff9ff' : '#ffffff';
-      hctx.fillRect(Math.round(p.x / S) * S - S / 2, Math.round(p.y / S) * S - S / 2, S - 1, S - 1);
+      hctx.fillRect(fx0, fy0, S, S);
+      if (S >= 8) { hctx.fillStyle = 'rgba(10,10,24,.12)'; hctx.fillRect(fx0 + S - 2, fy0, 2, S); hctx.fillRect(fx0, fy0 + S - 2, S, 2); }
     }
   }
 
-  /* ---------------- PIXEL CITY ---------------- */
+  /* ---------------- 2.5D PIXEL CITY ---------------- */
   const city = $('#city'), cctx = city.getContext('2d');
-  let buildings = [];
-  function buildCity() {
-    city.width = city.clientWidth; city.height = 200;
-    buildings = [];
-    let x = 0;
-    while (x < city.width) {
-      const w = Math.floor(rand(5, 12)) * 8, h = Math.floor(rand(6, 22)) * 8;
+  let buildings = [], farBuildings = [];
+  const WIN_COLS = () => (Math.random() < 0.15 ? '#ff4fd8' : Math.random() < 0.3 ? '#3ef0ff' : '#ffe14f');
+  function makeRow(maxRows, minRows, gapMax, withWins) {
+    const row = [];
+    let x = -16;
+    while (x < city.width + 16) {
+      const w = Math.floor(rand(5, 11)) * 8, h = Math.floor(rand(minRows, maxRows)) * 8;
       const wins = [];
-      for (let wy = city.height - h + 12; wy < city.height - 12; wy += 16)
-        for (let wx = x + 8; wx < x + w - 8; wx += 12)
-          wins.push({ x: wx, y: wy, on: Math.random() < 0.45, c: Math.random() < 0.15 ? '#ff4fd8' : Math.random() < 0.3 ? '#3ef0ff' : '#ffe14f' });
-      buildings.push({ x, w, h, wins, ant: Math.random() < 0.3, shade: Math.random() < 0.5 ? '#16163a' : '#1c1c48' });
-      x += w + Math.floor(rand(0, 2)) * 8;
+      if (withWins)
+        for (let wy = city.height - h + 12; wy < city.height - 12; wy += 16)
+          for (let wx = x + 8; wx < x + w - 8; wx += 12)
+            wins.push({ x: wx, y: wy, on: Math.random() < 0.45, c: WIN_COLS() });
+      row.push({ x, w, h, wins, ant: Math.random() < 0.3, shade: Math.random() < 0.5 ? '#16163a' : '#1c1c48' });
+      x += w + Math.floor(rand(1, gapMax)) * 8;
     }
+    return row;
+  }
+  function buildCity() {
+    city.width = city.clientWidth; city.height = city.clientHeight || 200;
+    const rows = Math.floor((city.height - 40) / 8);
+    farBuildings = makeRow(Math.max(8, rows - 2), 5, 2, false);
+    buildings = makeRow(rows, 5, 4, true);
+  }
+  // building with isometric side wall (right) + roof (top)
+  function drawBlock(b, front, side, roof, depth) {
+    const top = city.height - b.h;
+    // side wall: stepped 4px columns rising at 2:1
+    cctx.fillStyle = side;
+    for (let i = 0; i < depth; i += 4) cctx.fillRect(b.x + b.w + i, top - Math.floor((i + 4) / 2), 4, b.h + Math.floor((i + 4) / 2));
+    // roof parallelogram
+    cctx.fillStyle = roof;
+    for (let r = 0; r < depth / 2; r += 2) cctx.fillRect(b.x + r * 2, top - r - 2, b.w, 2);
+    // front face
+    cctx.fillStyle = front;
+    cctx.fillRect(b.x, top, b.w, b.h);
   }
   function drawCity(time) {
     if (city.getBoundingClientRect().bottom < 0) return;
     cctx.clearRect(0, 0, city.width, city.height);
+    for (const b of farBuildings) drawBlock(b, '#0f0f2c', '#0a0a20', '#1a1a42', 8);
     for (const b of buildings) {
-      cctx.fillStyle = b.shade;
-      cctx.fillRect(b.x, city.height - b.h, b.w, b.h);
-      cctx.fillStyle = '#2a2a66';
-      cctx.fillRect(b.x, city.height - b.h, b.w, 4);
+      const top = city.height - b.h;
+      drawBlock(b, b.shade, '#0e0e28', '#34347a', 16);
+      // dim side windows for depth
+      for (let wy = top + 12; wy < city.height - 12; wy += 16)
+        if ((wy + b.x) % 48 < 16) { cctx.fillStyle = 'rgba(255,225,79,.35)'; cctx.fillRect(b.x + b.w + 6, wy - 4, 4, 5); }
       if (b.ant) {
+        const ax = b.x + b.w / 2 + 4;
         cctx.fillStyle = '#2a2a66';
-        cctx.fillRect(b.x + b.w / 2 - 2, city.height - b.h - 20, 4, 20);
+        cctx.fillRect(ax - 2, top - 26, 4, 22);
         cctx.fillStyle = Math.floor(time / 500) % 2 ? '#ff3b3b' : '#550000';
-        cctx.fillRect(b.x + b.w / 2 - 4, city.height - b.h - 24, 8, 6);
+        cctx.fillRect(ax - 4, top - 30, 8, 6);
       }
       for (const w of b.wins) {
         if (Math.random() < 0.0015) w.on = !w.on;
@@ -885,18 +933,209 @@
     catCv.style.transform = `translateX(${Math.floor(cat.x)}px) scaleX(${cat.dir > 0 ? -1 : 1})`;
   }
 
-  /* ---------------- MAIN LOOP ---------------- */
-  function resizeAll() {
-    resizeBg(); buildCity();
-    invCv.width = invCv.clientWidth; invCv.height = 170; resetInvaders();
-    pacCv.width = pacCv.clientWidth; pacCv.height = 96; resetPac();
-    if (heroStarted) {
-      const old = S; sizeHero();
-      logoParts.forEach((p, i) => { p.tx = (logoPts[i][0] + 0.5) * S; p.ty = (logoPts[i][1] + 0.5) * S; p.x *= S / old; p.y *= S / old; });
+  /* ---------------- 2.5D ISOMETRIC "OMI CORE" DIORAMA ---------------- */
+  const isoCv = $('#omiCore'), ix = isoCv.getContext('2d');
+  const IW = 280, IH = 184, OX = 140, OY = 64;
+  isoCv.width = IW; isoCv.height = IH;
+  const P = (x, y, z) => [OX + (x - y), OY + (x + y) / 2 - z];
+
+  // pixel-perfect convex polygon fill (no anti-aliasing)
+  function fillPoly(pts, col) {
+    ix.fillStyle = col;
+    let minY = Infinity, maxY = -Infinity;
+    for (const p of pts) { minY = Math.min(minY, p[1]); maxY = Math.max(maxY, p[1]); }
+    for (let y = Math.ceil(minY); y <= Math.floor(maxY); y++) {
+      let lo = Infinity, hi = -Infinity;
+      for (let i = 0; i < pts.length; i++) {
+        const a = pts[i], b = pts[(i + 1) % pts.length];
+        if (y < Math.min(a[1], b[1]) || y > Math.max(a[1], b[1])) continue;
+        if (a[1] === b[1]) { lo = Math.min(lo, a[0], b[0]); hi = Math.max(hi, a[0], b[0]); continue; }
+        const x = a[0] + ((y - a[1]) * (b[0] - a[0])) / (b[1] - a[1]);
+        lo = Math.min(lo, x); hi = Math.max(hi, x);
+      }
+      if (lo <= hi) ix.fillRect(Math.round(lo), y, Math.round(hi) - Math.round(lo) + 1, 1);
     }
   }
-  window.addEventListener('resize', resizeAll);
-  resizeAll();
+  function isoBox(x, y, z, w, d, h, c) {
+    fillPoly([P(x, y + d, z + h), P(x + w, y + d, z + h), P(x + w, y + d, z), P(x, y + d, z)], c[1]);
+    fillPoly([P(x + w, y, z + h), P(x + w, y + d, z + h), P(x + w, y + d, z), P(x + w, y, z)], c[2]);
+    fillPoly([P(x, y, z + h), P(x + w, y, z + h), P(x + w, y + d, z + h), P(x, y + d, z + h)], c[0]);
+  }
+  function isoPx(x, y, z, col, w = 1) { const [sx, sy] = P(x, y, z); ix.fillStyle = col; ix.fillRect(Math.round(sx), Math.round(sy), w, 1); }
+  function isoLine(x1, y1, x2, y2, z, col) {
+    const n = Math.max(Math.abs(x2 - x1), Math.abs(y2 - y1)) * 2;
+    for (let i = 0; i <= n; i++) isoPx(x1 + ((x2 - x1) * i) / n, y1 + ((y2 - y1) * i) / n, z, col);
+  }
+
+  const TOWER_C = ['#3a3a8a', '#24245c', '#18183e'];
+  const towers = [
+    { x: 6, y: 6, h: 38 }, { x: 78, y: 6, h: 28 }, { x: 6, y: 78, h: 28 }, { x: 78, y: 78, h: 44 },
+  ];
+  const traces = [
+    [[14, 22], [14, 50], [35, 50]], [[86, 22], [86, 40], [65, 40]],
+    [[22, 86], [50, 86], [50, 65]], [[78, 86], [60, 86], [60, 65]],
+  ];
+  function pathPoint(path, t) {
+    const segs = [];
+    let total = 0;
+    for (let i = 0; i < path.length - 1; i++) { const l = Math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1]); segs.push(l); total += l; }
+    let d = t * total;
+    for (let i = 0; i < segs.length; i++) {
+      if (d <= segs[i]) { const k = d / segs[i]; return [path[i][0] + (path[i + 1][0] - path[i][0]) * k, path[i][1] + (path[i + 1][1] - path[i][1]) * k]; }
+      d -= segs[i];
+    }
+    return path[path.length - 1];
+  }
+  const chipLogo = logoPixels(22, 11);
+  const miniRobot = [LEGS_A, LEGS_B].map(l => spriteCanvas(robotMap(l, false), ROBOT_PAL, 1));
+  const robotLoop = [[26, 26], [74, 26], [74, 74], [26, 74], [26, 26]];
+
+  function drawTower(t, time) {
+    isoBox(t.x, t.y, 8, 16, 16, t.h, TOWER_C);
+    // rack seams
+    for (let z = 14; z < 8 + t.h; z += 6) { isoLine(t.x, t.y + 16, t.x + 16, t.y + 16, z, '#18183e'); isoLine(t.x + 16, t.y, t.x + 16, t.y + 16, z, '#101030'); }
+    // blinking LEDs
+    for (let k = 0; k < Math.floor((t.h - 6) / 6); k++)
+      for (let j = 0; j < 3; j++) {
+        const on = (k * 7 + j * 13 + Math.floor(time / 140) + t.x) % 6;
+        isoPx(t.x + 3 + j * 5, t.y + 16, 11 + k * 6, on === 0 ? '#ff4fd8' : on < 3 ? '#6bff8f' : '#1f5a35', 2);
+        isoPx(t.x + 16, t.y + 3 + j * 5, 11 + k * 6, on === 1 ? '#3ef0ff' : on < 4 ? '#6bff8f' : '#1f5a35', 2);
+      }
+    // roof antenna light
+    isoPx(t.x + 8, t.y + 8, 8 + t.h + 2, Math.floor(time / 400 + t.x) % 2 ? '#ff3b3b' : '#550000', 2);
+  }
+
+  function drawChip(time) {
+    isoBox(34, 34, 8, 32, 32, 7, ['#14142e', '#0a0a1c', '#06060f']);
+    for (let i = 0; i < 6; i++) {
+      isoBox(37 + i * 5, 66, 8, 2, 3, 3, ['#cfd6ff', '#8d8db8', '#6a6a90']);
+      isoBox(66, 37 + i * 5, 8, 3, 2, 3, ['#cfd6ff', '#8d8db8', '#6a6a90']);
+    }
+    const glow = Math.floor(time / 300) % 2 ? '#ff4fd8' : '#c2189a';
+    isoLine(37, 37, 63, 37, 15, glow); isoLine(63, 37, 63, 63, 15, glow);
+    isoLine(63, 63, 37, 63, 15, glow); isoLine(37, 63, 37, 37, 15, glow);
+    const pulse = Math.sin(time * 0.004);
+    for (const [lx, ly] of chipLogo) {
+      const w = Math.sin(lx * 0.5 - time * 0.006);
+      fillPoly([P(39 + lx, 44 + ly, 15), P(40 + lx, 44 + ly, 15), P(40 + lx, 45 + ly, 15), P(39 + lx, 45 + ly, 15)], w > 0.7 ? '#3ef0ff' : pulse > 0.6 ? '#ffffff' : '#e6e2ff');
+    }
+  }
+
+  function drawHologram(time) {
+    const zc = 46 + Math.sin(time * 0.003) * 3, r = 9, a = time * 0.0015;
+    // beam
+    for (let z = 16; z < zc - 12; z += 2) if (Math.random() < 0.8) isoPx(50 + (Math.random() < 0.2 ? rand(-2, 2) : 0), 50, z, z % 4 ? '#3ef0ff' : '#bff9ff');
+    const eq = [0, 1, 2, 3].map(k => [50 + Math.cos(a + (k * Math.PI) / 2) * r, 50 + Math.sin(a + (k * Math.PI) / 2) * r, zc]);
+    const tris = [];
+    for (let k = 0; k < 4; k++) {
+      const p1 = eq[k], p2 = eq[(k + 1) % 4];
+      const depth = (p1[0] + p1[1] + p2[0] + p2[1]) / 2;
+      tris.push({ pts: [[50, 50, zc + 13], p1, p2], depth, col: k % 2 ? '#bff9ff' : '#3ef0ff' });
+      tris.push({ pts: [[50, 50, zc - 13], p1, p2], depth: depth - 0.1, col: k % 2 ? '#1a9fb5' : '#0f6f80' });
+    }
+    tris.sort((u, v) => u.depth - v.depth).forEach(t => fillPoly(t.pts.map(q => P(q[0], q[1], q[2])), t.col));
+    // orbiting sparkles
+    for (let i = 0; i < 6; i++) {
+      const b = a * 2 + (i * Math.PI) / 3;
+      isoPx(50 + Math.cos(b) * 16, 50 + Math.sin(b) * 16, zc + Math.sin(b * 2) * 6, i % 2 ? '#ffe14f' : '#ff4fd8', 2);
+    }
+  }
+
+  function drawIso(time) {
+    const r = isoCv.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > H) return;
+    ix.clearRect(0, 0, IW, IH);
+    // ground shadow
+    fillPoly([P(-6, -6, -6), P(106, -6, -6), P(106, 106, -6), P(-6, 106, -6)], 'rgba(0,0,0,.35)');
+    // platform
+    isoBox(0, 0, 0, 100, 100, 8, ['#1c1c48', '#121236', '#0b0b26']);
+    for (let i = 10; i < 100; i += 10) { isoLine(i, 0, i, 100, 8, '#26265a'); isoLine(0, i, 100, i, 8, '#26265a'); }
+    isoLine(0, 100, 100, 100, 8, '#ff4fd8'); isoLine(100, 0, 100, 100, 8, '#ff4fd8');
+    isoLine(0, 100, 100, 100, 0, '#3ef0ff'); isoLine(100, 0, 100, 100, 0, '#3ef0ff');
+    // circuit traces
+    traces.forEach(tr => { for (let i = 0; i < tr.length - 1; i++) isoLine(tr[i][0], tr[i][1], tr[i + 1][0], tr[i + 1][1], 8, '#2f5f8f'); });
+
+    // painter's algorithm: sort everything by depth (x + y)
+    const items = [];
+    towers.forEach(t => items.push({ d: t.x + t.y + 16, f: () => drawTower(t, time) }));
+    items.push({ d: 100, f: () => drawChip(time) });
+    items.push({ d: 100.5, f: () => drawHologram(time) });
+    traces.forEach((tr, i) => {
+      for (let k = 0; k < 2; k++) {
+        const t = ((time * 0.00035) + i * 0.27 + k * 0.5) % 1;
+        const [qx, qy] = pathPoint(tr, t);
+        const c = (i + k) % 2 ? ['#ffe14f', '#c98a00', '#8a5e00'] : ['#bff9ff', '#3ef0ff', '#1a9fb5'];
+        items.push({ d: qx + qy, f: () => isoBox(qx - 1.5, qy - 1.5, 8, 3, 3, 3, c) });
+      }
+    });
+    const rt = (time * 0.00008) % 1, [rx, ry] = pathPoint(robotLoop, rt);
+    items.push({ d: rx + ry, f: () => { const [sx, sy] = P(rx, ry, 8); ix.drawImage(miniRobot[Math.floor(time / 200) % 2], Math.round(sx - 6), Math.round(sy - 14)); } });
+    items.sort((a, b) => a.d - b.d).forEach(it => it.f());
+  }
+
+  /* ---------------- 3D TILT (cards + diorama) ---------------- */
+  const canHover = window.matchMedia('(hover: hover)').matches;
+  function tilt(el, max, inner) {
+    el.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const r = el.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      const step = v => Math.round(v / 2) * 2; // stepped rotation = retro feel
+      el.style.setProperty('--rx', step(-ny * max) + 'deg');
+      el.style.setProperty('--ry', step(nx * max) + 'deg');
+      el.classList.add('tilt');
+    });
+    el.addEventListener('pointerleave', () => { el.classList.remove('tilt'); el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+  }
+  if (canHover && !reduceMotion) {
+    $$('.card').forEach(c => tilt(c, 14));
+    tilt($('.iso-wrap'), 18);
+  }
+
+  /* ---------------- TOUCH SUPPORT ---------------- */
+  window.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) { mouse.x = t.clientX; mouse.y = t.clientY; } }, { passive: true });
+  window.addEventListener('touchstart', e => { const t = e.touches[0]; if (t) { mouse.x = t.clientX; mouse.y = t.clientY; } }, { passive: true });
+  window.addEventListener('touchend', () => setTimeout(() => { mouse.x = -999; mouse.y = -999; }, 300), { passive: true });
+  invCv.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    inv.hover = true;
+    inv.shipTarget = t.clientX - invCv.getBoundingClientRect().left - 22;
+    setTimeout(invShoot, 120);
+    clearTimeout(inv.touchT); inv.touchT = setTimeout(() => (inv.hover = false), 2500);
+  }, { passive: true });
+
+  /* ---------------- MOBILE MENU UX ---------------- */
+  const burger = $('#burger'), linksEl = $('#links');
+  const syncBurger = () => { burger.classList.toggle('open', linksEl.classList.contains('open')); burger.setAttribute('aria-expanded', linksEl.classList.contains('open')); };
+  burger.addEventListener('click', () => setTimeout(syncBurger));
+  linksEl.addEventListener('click', () => setTimeout(syncBurger));
+  document.addEventListener('click', e => {
+    if (linksEl.classList.contains('open') && !e.target.closest('#links, #burger')) { linksEl.classList.remove('open'); syncBurger(); }
+  });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') { linksEl.classList.remove('open'); syncBurger(); } });
+
+  /* ---------------- MAIN LOOP ---------------- */
+  let lastW = 0, lastH = 0;
+  function resizeAll(force) {
+    const w = window.innerWidth, h = window.innerHeight;
+    // mobile address bar show/hide only changes height slightly → cheap update, no rebuild
+    const minor = !force && w === lastW && Math.abs(h - lastH) < 160;
+    lastW = w; lastH = h;
+    if (minor) {
+      H = bg.height = fx.height = h;
+      return;
+    }
+    resizeBg(); buildCity();
+    invCv.width = invCv.clientWidth; invCv.height = invCv.clientHeight || 170; resetInvaders();
+    pacCv.width = pacCv.clientWidth; pacCv.height = 96; resetPac();
+    if (heroStarted) {
+      const old = S; sizeHero(); setLogoTargets(S / old);
+    }
+  }
+  let resizeT;
+  window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(() => resizeAll(false), 120); });
+  window.addEventListener('orientationchange', () => setTimeout(() => resizeAll(true), 300));
+  resizeAll(true);
   onScroll();
 
   function loop(t) {
@@ -904,6 +1143,7 @@
     drawHero(t);
     drawCity(t);
     drawRobots(t);
+    drawIso(t);
     drawInvaders(t);
     drawPac(t);
     drawCat(t);
