@@ -350,6 +350,39 @@ body.rainbow { animation: hue 2s linear infinite; }
 .stat:hover { transform: translate(8px, 8px); box-shadow: 0 -4px 0 var(--line), 0 4px 0 var(--line), -4px 0 0 var(--line), 4px 0 0 var(--line), 4px 4px 0 var(--e1), 8px 8px 0 var(--e2); }
 body.day .stat { --e1: #ff9ad8; --e2: #e070c0; --e3: #b0509a; }
 
+/* ---------- PLANET SPM PORTAL ---------- */
+.btn-lava { background: #ff6a00; color: #1a0603; --b: #ffb000; animation: lavaPulse 1.2s steps(2) infinite; }
+@keyframes lavaPulse { 50% { background: #ff8a1a; } }
+.nav-spm { color: #ff9a3c !important; }
+.spm-portal {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 40px; align-items: center;
+  padding: 44px; color: #fff1d6;
+  background: repeating-linear-gradient(-45deg, rgba(255,106,0,.08) 0 10px, transparent 10px 20px),
+              linear-gradient(180deg, #2e0c04, #1a0603);
+  box-shadow: 0 -4px 0 #ffb000, 0 4px 0 #ffb000, -4px 0 0 #ffb000, 4px 0 0 #ffb000,
+              8px 8px 0 #c2410c, 12px 12px 0 #8a1a08, 16px 16px 0 #4a0e04;
+  transition: transform .12s steps(2), box-shadow .12s steps(2), opacity .6s steps(6);
+}
+.spm-portal:hover { transform: translate(-4px, -4px); box-shadow: 0 -4px 0 #ffb000, 0 4px 0 #ffb000, -4px 0 0 #ffb000, 4px 0 0 #ffb000, 12px 12px 0 #c2410c, 16px 16px 0 #8a1a08, 20px 20px 0 #4a0e04; }
+.venus-wrap { position: relative; }
+#venus { width: 100%; max-width: 360px; height: auto; aspect-ratio: 1; margin: 0 auto; animation: isoFloat 5s steps(10) infinite; filter: drop-shadow(0 0 30px rgba(255,106,0,.35)); }
+.spm-portal:hover #venus { filter: drop-shadow(0 0 50px rgba(255,140,0,.7)); }
+.spm-kicker { font-family: var(--pixel); font-size: 10px; color: #ffb000; margin-bottom: 16px; line-height: 1.6; }
+.spm-info h3 { font-family: var(--pixel); font-size: clamp(26px, 4vw, 48px); color: #fff4c2; margin-bottom: 18px;
+  text-shadow: 0 4px 0 #ffb000, 0 8px 0 #ff6a00, 0 12px 0 #ff3b1a; }
+.spm-info p:not(.spm-kicker) { font-size: 24px; color: #f2c9a0; margin-bottom: 30px; }
+.spm-gh { text-align: center; margin-top: 44px; color: var(--dim); font-size: 22px; overflow-wrap: anywhere; }
+.spm-gh a { color: #ff9a3c; border-bottom: 3px solid #ff9a3c; }
+#warpMain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 400; pointer-events: none; }
+@media (max-width: 760px) {
+  .spm-portal { grid-template-columns: 1fr; padding: 28px 22px; gap: 20px; text-align: center; }
+  #venus { max-width: 240px; }
+  .spm-info p:not(.spm-kicker) { font-size: 20px; }
+  .spm-kicker { font-size: 8px; }
+  .spm-info .btn { display: block; }
+  .spm-gh { font-size: 19px; }
+}
+
 /* ---------- RESPONSIVE ----------  */
 
 /* Large & ultrawide screens */

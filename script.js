@@ -1114,6 +1114,87 @@
   });
   window.addEventListener('keydown', e => { if (e.key === 'Escape') { linksEl.classList.remove('open'); syncBurger(); } });
 
+  /* ---------------- PLANET SPM: ROTATING PIXEL VENUS ---------------- */
+  const venusCv = $('#venus'), vctx = venusCv.getContext('2d');
+  const VS = 96, VR = 34, VC = VS / 2;
+  venusCv.width = VS; venusCv.height = VS;
+  const vImg = vctx.createImageData(VS, VS), v32 = new Uint32Array(vImg.data.buffer);
+  const hexToABGR = h => { const n = parseInt(h.slice(1), 16); return (255 << 24) | ((n & 255) << 16) | (((n >> 8) & 255) << 8) | (n >> 16); };
+  const VPAL = [
+    ['#3a1206', '#5a1e08', '#6e2508', '#7a2e0a', '#5a1e08', '#4a1606'],   // night side
+    ['#7a2e0a', '#a8420f', '#c25e18', '#d87a24', '#b54a12', '#94360d'],   // mid
+    ['#c25e18', '#e88324', '#f5a640', '#ffd27a', '#f09636', '#d8691a'],   // lit side
+  ].map(r => r.map(hexToABGR));
+  const ATMO = [hexToABGR('#ff9a3c'), hexToABGR('#c2410c')];
+  let vMeteors = [];
+  function drawVenus(time) {
+    const r = venusCv.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > H) return;
+    v32.fill(0);
+    const rot = time * 0.00035;
+    for (let y = 0; y < VS; y++) for (let x = 0; x < VS; x++) {
+      const dx = (x + 0.5 - VC) / VR, dy = (y + 0.5 - VC) / VR, d2 = dx * dx + dy * dy;
+      if (d2 > 1) {
+        // dithered atmosphere halo, brighter on the lit (right) side
+        const d = Math.sqrt(d2);
+        if (d < 1.1 && (x + y) % 2 === 0 && dx > -0.4) v32[y * VS + x] = ATMO[0];
+        else if (d < 1.18 && (x + y) % 4 === 0 && dx > 0) v32[y * VS + x] = ATMO[1];
+        continue;
+      }
+      const dz = Math.sqrt(1 - d2);
+      const lon = Math.atan2(dx, dz) + rot, lat = Math.asin(dy);
+      const v = lat * 4.2 + Math.sin(lon * 2 + lat * 3) * 0.7 + Math.sin(lon * 5 - time * 0.0006 + lat * 8) * 0.25;
+      const band = ((Math.floor(v * 1.6) % 6) + 6) % 6;
+      const light = dx * 0.62 - dy * 0.38 + dz * 0.68;
+      let tier = light > 0.45 ? 2 : light > 0.05 ? 1 : 0;
+      if (Math.abs(light - 0.45) < 0.06 || Math.abs(light - 0.05) < 0.06) tier = (x + y) % 2 ? tier : Math.max(0, tier - 1); // dithered terminator
+      v32[y * VS + x] = VPAL[tier][band];
+    }
+    vctx.putImageData(vImg, 0, 0);
+    // meteors streaking past the planet
+    if (!reduceMotion && Math.random() < 0.02 && vMeteors.length < 3) vMeteors.push({ x: rand(40, 110), y: -4, vx: rand(-1.4, -0.8), vy: rand(0.8, 1.3), tr: [] });
+    vMeteors = vMeteors.filter(m => m.y < VS + 6 && m.x > -6);
+    for (const m of vMeteors) {
+      m.tr.push([m.x, m.y]); if (m.tr.length > 8) m.tr.shift();
+      m.x += m.vx; m.y += m.vy;
+      m.tr.forEach(([x, y], i) => { vctx.fillStyle = i > 5 ? '#fff2b0' : i > 2 ? '#ff9a3c' : '#c2300a'; vctx.fillRect(Math.round(x), Math.round(y), 1, 1); });
+      vctx.fillStyle = '#fff'; vctx.fillRect(Math.round(m.x), Math.round(m.y), 1, 1);
+    }
+  }
+
+  /* ---------------- WARP TO PLANET SPM ---------------- */
+  const SPM_URL = location.protocol === 'file:' ? 'spm/index.html' : 'spm/';
+  const warpCv = document.createElement('canvas');
+  warpCv.id = 'warpMain'; document.body.appendChild(warpCv);
+  const wmctx = warpCv.getContext('2d');
+  let warpBlocks = null, warpTo = null;
+  $$('[data-warp]').forEach(a => {
+    a.setAttribute('href', SPM_URL);
+    a.addEventListener('click', e => {
+      if (reduceMotion || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault(); e.stopPropagation();
+      warpCv.width = window.innerWidth; warpCv.height = window.innerHeight;
+      const s = window.innerWidth < 600 ? 20 : 28, cols = ['#ff6a00', '#ffb000', '#ff3b1a', '#c2410c', '#1a0603'];
+      warpBlocks = [];
+      for (let y = 0; y < warpCv.height; y += s) for (let x = 0; x < warpCv.width; x += s) warpBlocks.push({ x, y, s, c: cols[Math.floor(Math.random() * cols.length)], on: false });
+      warpBlocks.sort(() => Math.random() - 0.5);
+      warpTo = SPM_URL;
+      rumbleWarp();
+    });
+  });
+  function rumbleWarp() { beep(110, 0.3, 'sawtooth', 0.05); setTimeout(() => beep(70, 0.4, 'triangle', 0.06), 120); }
+  function drawWarpMain() {
+    if (!warpBlocks) return;
+    const n = Math.ceil(warpBlocks.length / 26);
+    let changed = 0;
+    for (const b of warpBlocks) { if (changed >= n) break; if (!b.on) { b.on = true; changed++; } }
+    wmctx.clearRect(0, 0, warpCv.width, warpCv.height);
+    for (const b of warpBlocks) if (b.on) { wmctx.fillStyle = b.c; wmctx.fillRect(b.x, b.y, b.s, b.s); }
+    if (!changed && warpTo) { const to = warpTo; warpTo = null; location.href = to; }
+  }
+  // coming back with the browser back button: clear the overlay
+  window.addEventListener('pageshow', e => { if (e.persisted) { warpBlocks = null; wmctx.clearRect(0, 0, warpCv.width, warpCv.height); } });
+
   /* ---------------- MAIN LOOP ---------------- */
   let lastW = 0, lastH = 0;
   function resizeAll(force) {
@@ -1147,7 +1228,9 @@
     drawInvaders(t);
     drawPac(t);
     drawCat(t);
+    drawVenus(t);
     drawFx();
+    drawWarpMain();
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);

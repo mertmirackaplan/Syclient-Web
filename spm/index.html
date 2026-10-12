@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta http-equiv="refresh" content="0; url=../spm.html"/>
-  <link rel="canonical" href="../spm.html"/>
-  <title>Syclient Model Lab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2e0c04" />
+  <title>SPM-350M — Syclient's Legacy Model</title>
+  <meta name="description" content="SPM-350M: Syclient's legacy 350M-parameter model, the ancestor of Omi. Explore its world and get the code on GitHub." />
+  <link rel="icon" href="../assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spm.css" />
 </head>
 <body>
-  <p><a href="../spm.html">Continue to the Syclient Model Lab</a></p>
+  <canvas id="world" aria-hidden="true"></canvas>
+  <canvas id="warp" aria-hidden="true"></canvas>
+  <div class="scanlines"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="../" class="brand" data-home>
+      <canvas id="navLogo"></canvas>
+      <span>SYCLIENT</span>
+    </a>
+    <span class="nav-planet">◉ PLANET SPM</span>
+    <a href="https://github.com/Syclient/SPM-350M" target="_blank" rel="noopener" class="btn btn-small">GITHUB ↗</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="kicker reveal"><span class="blink">▲</span> WARNING: SURFACE TEMP 464°C</p>
+    <h1 class="lava-title reveal" data-text="SPM-350M">SPM-350M</h1>
+    <p class="sub reveal">Our legacy 350M-parameter model.<br />Forged in fire. The ancestor of Omi.</p>
+    <div class="cta reveal">
+      <a href="https://github.com/Syclient/SPM-350M" target="_blank" rel="noopener" class="btn btn-lava">▶ VIEW ON GITHUB</a>
+      <a href="../" class="btn btn-ghost" data-home>◀ BACK TO OMI</a>
+    </div>
+    <p class="hint reveal">TAP THE SKY TO CALL A METEOR</p>
+  </section>
+
+  <!-- STATS -->
+  <section class="section">
+    <h2 class="title reveal"><span class="tag">MISSION LOG</span>MODEL DATA</h2>
+    <div class="blocks">
+      <div class="block reveal"><b data-count="350">0</b><span>M</span><p>PARAMETERS</p></div>
+      <div class="block reveal"><b>GEN 1</b><p>FIRST SYCLIENT MODEL</p></div>
+      <div class="block reveal"><b>LEGACY</b><p>SUCCEEDED BY OMI</p></div>
+    </div>
+  </section>
+
+  <!-- REPO -->
+  <section class="section">
+    <h2 class="title reveal"><span class="tag">GROUND CONTROL</span>GET THE CODE</h2>
+    <div class="terminal reveal">
+      <div class="term-head"><i></i><i></i><i></i><span>spm@venus:~</span></div>
+      <div class="term-body">
+        <p><span class="pr">$</span> git clone https://github.com/Syclient/SPM-350M.git</p>
+        <p class="dim">Cloning into 'SPM-350M'...</p>
+        <p><span class="pr">$</span> cd SPM-350M<span class="caret">█</span></p>
+      </div>
+      <div class="term-actions">
+        <button class="btn btn-small" id="copyBtn">⧉ COPY COMMAND</button>
+        <a href="https://github.com/Syclient/SPM-350M" target="_blank" rel="noopener" class="btn btn-lava">OPEN REPO ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVOLUTION -->
+  <section class="section">
+    <h2 class="title reveal"><span class="tag">EVOLUTION</span>FROM SPM TO OMI</h2>
+    <div class="evo reveal">
+      <div class="evo-node spm"><div class="cube"><i></i><i></i><i></i></div><h4>SPM-350M</h4><p>GEN 1 · 350M</p></div>
+      <div class="evo-arrow"><span>▶</span><span>▶</span><span>▶</span></div>
+      <div class="evo-node omi"><div class="cube"><i></i><i></i><i></i></div><h4>OMI-500M</h4><p>NOW · 500M</p></div>
+    </div>
+    <p class="evo-note reveal">SPM paved the way. Omi took it further. <a href="../" data-home>Meet Omi →</a></p>
+  </section>
+
+  <!-- SURFACE REPORT -->
+  <section class="section">
+    <h2 class="title reveal"><span class="tag">SURFACE REPORT</span>WELCOME TO VENUS</h2>
+    <div class="report reveal">
+      <div><span>TEMP</span><b>464°C</b></div>
+      <div><span>PRESSURE</span><b>92 BAR</b></div>
+      <div><span>CLOUDS</span><b>H₂SO₄</b></div>
+      <div><span>DAY LENGTH</span><b>243 EARTH DAYS</b></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 SYCLIENT AI · SPM-350M LEGACY ARCHIVE</p>
+    <p><a href="https://github.com/Syclient/SPM-350M" target="_blank" rel="noopener">github.com/Syclient/SPM-350M</a></p>
+  </footer>
+
+  <div id="toast"></div>
+  <script src="spm.js"></script>
 </body>
 </html>
