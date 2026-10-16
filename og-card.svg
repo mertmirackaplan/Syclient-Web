@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F5F4F0"/>
+  <!-- Swiss Grid Lines -->
+  <line x1="0" y1="90" x2="1200" y2="90" stroke="#0E0E0E" stroke-width="2"/>
+  <line x1="0" y1="530" x2="1200" y2="530" stroke="#0E0E0E" stroke-width="2"/>
+  <line x1="820" y1="0" x2="820" y2="630" stroke="#0E0E0E" stroke-width="2"/>
+  <line x1="80" y1="0" x2="80" y2="630" stroke="#0E0E0E" stroke-width="2"/>
+
+  <!-- Top Bar -->
+  <rect x="80" y="0" width="740" height="90" fill="#ECEAE3"/>
+  <text x="115" y="53" font-family="monospace" font-size="20" font-weight="bold" fill="#0E0E0E" letter-spacing="2">SYCLIENT // OMI-CORE-740M</text>
+
+  <rect x="820" y="0" width="380" height="90" fill="#0E0E0E"/>
+  <circle cx="860" cy="45" r="8" fill="#FF3300"/>
+  <text x="885" y="52" font-family="monospace" font-size="18" font-weight="bold" fill="#F5F4F0" letter-spacing="2">HYPERLOCAL EDGE AI</text>
+
+  <!-- Main Title Area -->
+  <text x="115" y="210" font-family="sans-serif" font-size="68" font-weight="900" fill="#0E0E0E" letter-spacing="-2">Next-Generation</text>
+  <text x="115" y="290" font-family="sans-serif" font-size="68" font-weight="900" fill="#FF3300" letter-spacing="-2">AI Architecture</text>
+  <text x="115" y="370" font-family="sans-serif" font-size="68" font-weight="900" fill="#0E0E0E" letter-spacing="-2">Trained From Scratch.</text>
+
+  <text x="115" y="445" font-family="monospace" font-size="21" fill="#52514E">740M PARAMETERS • ~1.0 GB RAM • 40+ TOK/S • 100% ON-DEVICE</text>
+
+  <!-- Right Spec Box -->
+  <rect x="822" y="92" width="378" height="436" fill="#ECEAE3"/>
+  <text x="860" y="165" font-family="monospace" font-size="18" fill="#FF3300" font-weight="bold">SPECIFICATION MATRIX</text>
+  <text x="860" y="220" font-family="sans-serif" font-size="48" font-weight="900" fill="#0E0E0E">740M</text>
+  <text x="860" y="250" font-family="monospace" font-size="15" fill="#52514E">TRUE PRE-TRAINING (A100)</text>
+
+  <line x1="860" y1="285" x2="1150" y2="285" stroke="#0E0E0E" stroke-width="1.5"/>
+
+  <text x="860" y="345" font-family="sans-serif" font-size="48" font-weight="900" fill="#0E0E0E">~1.0 GB</text>
+  <text x="860" y="375" font-family="monospace" font-size="15" fill="#52514E">4-BIT GGUF QUANTIZATION</text>
+
+  <line x1="860" y1="410" x2="1150" y2="410" stroke="#0E0E0E" stroke-width="1.5"/>
+
+  <text x="860" y="470" font-family="sans-serif" font-size="44" font-weight="900" fill="#0E0E0E">ZERO EGRESS</text>
+  <text x="860" y="500" font-family="monospace" font-size="15" fill="#52514E">SOVEREIGN LOCAL EXECUTION</text>
+
+  <!-- Bottom Bar -->
+  <text x="115" y="588" font-family="monospace" font-size="18" font-weight="bold" fill="#0E0E0E">SYCLIENT.AI — SOVEREIGN FOUNDATION MODELS</text>
+  <text x="860" y="588" font-family="monospace" font-size="18" font-weight="bold" fill="#FF3300">GQA • ROPE • SWIGLU</text>
+</svg>

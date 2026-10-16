@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DISPATCH CONFIRMED // THANK YOU — SYCLIENT</title>
+  <meta name="description" content="Your strategic partnership and compute allocation dossier has been logged by Syclient AI Research." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="swiss-wrapper">
+    <div class="hyperlocal-top-strip">
+      <span class="hl-badge">● DOSSIER RECEIVED // ACK-200</span>
+      <span>PROTOCOL // SOVEREIGN ALLIANCE DISPATCH</span>
+    </div>
+
+    <header class="site-header">
+      <div class="header-grid">
+        <a href="index.html" class="brand-cell" aria-label="Return to Syclient Home">
+          <img src="logo.jpg" alt="Syclient AI infinity monogram logo" class="brand-logo" width="42" height="30" />
+          <span class="brand-name">SYCLIENT</span>
+          <span class="brand-sub">ACK // 200</span>
+        </a>
+        <nav class="nav-cell" aria-label="Secondary Navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">01. Return Home</a></li>
+            <li><a href="index.html#architecture">02. 740M Specs</a></li>
+            <li><a href="index.html#roadmap">03. 1B Roadmap</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta-cell">
+          <a href="index.html" class="header-cta-btn">
+            <span>Back to Overview</span>
+            <span>←</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid-12" style="min-height: 75vh;">
+      <div class="hero-main" style="grid-column: span 7;">
+        <div>
+          <span class="mono-tag" style="margin-bottom: 1.5rem;">
+            <span class="status-dot green"></span>
+            TRANSMISSION VERIFIED // THANK YOU
+          </span>
+          <h1 class="hero-title" style="font-size: clamp(2.5rem, 4.8vw, 4.25rem);">
+            Partnership Dossier <span class="accent-word">Logged.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Thank you for initiating a strategic dialogue with Syclient AI Research. Our founding architecture team reviews compute grant proposals, OEM silicon pilots, and venture inquiries directly within 24 hours.
+          </p>
+        </div>
+
+        <div class="cta-matrix" style="grid-template-columns: 1fr 1fr;">
+          <a href="index.html" class="btn-swiss btn-swiss-primary">
+            <span class="btn-swiss-index"><span>RET // 01</span><span>←</span></span>
+            <span class="btn-swiss-label">Return to Main Architecture Page</span>
+          </a>
+          <a href="mailto:founders@syclient.ai" class="btn-swiss btn-swiss-secondary">
+            <span class="btn-swiss-index"><span>DIRECT // 02</span><span>↗</span></span>
+            <span class="btn-swiss-label">Direct Email: founders@syclient.ai</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-aside" style="grid-column: span 5; justify-content: center; padding: 3rem;">
+        <div class="hyperlocal-ticket">
+          <div class="ticket-header">
+            <div>
+              <div class="ticket-title">SUBMISSION RECEIPT</div>
+              <div style="font-size: 0.65rem; color: var(--text-secondary);">HYPERLOCAL CONFIRMATION TICKET</div>
+            </div>
+            <span class="ticket-stamp">VERIFIED</span>
+          </div>
+          <div class="ticket-rows">
+            <div class="ticket-line"><span>CONTACT NAME</span><strong id="tyName">PARTNER</strong></div>
+            <div class="ticket-line"><span>ORGANIZATION</span><strong id="tyOrg">INSTITUTIONAL NODE</strong></div>
+            <div class="ticket-line"><span>EMAIL ADDRESS</span><strong id="tyEmail">VERIFIED</strong></div>
+            <div class="ticket-line"><span>ALLOCATION TRACK</span><strong id="tyTrack">STRATEGIC</strong></div>
+            <div class="ticket-line"><span>TARGET SCALE</span><strong>1B PARAMS / 100B TOKENS</strong></div>
+          </div>
+          <div class="ticket-barcode">
+            <div class="barcode-bars"></div>
+            <span style="font-size: 0.62rem; letter-spacing: 0.15em;">*ACK-SYCLIENT-ALLIANCE-2026*</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-cell" style="grid-column: span 6;">
+        <strong>SYCLIENT AI RESEARCH</strong>
+        <span>© 2026</span>
+      </div>
+      <div class="footer-cell" style="grid-column: span 6;">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    try {
+      const raw = sessionStorage.getItem('syclient_last_dispatch');
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data.name) document.getElementById('tyName').textContent = data.name.toUpperCase();
+        if (data.org) document.getElementById('tyOrg').textContent = data.org.toUpperCase();
+        if (data.email) document.getElementById('tyEmail').textContent = data.email;
+        if (data.track) document.getElementById('tyTrack').textContent = data.track.toUpperCase();
+      }
+    } catch (_) {}
+  </script>
+</body>
+</html>

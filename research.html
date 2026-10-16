@@ -1,106 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="preload" href="./syclient-wordmark.png" as="image"/>
-  <link rel="stylesheet" href="./styles.css"/>
-  <title>Technical Notes | Syclient Research</title>
-  <meta name="description" content="Technical notes on the Mosaic Agent runtime, verification, memory permissions, and Syclient's agent-focused model roadmap."/>
-  <link rel="shortcut icon" href="./syclient-mark.png"/>
-  <link rel="icon" href="./syclient-mark.png"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Meta Title & Meta Description -->
+  <title>RESEARCH &amp; TECHNICAL REPORT // SYCLIENT LABS</title>
+  <meta name="description" content="Official technical monograph and pre-training convergence report for Syclient's sovereign 740M-parameter foundation architecture." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://syclient.ai/research.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="logo.jpg" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Syclient AI Research" />
+  <meta property="og:title" content="SYC-TR-2026-01: From-Scratch 740M Foundation Model Technical Report" />
+  <meta property="og:description" content="Convergence stability, custom byte-level BPE tokenizer design, and GQA + RoPE edge scaling on single-node A100 silicon." />
+  <meta property="og:url" content="https://syclient.ai/research.html" />
+  <meta property="og:image" content="og-card.svg" />
+  <meta property="og:image:alt" content="Syclient Research Technical Report Specification Card" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts & Styles (Including Silkscreen Pixel Font) -->
+  <link rel="preload" as="image" href="logo.jpg" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="site-shell ma-page research-page" id="top">
-    <div class="scroll-progress" aria-hidden="true"></div>
-    <header class="site-header ma-site-header">
-      <div class="header-inner">
-        <a class="brand" href="./index.html" aria-label="Syclient home"><span class="wordmark" aria-hidden="true"><img src="./syclient-wordmark.png" alt="" draggable="false"/></span></a>
-        <nav class="desktop-nav" aria-label="Primary navigation">
-          <div class="product-menu">
-            <a class="product-menu-trigger" href="./index.html#mosaic-agent">Products<span aria-hidden="true">⌄</span></a>
-            <div class="product-menu-panel" aria-label="Syclient products and programs">
-              <a href="./mosaic-agent.html"><span class="product-menu-number">01</span><span class="product-menu-name">Mosaic Agent<small>Close Beta · local runtime</small></span><span aria-hidden="true">↘</span></a>
-              <a href="./spm.html"><span class="product-menu-number">02</span><span class="product-menu-name">Model Lab<small>Public experiments</small></span><span aria-hidden="true">↘</span></a>
-              <span class="product-menu-disabled" aria-disabled="true"><span class="product-menu-number">03</span><span class="product-menu-name">Mosaic Two<small>In development</small></span><span aria-hidden="true">—</span></span>
-            </div>
-          </div>
-          <a href="./research.html" aria-current="page">Research</a>
-          <a href="./about.html">Company</a>
+
+  <!-- AMBIENT LIQUID LIGHT REFRACTION CANVAS -->
+  <div class="liquid-ambient-canvas" aria-hidden="true">
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
+    <div class="liquid-orb orb-3"></div>
+  </div>
+
+  <div class="swiss-wrapper">
+    <!-- HYPERLOCAL TOP HARDWARE PROXIMITY STRIP -->
+    <div class="hyperlocal-top-strip" role="region" aria-label="HyperLocal Archive Telemetry">
+      <div class="hl-strip-group">
+        <span class="hl-badge">■ MONOGRAPH // SYC-TR-2026-01</span>
+        <span id="hlNodeCoord">NODE.LOC: DETECTING LOCAL SILICON...</span>
+        <span class="pixel-font">PUBLISHED REPORT: 01 [VERIFIED]</span>
+      </div>
+      <div class="hl-strip-group">
+        <span>ISSN-L: 3049-740X (DIGITAL)</span>
+        <span id="hlLocalClock">LOCAL.TIME // --:--:--</span>
+      </div>
+    </div>
+
+    <!-- STICKY NEO-SWISS LIQUID GLASS HEADER -->
+    <header class="site-header">
+      <div class="header-grid">
+        <a href="index.html" class="brand-cell" aria-label="Syclient Home">
+          <img
+            src="logo.jpg"
+            alt="Syclient AI infinity monogram logo"
+            class="brand-logo"
+            width="42"
+            height="30"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <span class="brand-name">SYCLIENT</span>
+          <span class="brand-sub pixel-font">RESEARCH</span>
+        </a>
+
+        <nav class="nav-cell" aria-label="Primary Navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">01. Overview</a></li>
+            <li><a href="index.html#hyperlocal">02. HyperLocal</a></li>
+            <li><a href="index.html#architecture">03. Blueprint</a></li>
+            <li><a href="research.html" style="background: var(--text-primary); color: var(--bg-primary);">04. Research</a></li>
+            <li><a href="index.html#roadmap">05. Roadmap</a></li>
+          </ul>
         </nav>
-        <a class="contact-button" href="mailto:hello@syclient.com?subject=Research%20conversation">Contact</a>
-        <details class="mobile-nav" data-mobile-nav="true"><summary aria-label="Open navigation">Menu</summary><div class="mobile-nav-panel"><p class="mobile-product-label"><span>01</span>Products</p><a class="mobile-product-link" href="./mosaic-agent.html"><span>01.1</span>Mosaic Agent <small>Close Beta</small></a><a class="mobile-product-link" href="./spm.html"><span>01.2</span>Model Lab</a><p class="mobile-product-disabled" aria-disabled="true"><span>01.3</span>Mosaic Two <small>In development</small></p><a href="./research.html" aria-current="page"><span>02</span>Research</a><a href="./about.html"><span>03</span>Company</a><a href="mailto:hello@syclient.com?subject=Research%20conversation"><span>04</span>Contact ↗</a></div></details>
+
+        <div class="header-cta-cell">
+          <a href="index.html#partner" class="header-cta-btn">
+            <span>Compute Grants</span>
+            <span>↗</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    <main class="ma-hero research-notes-hero">
-      <div class="ma-hero-inner">
-        <p class="ma-eyebrow" data-reveal="up">Syclient Research / Technical Notes</p>
-        <h1 class="ma-title" data-reveal="up">Status before<span class="ma-title-invert">spectacle.</span></h1>
-        <p class="ma-intro" data-reveal="up">A working record of what Mosaic implements now, what we are testing next, and what remains a longer-term research direction.</p>
-        <div class="ma-hero-metrics" data-reveal="up"><p><strong>Implemented</strong><span>Runtime + verification</span></p><p><strong>In development</strong><span>Memory Plane</span></p><p><strong>Roadmap</strong><span>Agent-focused models</span></p></div>
-        <a class="ma-scroll-link" href="#runtime-note" data-reveal="up">Start with the runtime <span aria-hidden="true">↓</span></a>
+    <!-- PIXEL DITHER DIVIDER STRIP -->
+    <div class="pixel-dither-strip" aria-hidden="true"></div>
+
+    <!-- RESEARCH HERO -->
+    <section class="hero-section grid-12">
+      <div class="hero-main" style="grid-column: span 8;">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="mono-tag">
+              <svg class="pixel-sprite" width="16" height="16" viewBox="0 0 8 8" aria-hidden="true">
+                <rect x="1" y="0" width="6" height="1" fill="#FF3300"/>
+                <rect x="0" y="1" width="1" height="6" fill="#0E0E0E"/>
+                <rect x="7" y="1" width="1" height="6" fill="#0E0E0E"/>
+                <rect x="1" y="7" width="6" height="1" fill="#0E0E0E"/>
+                <rect x="2" y="2" width="4" height="1" fill="#FF3300"/>
+                <rect x="2" y="4" width="3" height="1" fill="#0E0E0E"/>
+              </svg>
+              <span class="pixel-font">OFFICIAL TECHNICAL MONOGRAPH</span>
+            </span>
+            <span class="mono pixel-font" style="color: var(--text-secondary);">[ DOC // 01 OF 01 ]</span>
+          </div>
+
+          <h1 class="hero-title" style="font-size: clamp(2.4rem, 4.5vw, 4.1rem);">
+            Sovereign <span class="pixel-accent-word">740M Architecture</span> Technical Report.
+          </h1>
+
+          <p class="hero-subtitle" style="margin-bottom: 0;">
+            Our foundational peer-grade publication documenting the end-to-end mathematical engineering of our 740M-parameter model—from custom byte-level BPE tokenizer design and random Gaussian weight initialization to 4-bit GGUF edge quantization and autonomous tool-use reasoning.
+          </p>
+        </div>
       </div>
-    </main>
 
-    <div class="ma-capabilities">
-      <section class="ma-capability" id="runtime-note">
-        <div class="ma-capability-inner">
-          <div class="ma-capability-copy" data-reveal="left">
-            <p class="ma-index">Note 01 / Implemented in Close Beta</p>
-            <h2>Inside the current Mosaic Agent runtime.</h2>
-            <p class="ma-description">The first Mosaic release runs locally with Qwen 3.5 9B through Ollama. The runtime turns an objective into a task tree, matches tools to steps, executes work, and keeps logs and artifacts attached to the task.</p>
-            <blockquote class="ma-core-idea"><span>Operating loop</span>Think → Plan → Act → Verify</blockquote>
-            <div class="ma-tags" aria-label="Current runtime scope"><span>Local execution</span><span>Multi-step planning</span><span>Tool use</span><span>Task isolation</span><span>Execution evidence</span><span>Recovery</span></div>
+      <aside class="hero-aside" style="grid-column: span 4; justify-content: center;">
+        <div class="telemetry-panel" style="border-bottom: none;">
+          <div class="panel-header">
+            <span class="mono pixel-font" style="font-weight: 700;">REPORT TELEMETRY</span>
+            <span class="mono pixel-font" style="color: var(--hyper-green);">[01 PUBLISHED]</span>
           </div>
-          <div data-reveal="right"><div class="ma-demo ma-demo--tokens" aria-label="Mosaic runtime status"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 01 / runtime</span><span class="ma-demo-status">Close Beta</span></div><div class="ma-token-task"><span>Current boundary</span><strong>A local beta runtime—not a released foundation model.</strong></div><div class="ma-token-bars"><div><span>Plan + route</span><i style="--ma-fill:100%"></i><b>working</b></div><div><span>Verify + repair</span><i style="--ma-fill:100%"></i><b>working</b></div></div><div class="ma-terminal-lines"><p><em>✓</em> Qwen 3.5 9B via Ollama</p><p><em>✓</em> Logs and artifacts persisted</p><p><em>→</em> Reliability hardening in progress</p></div></div></div>
-        </div>
-      </section>
-
-      <section class="ma-capability ma-capability--dark" id="verification-note">
-        <div class="ma-capability-inner">
-          <div class="ma-capability-copy" data-reveal="left">
-            <p class="ma-index">Note 02 / Implemented runtime primitive</p>
-            <h2>Completion requires evidence.</h2>
-            <p class="ma-description">Mosaic treats execution and verification as one workflow. Acceptance contracts define the requested deliverables; the runtime captures stdout, stderr, exit codes, source evidence, and artifact checks before work can be accepted.</p>
-            <p class="ma-description">When a check fails, Mosaic can make a bounded repair attempt using the failure evidence. “Done” is a verified state, not just a generated sentence.</p>
-            <div class="ma-tags" aria-label="Verification mechanisms"><span>Acceptance contracts</span><span>Exact deliverables</span><span>Artifact validation</span><span>Source evidence</span><span>Bounded repair</span></div>
+          <div class="stat-big-grid">
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">740M</div>
+              <div class="stat-label">Native Weights</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">4.0B</div>
+              <div class="stat-label">PoC Tokens</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">~1GB</div>
+              <div class="stat-label">GGUF Q4_K_M</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">40+</div>
+              <div class="stat-label">Tokens / Sec</div>
+            </div>
           </div>
-          <div data-reveal="right"><div class="ma-demo ma-demo--tools" aria-label="Verification sequence"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 02 / verification</span><span class="ma-demo-status">Implemented</span></div><div class="ma-tool-plan"><p><span>01</span><b>Execute requested work</b><em>done</em></p><p><span>02</span><b>Validate exact deliverables</b><em>done</em></p><p class="is-active"><span>03</span><b>Repair failed checks</b><em>bounded</em></p></div><div class="ma-code-window"><p><i>›</i> run task --isolated</p><p><i>›</i> verify artifacts <small>evidence saved</small></p><p><i>›</i> repair failed acceptance check</p><code><span>15</span> stdout: artifact created</code><code class="is-added"><span>16</span> exit_code: 0 · accepted</code></div></div></div>
-        </div>
-      </section>
 
-      <section class="ma-capability" id="permission-note">
-        <div class="ma-capability-inner">
-          <div class="ma-capability-copy" data-reveal="left">
-            <p class="ma-index">Note 03 / In development</p>
-            <h2>Memory needs a permission model.</h2>
-            <p class="ma-description">Long-term memory is only useful when the agent knows what it may retain, where it may reuse it, how the information was produced, and when it should be revoked. The Mosaic Memory Plane is being designed around explicit scope and provenance rather than unlimited recall.</p>
-            <blockquote class="ma-core-idea"><span>Design constraint</span>Memory must be useful, inspectable, scoped, and revocable.</blockquote>
-            <div class="ma-tags" aria-label="Memory Plane design areas"><span>Project scope</span><span>Source provenance</span><span>Permission boundaries</span><span>Revocation</span><span>Verified reuse</span></div>
+          <!-- Pixel Tensor Activity Matrix -->
+          <div class="pixel-tensor-widget">
+            <span class="mono pixel-font" style="font-size: 0.62rem;">4-BIT TENSOR MAP</span>
+            <div class="pixel-matrix-grid" id="pixelTensorGrid" aria-hidden="true"></div>
           </div>
-          <div data-reveal="right"><div class="ma-demo ma-demo--memory" aria-label="Memory permission layers"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 03 / memory plane</span><span class="ma-demo-status">In development</span></div><div class="ma-memory-query">May this result be reused in Project B?</div><div class="ma-memory-list"><article><span>SCOPE</span><strong>Project A only</strong><p>Reuse is blocked outside its original boundary.</p></article><article><span>PROVENANCE</span><strong>Verified task evidence</strong><p>The source, run, and acceptance state remain attached.</p></article><article><span>CONTROL</span><strong>Revocable memory</strong><p>Stored context can be inspected and withdrawn.</p></article></div></div></div>
         </div>
-      </section>
+      </aside>
+    </section>
 
-      <section class="ma-capability ma-capability--dark" id="model-note">
-        <div class="ma-capability-inner">
-          <div class="ma-capability-copy" data-reveal="left">
-            <p class="ma-index">Note 04 / Public evidence + roadmap</p>
-            <h2>Small model work before large model claims.</h2>
-            <p class="ma-description">Syclient’s current public checkpoint is SPM-70M-Vertigo: a ~71M-parameter English decoder-only, Llama-style foundation-model experiment trained from scratch. It is an early research artifact, not evidence of a frontier-model program.</p>
-            <p class="ma-description">The next credible steps are documented agent-task fine-tunes, reproducible evaluations, and small hybrid/MoE routing experiments. Mosaic Two remains in development with no public checkpoint today.</p>
-            <div class="ma-tags" aria-label="Model work status"><span>SPM-70M · public</span><span>Agent fine-tunes · planned</span><span>Hybrid/MoE · planned</span><span>Mosaic Two · in development</span></div>
-            <div class="ma-note-links"><a href="https://huggingface.co/Syclient/SPM-70M-Vertigo" target="_blank" rel="noreferrer">Open the public checkpoint ↗</a><a href="./spm.html">Read the Model Lab plan ↗</a></div>
+    <!-- THE SINGLE OFFICIAL TECHNICAL REPORT (SYC-TR-2026-01) -->
+    <section class="featured-paper grid-12" aria-labelledby="flagshipTitle">
+      <div class="featured-paper-main">
+        <div>
+          <div class="paper-meta-row">
+            <span class="paper-id-badge">SYC-TR-2026-01</span>
+            <span class="paper-cat-badge pixel-font">TRUE PRE-TRAINING &amp; EDGE AGENT TOPOLOGY</span>
+            <span class="pixel-font">OCT 2026 • 34 PAGES</span>
           </div>
-          <div data-reveal="right"><div class="ma-demo ma-demo--routing" aria-label="Model research release stages"><div class="ma-demo-bar"><span class="ma-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="ma-demo-title">note 04 / model evidence</span><span class="ma-demo-status">Staged</span></div><div class="ma-route-request"><span>Publishing rule</span><strong>No scale claim without a checkpoint, model card, and evaluation.</strong></div><div class="ma-route-map"><div class="is-selected"><span>Public</span><b>SPM-70M</b></div><div><span>Planned</span><b>Fine-tunes</b></div><div><span>Planned</span><b>Eval suites</b></div><div><span>Planned</span><b>Hybrid/MoE</b></div><div><span>In development</span><b>Mosaic Two</b></div></div><p class="ma-route-result"><i></i> Software before silicon. Hardware remains a long-term research possibility.</p></div></div>
-        </div>
-      </section>
-    </div>
 
-    <section class="ma-closing"><div data-reveal="up"><p>Syclient Research</p><h2>We publish the boundary<br/>with the result.</h2><a href="mailto:hello@syclient.com?subject=Technical%20conversation">Start a technical conversation <span aria-hidden="true">↗</span></a></div></section>
-    <footer class="ma-footer"><p>© 2026 Syclient</p><a href="./index.html">Back to Syclient ↖</a></footer>
+          <h2 id="flagshipTitle" class="section-heading" style="font-size: clamp(1.85rem, 2.8vw, 2.55rem); margin-bottom: 1.25rem;">
+            From-Scratch 740M Foundation Model: Convergence Stability, Custom Tokenizer Design, and GQA Edge Scaling on A100 Silicon
+          </h2>
+
+          <p class="paper-abstract" style="max-width: 72ch; font-size: 1.02rem; margin-bottom: 1.25rem;">
+            <strong>Abstract —</strong> Most sub-billion parameter models on the market are superficial API wrappers or LoRA fine-tunes layered over third-party open checkpoints. In this report, we present the complete design and pre-training verification of a sovereign 740-million-parameter decoder-only transformer trained from scratch on A100 infrastructure across 4 billion curated tokens.
+          </p>
+
+          <p class="paper-abstract" style="max-width: 72ch; font-size: 0.98rem;">
+            By combining <strong>Grouped-Query Attention (GQA)</strong>, <strong>FlashAttention-2</strong>, <strong>Rotary Position Embeddings (RoPE)</strong>, and <strong>SwiGLU</strong> activations with a syntax-aware custom tokenizer, the model achieves stable bfloat16 convergence. When quantized to 4-bit <strong>Q4_K_M (GGUF)</strong>, the runtime occupies only <strong>~1 GB of local RAM</strong> while sustaining <strong>40+ tokens/sec</strong> completely offline—powering deterministic function calling, repository diff analysis, and step-by-step Chain-of-Thought (CoT) agent workflows with zero external data leakage.
+          </p>
+
+          <div class="paper-metrics-strip" style="max-width: 640px; margin-bottom: 2rem;">
+            <div class="paper-metric-item">
+              <span>Backbone</span>
+              <strong class="pixel-font" style="font-size: 0.72rem;">Decoder-Only</strong>
+            </div>
+            <div class="paper-metric-item">
+              <span>Attention</span>
+              <strong class="pixel-font" style="font-size: 0.72rem;">GQA + Flash-2</strong>
+            </div>
+            <div class="paper-metric-item">
+              <span>Target Scale</span>
+              <strong class="pixel-font" style="font-size: 0.72rem;">1B / 100B Next</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-actions">
+          <button type="button" class="btn-paper open-report-modal" data-report="tr01">
+            <span>▶ Open Interactive Full Report &amp; Telemetry</span>
+          </button>
+          <button type="button" class="btn-paper ghost open-report-modal" data-report="tr01" data-tab="bibtex">
+            <span>{ } Copy BibTeX Citation</span>
+          </button>
+          <a href="index.html#architecture" class="btn-paper ghost">
+            <span>Inspect Specs Table ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="featured-paper-aside">
+        <div>
+          <div class="mono pixel-font" style="margin-bottom: 1rem; color: var(--accent);">MODEL CARD SPECIFICATIONS</div>
+          <div class="specs-datasheet" style="border: 1px solid var(--border-color); background: rgba(255,255,255,0.75);">
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Parameters</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">740M Dense</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">PoC Corpus</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">4B Tokens (A100)</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Context Window</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">8k / 32k Dynamic</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Architecture</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">Decoder-only</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Attention</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">GQA + FlashAttn-2</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Positional / Act</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">RoPE / SwiGLU</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Precision</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">BF16 / Q4_K_M</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Phase-2 Target</div>
+              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--accent);">1B / 100B Tokens</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- RESEARCH COLLABORATION CTA -->
+    <section class="investor-section grid-12">
+      <div class="investor-main" style="grid-column: span 8;">
+        <div>
+          <span class="mono-tag" style="background: #1A1A1A; color: #F5F4F0; border-color: #3A3A3A;">
+            <span class="status-dot"></span>
+            <span class="pixel-font">PHASE-2 SCALING // 8x A100 / H100</span>
+          </span>
+          <h2 class="investor-title" style="font-size: clamp(1.9rem, 3.2vw, 2.85rem);">
+            Partner With Us on the <span class="pixel-accent-word">1B / 100B</span> Mainline Run.
+          </h2>
+          <p class="investor-text" style="margin-bottom: 0;">
+            Having validated convergence and on-device agentic execution in SYC-TR-2026-01, we are engaging compute cluster partners and strategic investors to scale our architecture to 1 Billion parameters and 100 Billion tokens.
+          </p>
+        </div>
+      </div>
+
+      <div class="investor-action" style="grid-column: span 4; justify-content: center;">
+        <a href="index.html#partner" class="btn-investor">
+          <span class="pixel-font">Initiate Partnership</span>
+          <span>DISPATCH ↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-cell" style="grid-column: span 4;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img
+            src="logo.jpg"
+            alt="Syclient AI monogram icon"
+            width="31"
+            height="22"
+            loading="lazy"
+            decoding="async"
+            style="height: 22px; width: auto; mix-blend-mode: multiply;"
+          />
+          <strong class="pixel-font">SYCLIENT AI RESEARCH</strong>
+        </div>
+        <span>© 2026 ALL RIGHTS RESERVED</span>
+      </div>
+
+      <div class="footer-cell" style="grid-column: span 4;">
+        <span class="pixel-font">REPORT // SYC-TR-2026-01</span>
+        <span>GGUF 4-BIT READY</span>
+      </div>
+
+      <div class="footer-cell" style="grid-column: span 4;">
+        <nav class="footer-links" aria-label="Legal and System Links">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </nav>
+      </div>
+    </footer>
   </div>
-  <script src="./animations.js" defer></script>
+
+  <!-- INTERACTIVE TECHNICAL REPORT READER MODAL (LIQUID GLASS + PIXEL ART) -->
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <div class="modal-window" role="dialog" aria-labelledby="reportModalCode" style="max-width: 840px;">
+      <div class="modal-header">
+        <span id="reportModalCode" class="pixel-font">SYC-TR-2026-01 // TECHNICAL MONOGRAPH</span>
+        <button class="modal-close pixel-font" id="closeReportModalBtn">ESC / CLOSE</button>
+      </div>
+      <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+        <div class="paper-meta-row" style="margin-bottom: 0.75rem;">
+          <span class="paper-cat-badge pixel-font" id="reportModalCat">PRE-TRAINING &amp; TOPOLOGY</span>
+          <span id="reportModalDate" class="mono pixel-font">OCT 2026 • 34 PAGES</span>
+          <span class="mono pixel-font" style="color: var(--hyper-green);">■ CHECKSUM VERIFIED</span>
+        </div>
+
+        <h2 id="reportModalTitle" style="font-size: 1.55rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem;">
+          From-Scratch 740M Foundation Model: Convergence Stability, Custom Tokenizer Design, and GQA Edge Scaling on A100 Silicon
+        </h2>
+
+        <p id="reportModalBody" style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.65; margin-bottom: 1.5rem;"></p>
+
+        <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">KEY EMPIRICAL FINDINGS &amp; TELEMETRY:</div>
+        <div class="sandbox-terminal" id="reportModalTelemetry" style="min-height: 140px; margin-bottom: 1.5rem;"></div>
+
+        <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">BIBTEX CITATION RECORD:</div>
+        <div class="bibtex-box" id="reportModalBibtex"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

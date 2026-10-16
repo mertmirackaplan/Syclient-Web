@@ -2,213 +2,553 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0a18" />
-  <title>Syclient — Meet Omi, Pixel-Perfect AI</title>
-  <meta name="description" content="Syclient builds AI for your business, powered by Omi, our 500M-parameter model. Custom models, NLP, computer vision and autonomous agents." />
-  <link rel="icon" href="assets/logo.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Meta Title & Meta Description -->
+  <title>SYCLIENT — 740M Sovereign Foundation Model Trained From Scratch</title>
+  <meta name="description" content="A 740M-parameter independent foundation model trained from scratch, running on edge devices with full privacy and optimized for autonomous tool use." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://syclient.ai/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="logo.jpg" />
+
+  <!-- Open Graph & Social Card Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Syclient AI Research" />
+  <meta property="og:title" content="SYCLIENT — Next-Generation Edge AI Architecture Trained From Scratch" />
+  <meta property="og:description" content="A 740M-parameter independent foundation model trained from scratch, running on edge devices with full privacy and optimized for autonomous tool use." />
+  <meta property="og:url" content="https://syclient.ai/" />
+  <meta property="og:image" content="og-card.svg" />
+  <meta property="og:image:alt" content="Syclient OMI-740M Specification Card: 740M Params, ~1 GB VRAM, 40+ T/S, 8k/32k Context" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SYCLIENT — 740M Sovereign Edge AI Architecture" />
+  <meta name="twitter:description" content="Trained from scratch for local privacy, ~1 GB VRAM footprint, and autonomous tool execution." />
+  <meta name="twitter:image" content="og-card.svg" />
+
+  <!-- Optimized Image & Font Preloads -->
+  <link rel="preload" as="image" href="logo.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.syclientTelemetry = {
+      events: [],
+      track: function(eventName, payload) {
+        const entry = { event: eventName, timestamp: new Date().toISOString(), payload: payload || {} };
+        this.events.push(entry);
+        window.dataLayer.push(entry);
+      }
+    };
+    window.syclientTelemetry.track('page_view', { page: 'landing_index', architecture: 'OMI-740M' });
+  </script>
 </head>
 <body>
-  <!-- LOADER -->
-  <div id="loader">
-    <canvas id="loaderLogo"></canvas>
-    <p class="loader-text">LOADING OMI<span class="dots"></span></p>
-    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
-    <p class="loader-hint">PRESS ANY KEY</p>
+
+  <!-- AMBIENT LIQUID LIGHT REFRACTION CANVAS -->
+  <div class="liquid-ambient-canvas" aria-hidden="true">
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
+    <div class="liquid-orb orb-3"></div>
   </div>
 
-  <canvas id="bg"></canvas>
-  <canvas id="fx"></canvas>
-  <div class="scanlines"></div>
-
-  <!-- NAV -->
-  <header class="nav" id="nav">
-    <a href="#top" class="brand">
-      <canvas id="navLogo"></canvas>
-      <span>SYCLIENT</span>
-    </a>
-    <nav class="links" id="links">
-      <a href="#services">OMI</a>
-      <a href="#stats">STATS</a>
-      <a href="#levels">PROCESS</a>
-      <a href="#demo">DEMO</a>
-      <a href="#spm" class="nav-spm">SPM</a>
-    </nav>
-    <a href="#contact" class="btn btn-small">START ▶</a>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="clouds" id="clouds"></div>
-    <div class="hero-inner">
-      <div class="badge reveal"><span class="blink">●</span> NEW: OMI — 500M PARAMETER MODEL</div>
-      <canvas id="heroLogo" aria-label="Syclient logo"></canvas>
-      <h1 class="glitch" data-text="SYCLIENT">SYCLIENT</h1>
-      <p class="typer">&gt; <span id="typed"></span><span class="caret">█</span></p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">▶ PRESS START</a>
-        <a href="#services" class="btn btn-ghost">? MEET OMI</a>
+  <div class="swiss-wrapper">
+    <!-- HYPERLOCAL TOP HARDWARE PROXIMITY STRIP -->
+    <div class="hyperlocal-top-strip" role="region" aria-label="HyperLocal Node Telemetry">
+      <div class="hl-strip-group">
+        <span class="hl-badge">■ HYPERLOCAL LOOPBACK // 127.0.0.1</span>
+        <span id="hlNodeCoord">NODE.LOC: DETECTING LOCAL SILICON...</span>
+        <span id="hlHardwareThreads">HW.THREADS: SCANNING...</span>
       </div>
-      <div class="hud">
-        <div><span>HP</span><div class="bar"><i style="--w:100%"></i></div></div>
-        <div><span>MP</span><div class="bar mp"><i style="--w:86%"></i></div></div>
-        <div class="score">SCORE <b id="score">000000</b></div>
+      <div class="hl-strip-group">
+        <span>CLOUD ROUND-TRIP: <strong class="pixel-font">0.00 KM [0 HOPS]</strong></span>
+        <span id="hlLocalClock">LOCAL.TIME // --:--:--</span>
       </div>
     </div>
-    <canvas id="city"></canvas>
-    <canvas id="robot" class="hero-robot"></canvas>
-    <a href="#services" class="scroll-hint">▼ SCROLL ▼</a>
-  </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee">
-    <div class="track">
-      <span>POWERED BY OMI ★ 500M PARAMETERS ★ NATURAL LANGUAGE ★ COMPUTER VISION ★ AUTONOMOUS AGENTS ★ DATA ANALYTICS ★ </span>
-      <span>POWERED BY OMI ★ 500M PARAMETERS ★ NATURAL LANGUAGE ★ COMPUTER VISION ★ AUTONOMOUS AGENTS ★ DATA ANALYTICS ★ </span>
+    <!-- STICKY NEO-SWISS HEADER (Investment & Partnerships Moved to Navbar) -->
+    <header class="site-header">
+      <div class="header-grid">
+        <a href="index.html" class="brand-cell" aria-label="Syclient Home">
+          <img
+            src="logo.jpg"
+            alt="Syclient AI infinity monogram logo"
+            class="brand-logo"
+            width="42"
+            height="30"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <span class="brand-name">SYCLIENT</span>
+          <span class="brand-sub pixel-font">OMI // 740M</span>
+        </a>
+
+        <nav class="nav-cell" aria-label="Primary Navigation">
+          <ul class="nav-links">
+            <li><a href="#hyperlocal">01. Zero-KM Local</a></li>
+            <li><a href="#capabilities">02. Capabilities</a></li>
+            <li><a href="research.html" style="color: var(--accent); font-weight: 700;">03. Model Card ↗</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-cta-cell">
+          <button type="button" class="header-cta-btn" id="openPartnerModalBtn" style="border: none; cursor: crosshair;">
+            <span class="pixel-font" style="font-size: 0.66rem;">Investment &amp; Partnerships</span>
+            <span>↗</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 8-BIT BAYER PIXEL DITHER STRIP -->
+    <div class="pixel-dither-strip" aria-hidden="true"></div>
+
+    <!-- ==================================================
+         SCREEN 1: HERO SCREEN
+         Title + 1-Line Value Prop + 2 CTAs + Live Terminal/Metrics
+         ================================================== -->
+    <section class="hero-section grid-12">
+      <div class="hero-main">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="mono-tag">
+              <svg class="pixel-sprite" width="16" height="16" viewBox="0 0 8 8" aria-hidden="true">
+                <rect x="2" y="0" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="5" y="0" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="1" y="1" width="6" height="6" fill="#0E0E0E"/>
+                <rect x="2" y="2" width="4" height="4" fill="#FF3300"/>
+                <rect x="3" y="3" width="2" height="2" fill="#F5F4F0"/>
+                <rect x="0" y="2" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="0" y="5" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="7" y="2" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="7" y="5" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="2" y="7" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="5" y="7" width="1" height="1" fill="#0E0E0E"/>
+              </svg>
+              <span class="pixel-font">SOVEREIGN EDGE INTELLIGENCE</span>
+            </span>
+            <span class="mono pixel-font" style="color: var(--text-secondary);">[ OMI-740M // TRUE PRE-TRAIN ]</span>
+          </div>
+
+          <h1 class="hero-title">
+            Next-Generation <span class="pixel-accent-word">AI Architecture</span> Trained From Scratch for the Edge.
+          </h1>
+
+          <!-- Concise, High-Conviction 1-Sentence Subheadline -->
+          <p class="hero-subtitle" style="max-width: 58ch;">
+            A 740M-parameter independent foundation model trained from scratch, running on edge devices with full privacy and optimized for autonomous tool use.
+          </p>
+        </div>
+
+        <!-- 2 Focused CTAs (No Decision Paralysis) -->
+        <div class="cta-matrix" role="group" aria-label="Primary Actions">
+          <button type="button" class="btn-swiss btn-swiss-primary" id="openSandboxBtn" data-analytics="hero_try_demo">
+            <span class="btn-swiss-index pixel-font">
+              <span>PRIMARY // 01</span>
+              <span>▶</span>
+            </span>
+            <span class="btn-swiss-label">Try Model / Demo</span>
+          </button>
+
+          <a href="research.html" class="btn-swiss btn-swiss-secondary" data-analytics="hero_hf_weights">
+            <span class="btn-swiss-index pixel-font">
+              <span>WEIGHTS // 02</span>
+              <span>↗</span>
+            </span>
+            <span class="btn-swiss-label">Hugging Face Weights</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT TELEMETRY & LIVE TRACE PANEL (4 Core Frontier Metrics + Live Terminal) -->
+      <aside class="hero-aside">
+        <div class="telemetry-panel">
+          <div class="panel-header">
+            <span class="mono pixel-font" style="font-weight: 700;">BENCHMARK // ON-DEVICE</span>
+            <span class="mono pixel-font" style="color: var(--accent);">GGUF 4-BIT</span>
+          </div>
+
+          <div class="stat-big-grid">
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">740M</div>
+              <div class="stat-label">Params</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">~1 GB</div>
+              <div class="stat-label">VRAM Footprint</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.65rem;">40+ <span style="font-size: 0.9rem;">T/S</span></div>
+              <div class="stat-label">Throughput</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value pixel-font" style="font-size: 1.55rem;">8k/32k</div>
+              <div class="stat-label">Context Window</div>
+            </div>
+          </div>
+
+          <!-- Interactive Pixel Art Tensor Matrix -->
+          <div class="pixel-tensor-widget">
+            <span class="mono pixel-font" style="font-size: 0.62rem;">LIVE Q4_K_M MATRIX</span>
+            <div class="pixel-matrix-grid" id="pixelTensorGrid" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="console-panel">
+          <div>
+            <div class="console-top">
+              <span class="mono pixel-font" style="color: #9A9890;">RUNTIME // OMI-KERNEL</span>
+              <div class="console-tabs" role="tablist">
+                <button class="console-tab active pixel-font" data-trace="agent" role="tab">Tool-Use</button>
+                <button class="console-tab pixel-font" data-trace="diff" role="tab">Diff-CoT</button>
+                <button class="console-tab pixel-font" data-trace="weights" role="tab">Init-Log</button>
+              </div>
+            </div>
+
+            <div class="console-body" id="consoleOutput"></div>
+          </div>
+
+          <div class="console-footer pixel-font">
+            <span>LATENCY: 0ms WAN</span>
+            <span>LOCAL EXECUTION</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ==================================================
+         SCREEN 2: WHY LOCAL? (ZERO-KM COMPUTE)
+         Clean Green vs Red Latency Bar Comparison (Receipt Clutter Removed)
+         ================================================== -->
+    <section id="hyperlocal" class="hyperlocal-section grid-12" aria-labelledby="hyperlocalHeading">
+      <aside class="section-sidebar">
+        <div>
+          <span class="section-index">01 // ZERO-KM COMPUTE</span>
+          <h2 id="hyperlocalHeading" class="section-heading">
+            Why <span class="pixel-accent-word" style="font-size: 0.85em;">Local</span> Beats the Cloud.
+          </h2>
+          <p class="section-desc">
+            Cloud APIs route your proprietary codebase thousands of kilometers across public fiber. Omi executes directly inside your silicon’s unified memory with instant response and zero packet egress.
+          </p>
+        </div>
+
+        <div class="mono pixel-font" style="color: var(--text-muted); padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
+          LOOPBACK // 127.0.0.1 SOVEREIGNTY
+        </div>
+      </aside>
+
+      <div class="section-content" style="padding: 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center;">
+        <div class="hl-stamp-bar" style="margin-bottom: 1.5rem;">
+          <span class="hl-municipal-badge pixel-font">
+            <span class="status-dot green"></span>
+            PHYSICAL DATA DISTANCE &amp; LATENCY BENCHMARK
+          </span>
+          <span class="hl-coord-pill pixel-font" id="hlTimezoneStamp">ZONE // LOCAL CHASSIS</span>
+        </div>
+
+        <div class="hl-distance-meter" role="table" aria-label="Cloud vs Local Latency Comparison" style="margin: 0 0 1.75rem 0;">
+          <div class="hl-meter-row" role="row">
+            <div class="hl-meter-label pixel-font" role="rowheader" style="color: var(--hyper-green);">SYCLIENT ON-DEVICE</div>
+            <div class="hl-meter-bar-wrap" role="cell">
+              <div class="hl-bar-fill hyper pixel-bar-segmented" style="width: 12%;"></div>
+              <span><strong>Instant On-Die Bus</strong> (CPU ↔ Unified RAM • 0 Network Hops)</span>
+            </div>
+            <div class="hl-meter-val pixel-font" role="cell" style="color: var(--hyper-green);">0.004m / &lt;18ms</div>
+          </div>
+
+          <div class="hl-meter-row" role="row">
+            <div class="hl-meter-label pixel-font" role="rowheader" style="color: var(--accent);">CLOUD API WRAPPER</div>
+            <div class="hl-meter-bar-wrap" role="cell">
+              <div class="hl-bar-fill cloud pixel-bar-segmented" style="width: 92%;"></div>
+              <span>Public WAN + 14 BGP Hops + TLS Handshake + Queueing</span>
+            </div>
+            <div class="hl-meter-val pixel-font" role="cell" style="color: var(--accent);">~4,800km / 640ms+</div>
+          </div>
+        </div>
+
+        <div class="mono pixel-font" style="color: var(--text-secondary); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+          <span>■ EXTERNAL DATA EGRESS: 0.00 BYTES</span>
+          <span>■ API BILLING OVERHEAD: $0.00 / TOKEN</span>
+          <span>■ OFFLINE AVAILABILITY: 100%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         SCREEN 3: CORE CAPABILITIES (UNIFIED 3-CARD SHOWCASE)
+         1. From-Scratch Pre-Training
+         2. Zero Data Leak & ~1 GB Footprint
+         3. Agent & Code Native
+         ================================================== -->
+    <section id="capabilities" class="swiss-section grid-12">
+      <aside class="section-sidebar">
+        <div>
+          <span class="section-index">02 // CORE CAPABILITIES</span>
+          <h2 class="section-heading">
+            Built From the <span class="pixel-accent-word" style="font-size: 0.85em;">Ground Up.</span>
+          </h2>
+          <p class="section-desc">
+            Three foundational pillars engineered into a compact 740M footprint—delivering autonomous code and tool execution without cloud compromise.
+          </p>
+        </div>
+
+        <div class="mono pixel-font" style="color: var(--text-muted); padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
+          PHASE-2 ROADMAP // 1B PARAMS • 100B TOKENS
+        </div>
+      </aside>
+
+      <div class="section-content capabilities-3grid">
+        <!-- Card 01: From-Scratch Pre-Training -->
+        <article class="cap-cell">
+          <div class="cap-top">
+            <span class="mono pixel-font" style="color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;">
+              <svg class="pixel-sprite" width="20" height="20" viewBox="0 0 8 8" aria-hidden="true">
+                <rect x="0" y="2" width="8" height="4" fill="#0E0E0E"/>
+                <rect x="1" y="3" width="2" height="2" fill="#FF3300"/>
+                <rect x="5" y="3" width="2" height="2" fill="#FF3300"/>
+                <rect x="1" y="6" width="1" height="1" fill="#0E0E0E"/>
+                <rect x="3" y="6" width="2" height="1" fill="#0E0E0E"/>
+                <rect x="6" y="6" width="1" height="1" fill="#0E0E0E"/>
+              </svg>
+              01 // ORIGIN
+            </span>
+            <span class="cap-metric pixel-font">A100 NATIVE</span>
+          </div>
+          <div>
+            <h3 class="cap-title">From-Scratch Pre-Training</h3>
+            <p class="cap-desc">
+              Neither an open-weight clone nor a LoRA adapter. Pure foundation intelligence initialized and optimized from the ground up—from custom tokenizer to weight matrices.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 02: Zero Data Leak & ~1 GB Footprint -->
+        <article class="cap-cell">
+          <div class="cap-top">
+            <span class="mono pixel-font" style="color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;">
+              <svg class="pixel-sprite" width="20" height="20" viewBox="0 0 8 8" aria-hidden="true">
+                <rect x="2" y="1" width="4" height="2" fill="#0E0E0E"/>
+                <rect x="3" y="2" width="2" height="1" fill="#F5F4F0"/>
+                <rect x="1" y="3" width="6" height="4" fill="#0E0E0E"/>
+                <rect x="3" y="4" width="2" height="2" fill="#00A846"/>
+              </svg>
+              02 // FOOTPRINT
+            </span>
+            <span class="cap-metric pixel-font">~1 GB VRAM</span>
+          </div>
+          <div>
+            <h3 class="cap-title">Zero Data Leak &amp; ~1 GB Footprint</h3>
+            <p class="cap-desc">
+              No cloud dependency and zero API bills. Runs 100% offline in ~1 GB of local memory (4-bit GGUF) with absolute hardware-level privacy on laptops, mobile, and edge GPUs.
+            </p>
+          </div>
+        </article>
+
+        <!-- Card 03: Agent & Code Native -->
+        <article class="cap-cell">
+          <div class="cap-top">
+            <span class="mono pixel-font" style="color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;">
+              <svg class="pixel-sprite" width="20" height="20" viewBox="0 0 8 8" aria-hidden="true">
+                <rect x="0" y="1" width="8" height="6" fill="#0E0E0E"/>
+                <rect x="1" y="2" width="1" height="1" fill="#FF3300"/>
+                <rect x="2" y="3" width="1" height="1" fill="#FF3300"/>
+                <rect x="1" y="4" width="1" height="1" fill="#FF3300"/>
+                <rect x="4" y="4" width="3" height="1" fill="#F5F4F0"/>
+              </svg>
+              03 // REFLEX
+            </span>
+            <span class="cap-metric pixel-font" style="border-color: var(--accent); color: var(--accent);">AGENT + CODE</span>
+          </div>
+          <div>
+            <h3 class="cap-title">Agent &amp; Code Focused</h3>
+            <p class="cap-desc">
+              Built-in reflex for terminal commands, strict JSON schemas, repository diff analysis, and deterministic function calling—ready for autonomous local workflows.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         MINIMAL FOOTER: Model Card, GitHub Repo, Contact Email & Legal
+         ================================================== -->
+    <footer class="site-footer" id="partner">
+      <div class="footer-cell" style="grid-column: span 4;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img
+            src="logo.jpg"
+            alt="Syclient AI monogram icon"
+            width="31"
+            height="22"
+            loading="lazy"
+            decoding="async"
+            style="height: 22px; width: auto; mix-blend-mode: multiply;"
+          />
+          <strong class="pixel-font">SYCLIENT AI</strong>
+        </div>
+        <span>© 2026</span>
+      </div>
+
+      <div class="footer-cell" style="grid-column: span 5;">
+        <nav class="footer-links" aria-label="Developer and Research Links">
+          <a href="research.html" class="pixel-font" style="color: var(--accent); font-weight: 700;">Model Card &amp; Report ↗</a>
+          <a href="https://github.com/syclient" target="_blank" rel="noopener noreferrer" class="pixel-font">GitHub Repo ↗</a>
+          <a href="mailto:founders@syclient.ai" class="pixel-font">founders@syclient.ai</a>
+        </nav>
+      </div>
+
+      <div class="footer-cell" style="grid-column: span 3;">
+        <nav class="footer-links" aria-label="Legal and System Links">
+          <button type="button" id="footerPartnerBtn" style="background: none; border: none; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--text-primary); text-decoration: underline;">Invest / Partner</button>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <!-- STICKY MOBILE CTA BAR -->
+  <div class="sticky-mobile-cta" role="region" aria-label="Quick Mobile Actions">
+    <button type="button" class="mobile-cta-btn primary pixel-font" id="mobileSandboxBtn">
+      <span>▶ Try Model / Demo</span>
+    </button>
+    <a href="research.html" class="mobile-cta-btn secondary pixel-font">
+      <span>HF Weights ↗</span>
+    </a>
+  </div>
+
+  <!-- COOKIE & TELEMETRY CONSENT BANNER -->
+  <aside class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-live="polite">
+    <div class="cookie-header">
+      <span id="cookieTitle" class="pixel-font">HYPERLOCAL PRIVACY &amp; COOKIE DIRECTIVE</span>
+      <span class="pixel-font" style="color: var(--hyper-green);">ZERO-CLOUD</span>
+    </div>
+    <p class="cookie-text">
+      Syclient operates on strict local-first principles. We use local browser storage (`localStorage`) for UI state and optional anonymized session metrics. Read our <a href="privacy.html" style="color: var(--text-primary); font-weight: 600;">Privacy Policy</a>.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn accept pixel-font" id="cookieAcceptAll">Accept Telemetry</button>
+      <button type="button" class="cookie-btn essential pixel-font" id="cookieEssentialOnly">Essential Only</button>
+    </div>
+  </aside>
+
+  <!-- INTERACTIVE SANDBOX MODAL WITH LOADING STATE -->
+  <div class="modal-backdrop" id="sandboxModal" aria-hidden="true">
+    <div class="modal-window" role="dialog" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <span id="modalTitle" class="pixel-font">SYCLIENT // ON-DEVICE INFERENCE SANDBOX [740M-Q4_K_M]</span>
+        <button class="modal-close pixel-font" id="closeSandboxBtn">ESC / CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <div class="mono pixel-font" style="margin-bottom: 0.6rem; color: var(--text-secondary);">
+          SELECT EXECUTION SCENARIO:
+        </div>
+        <div class="prompt-selector">
+          <button class="prompt-chip active pixel-font" data-scenario="tool">01. Autonomous Tool Call</button>
+          <button class="prompt-chip pixel-font" data-scenario="refactor">02. Repository Diff Analysis</button>
+          <button class="prompt-chip pixel-font" data-scenario="offline">03. Air-Gapped Security Audit</button>
+        </div>
+
+        <div class="sandbox-loader" id="sandboxLoader">
+          <div style="display: flex; justify-content: space-between;" class="pixel-font">
+            <span id="loaderStatusText">ALLOCATING 4-BIT GGUF WEIGHTS IN UNIFIED RAM...</span>
+            <span id="loaderPercent">0%</span>
+          </div>
+          <div class="loader-bar-track">
+            <div class="loader-bar-fill" id="loaderBarFill"></div>
+          </div>
+        </div>
+
+        <div class="sandbox-terminal" id="sandboxTerminal"></div>
+      </div>
     </div>
   </div>
 
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <h2 class="title reveal"><span class="tag">WORLD 1</span>OMI POWER-UPS</h2>
-    <p class="lead reveal">Meet Omi — our 500M-parameter model. Small enough to run anywhere, smart enough to level up your business.</p>
-    <div class="iso-wrap reveal">
-      <canvas id="omiCore" aria-label="Isometric pixel art of the Omi Core: a chip surrounded by server racks"></canvas>
-      <div class="iso-tags">
-        <span class="iso-tag t1">◆ OMI-500M</span>
-        <span class="iso-tag t2">● LIVE</span>
-        <span class="iso-tag t3">▲ EDGE READY</span>
+  <!-- INVESTMENT & PARTNERSHIPS MODAL (Accessible from Top Navbar & Footer) -->
+  <div class="modal-backdrop" id="partnerModal" aria-hidden="true">
+    <div class="modal-window" role="dialog" aria-labelledby="partnerModalTitle" style="max-width: 680px; background: #141414; color: #F5F4F0; border-color: #0E0E0E;">
+      <div class="modal-header" style="border-bottom: 1px solid #2E2E2E;">
+        <span id="partnerModalTitle" class="pixel-font">INVESTMENT &amp; COMPUTE PARTNERSHIPS // 1B SCALING</span>
+        <button class="modal-close pixel-font" id="closePartnerModalBtn">ESC / CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #B8B5AC; font-size: 0.92rem; margin-bottom: 1.25rem; line-height: 1.55;">
+          Having proven convergence stability with our 740M PoC model, we are engaging in 8x A100/H100 compute grants, strategic venture investment, and OEM licensing to scale to 1B parameters &amp; 100B tokens.
+        </p>
+
+        <form id="partnershipForm" class="swiss-form" novalidate>
+          <div id="formErrorBanner" class="form-error-banner" role="alert">
+            [ERR_VALIDATION] Please resolve the highlighted fields before dispatching your request.
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="partnerName">
+                <span>Full Name *</span>
+                <span class="pixel-font">REQ.01</span>
+              </label>
+              <input type="text" id="partnerName" name="partnerName" class="form-input" placeholder="Dr. Elena Rostova" required />
+              <span class="field-error-msg" id="errName">▲ Full name is required.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="partnerEmail">
+                <span>Institutional Email *</span>
+                <span class="pixel-font">REQ.02</span>
+              </label>
+              <input type="email" id="partnerEmail" name="partnerEmail" class="form-input" placeholder="partner@fund.org" required />
+              <span class="field-error-msg" id="errEmail">▲ Enter a valid email address.</span>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="partnerOrg">
+                <span>Organization / Fund *</span>
+                <span class="pixel-font">REQ.03</span>
+              </label>
+              <input type="text" id="partnerOrg" name="partnerOrg" class="form-input" placeholder="Apex Compute Ventures" required />
+              <span class="field-error-msg" id="errOrg">▲ Organization is required.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="partnerTrack">
+                <span>Collaboration Track *</span>
+                <span class="pixel-font">REQ.04</span>
+              </label>
+              <select id="partnerTrack" name="partnerTrack" class="form-select" required>
+                <option value="">-- Select Track --</option>
+                <option value="compute">8x A100/H100 Compute Cluster Grant</option>
+                <option value="equity">Seed / Strategic Venture Investment</option>
+                <option value="oem">Enterprise On-Device / OEM Licensing</option>
+              </select>
+              <span class="field-error-msg" id="errTrack">▲ Select a collaboration track.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="partnerNotes">
+              <span>Compute Capacity / Investment Thesis *</span>
+              <span class="pixel-font">REQ.05</span>
+            </label>
+            <textarea id="partnerNotes" name="partnerNotes" rows="3" class="form-textarea" placeholder="Outline your cluster availability, target edge hardware, or investment mandate..." required></textarea>
+            <span class="field-error-msg" id="errNotes">▲ Please provide brief context (min. 15 chars).</span>
+          </div>
+
+          <button type="submit" class="btn-investor" id="submitPartnerBtn">
+            <span id="submitBtnText" class="pixel-font">Transmit Partnership Dossier</span>
+            <span id="submitBtnIcon" class="pixel-font">DISPATCH ↗</span>
+          </button>
+        </form>
       </div>
     </div>
-    <div class="grid">
-      <article class="card reveal" style="--c:var(--pink)">
-        <canvas class="icon" data-sprite="brain"></canvas>
-        <h3>OMI CORE</h3>
-        <p>500M parameters, built in-house. Fast, efficient and fine-tunable on your own data.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:95%"></i></div></div>
-      </article>
-      <article class="card reveal" style="--c:var(--cyan)">
-        <canvas class="icon" data-sprite="chat"></canvas>
-        <h3>OMI ASSISTANT</h3>
-        <p>An Omi-powered agent that talks to your customers 24/7 and knows your brand.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:90%"></i></div></div>
-      </article>
-      <article class="card reveal" style="--c:var(--yellow)">
-        <canvas class="icon" data-sprite="eye"></canvas>
-        <h3>COMPUTER VISION</h3>
-        <p>Object detection, quality control and visual analysis solutions.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:88%"></i></div></div>
-      </article>
-      <article class="card reveal" style="--c:var(--green)">
-        <canvas class="icon" data-sprite="chip"></canvas>
-        <h3>AUTOMATION</h3>
-        <p>Hand repetitive workflows to autonomous Omi agents and win back your time.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:92%"></i></div></div>
-      </article>
-      <article class="card reveal" style="--c:var(--orange)">
-        <canvas class="icon" data-sprite="rocket"></canvas>
-        <h3>EDGE DEPLOY</h3>
-        <p>At 500M parameters, Omi runs on-prem, in the cloud or on the edge. Prototype to production in weeks.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:97%"></i></div></div>
-      </article>
-      <article class="card reveal" style="--c:var(--purple)">
-        <canvas class="icon" data-sprite="shield"></canvas>
-        <h3>SECURE AI</h3>
-        <p>GDPR compliant. Your data stays yours. Enterprise-grade security.</p>
-        <div class="stat-row"><span>POWER</span><div class="bar"><i style="--w:99%"></i></div></div>
-      </article>
-    </div>
-  </section>
+  </div>
 
-  <canvas class="divider" id="invaders" aria-hidden="true"></canvas>
-  <p class="divider-label">HOVER &amp; CLICK TO PLAY</p>
-
-  <!-- STATS -->
-  <section class="section stats" id="stats">
-    <h2 class="title reveal"><span class="tag">WORLD 2</span>HIGH SCORES</h2>
-    <div class="stat-grid">
-      <div class="stat reveal"><b data-count="500">0</b><span>M</span><p>OMI PARAMETERS</p></div>
-      <div class="stat reveal"><b data-count="120">0</b><span>+</span><p>PROJECTS SHIPPED</p></div>
-      <div class="stat reveal"><b data-count="98">0</b><span>%</span><p>CLIENT SATISFACTION</p></div>
-      <div class="stat reveal"><b data-count="24">0</b><span>/7</span><p>NONSTOP SUPPORT</p></div>
-    </div>
-    <div class="xp reveal">
-      <span>LEVEL 99</span>
-      <div class="xp-bar"><i id="xpFill"></i></div>
-      <span id="xpText">0 / 9999 XP</span>
-    </div>
-  </section>
-
-  <!-- LEVELS / PROCESS -->
-  <section class="section" id="levels">
-    <h2 class="title reveal"><span class="tag">WORLD 3</span>LEVEL MAP</h2>
-    <p class="lead reveal">From idea to live product in 4 levels.</p>
-    <div class="map" id="map">
-      <div class="path"><i id="pathFill"></i></div>
-      <canvas id="walker"></canvas>
-      <div class="node reveal"><div class="coin">1</div><h4>DISCOVER</h4><p>We analyze your goals and your data.</p></div>
-      <div class="node reveal"><div class="coin">2</div><h4>DESIGN</h4><p>We shape Omi and the architecture around your needs.</p></div>
-      <div class="node reveal"><div class="coin">3</div><h4>BUILD</h4><p>We fine-tune, test and iterate.</p></div>
-      <div class="node reveal"><div class="coin boss">★</div><h4>LAUNCH</h4><p>We go live and keep monitoring.</p></div>
-    </div>
-  </section>
-
-  <canvas class="divider" id="pacman" aria-hidden="true"></canvas>
-
-  <!-- DEMO TERMINAL -->
-  <section class="section" id="demo">
-    <h2 class="title reveal"><span class="tag">WORLD 4</span>TALK TO OMI</h2>
-    <div class="terminal reveal">
-      <div class="term-head"><i></i><i></i><i></i><span>omi@syclient:~</span></div>
-      <div class="term-body" id="term"></div>
-      <form class="term-input" id="termForm">
-        <span>&gt;</span><input id="termIn" autocomplete="off" placeholder="ask omi something... (e.g. hello)" />
-      </form>
-    </div>
-  </section>
-
-  <!-- SPM LEGACY PORTAL -->
-  <section class="section spm-teaser" id="spm">
-    <h2 class="title reveal"><span class="tag">WORLD 5 · SECRET LEVEL</span>PLANET SPM</h2>
-    <a class="spm-portal reveal" href="spm/" data-warp aria-label="Enter Planet SPM: the SPM-350M legacy model page">
-      <div class="venus-wrap"><canvas id="venus"></canvas></div>
-      <div class="spm-info">
-        <p class="spm-kicker">LEGACY MODEL · 350M PARAMETERS</p>
-        <h3>SPM-350M</h3>
-        <p>Before Omi, there was SPM: our first model, forged in fire. Travel to its world.</p>
-        <span class="btn btn-lava">▶ ENTER PLANET SPM</span>
-      </div>
-    </a>
-    <p class="spm-gh reveal">or jump straight to the code → <a href="https://github.com/Syclient/SPM-350M" target="_blank" rel="noopener">github.com/Syclient/SPM-350M ↗</a></p>
-  </section>
-
-  <!-- CTA -->
-  <section class="section cta" id="contact">
-    <div class="cta-box reveal">
-      <p class="insert blink">INSERT COIN</p>
-      <h2>READY, PLAYER 1?</h2>
-      <p>Start your AI journey with Omi today. The first call is on us.</p>
-      <form class="cta-form" id="ctaForm">
-        <input type="email" required placeholder="YOUR EMAIL" />
-        <button class="btn btn-primary" type="submit">▶ JOIN</button>
-      </form>
-      <p class="cta-msg" id="ctaMsg"></p>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="brand"><canvas id="footLogo"></canvas><span>SYCLIENT</span></div>
-    <p>© 2026 SYCLIENT AI · HOME OF OMI · ALL RIGHTS RESERVED</p>
-    <p class="secret">↑ ↑ ↓ ↓ ← → ← → B A</p>
-    <canvas id="cat" aria-label="Pixel cat"></canvas>
-  </footer>
-
-  <div id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
