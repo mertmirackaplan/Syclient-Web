@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Meta Title & Meta Description -->
-  <title>RESEARCH &amp; TECHNICAL REPORT // SYCLIENT LABS</title>
-  <meta name="description" content="Official technical monograph and pre-training convergence report for Syclient's sovereign 740M-parameter foundation architecture." />
+  <title>Syclient Labs - New Generation Models | Technical Report SYC-TR-2026-01</title>
+  <meta name="description" content="Preliminary Technical Report SYC-TR-2026-01: Pre-training convergence, layer separation, hardware benchmark protocol, and model card for OMI-740M v1.0-PoC." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://syclient.ai/research.html" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" href="logo.jpg" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="alternate icon" type="image/svg+xml" href="favicon.svg" />
 
   <!-- Open Graph Metadata -->
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Syclient AI Research" />
-  <meta property="og:title" content="SYC-TR-2026-01: From-Scratch 740M Foundation Model Technical Report" />
-  <meta property="og:description" content="Convergence stability, custom byte-level BPE tokenizer design, and GQA + RoPE edge scaling on single-node A100 silicon." />
+  <meta property="og:site_name" content="Syclient Labs" />
+  <meta property="og:title" content="Syclient Labs - New Generation Models | Technical Report SYC-TR-2026-01" />
+  <meta property="og:description" content="Pre-training convergence, custom tokenizer design, hardware test protocols, and architecture specifications for OMI-740M v1.0-PoC." />
   <meta property="og:url" content="https://syclient.ai/research.html" />
   <meta property="og:image" content="og-card.svg" />
-  <meta property="og:image:alt" content="Syclient Research Technical Report Specification Card" />
+  <meta property="og:image:alt" content="Syclient Labs Technical Report SYC-TR-2026-01 Specification Card" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts & Styles (Including Silkscreen Pixel Font) -->
-  <link rel="preload" as="image" href="logo.jpg" fetchpriority="high" />
+  <!-- Fonts & Styles -->
+  <link rel="preload" as="image" href="logo.png" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
@@ -41,26 +41,25 @@
   </div>
 
   <div class="swiss-wrapper">
-    <!-- HYPERLOCAL TOP HARDWARE PROXIMITY STRIP -->
-    <div class="hyperlocal-top-strip" role="region" aria-label="HyperLocal Archive Telemetry">
+    <!-- CANONICAL PUBLICATION METADATA BAR -->
+    <div class="hyperlocal-top-strip" role="region" aria-label="Canonical Publication Status">
       <div class="hl-strip-group">
-        <span class="hl-badge">■ MONOGRAPH // SYC-TR-2026-01</span>
-        <span id="hlNodeCoord">NODE.LOC: DETECTING LOCAL SILICON...</span>
-        <span class="pixel-font">PUBLISHED REPORT: 01 [VERIFIED]</span>
+        <span class="hl-badge">■ REPORT ID // SYC-TR-2026-01</span>
+        <span>TARGET MODEL: OMI-740M v1.0-PoC</span>
       </div>
       <div class="hl-strip-group">
-        <span>ISSN-L: 3049-740X (DIGITAL)</span>
-        <span id="hlLocalClock">LOCAL.TIME // --:--:--</span>
+        <span>STATUS: COMPLETED POC EVALUATION (PRELIMINARY INTERNAL REPORT)</span>
+        <span>DATE: OCT 2026</span>
       </div>
     </div>
 
-    <!-- STICKY NEO-SWISS LIQUID GLASS HEADER -->
+    <!-- STICKY NEO-SWISS HEADER -->
     <header class="site-header">
       <div class="header-grid">
-        <a href="index.html" class="brand-cell" aria-label="Syclient Home">
+        <a href="index.html" class="brand-cell" aria-label="Syclient Labs Home">
           <img
-            src="logo.jpg"
-            alt="Syclient AI infinity monogram logo"
+            src="logo.png"
+            alt="Syclient Labs infinity monogram logo"
             class="brand-logo"
             width="42"
             height="30"
@@ -74,17 +73,16 @@
         <nav class="nav-cell" aria-label="Primary Navigation">
           <ul class="nav-links">
             <li><a href="index.html">01. Overview</a></li>
-            <li><a href="index.html#hyperlocal">02. HyperLocal</a></li>
-            <li><a href="index.html#architecture">03. Blueprint</a></li>
+            <li><a href="index.html#system-layers">02. Layers</a></li>
+            <li><a href="index.html#benchmarks">03. Benchmarks</a></li>
             <li><a href="research.html" style="background: var(--text-primary); color: var(--bg-primary);">04. Research</a></li>
-            <li><a href="index.html#roadmap">05. Roadmap</a></li>
           </ul>
         </nav>
 
         <div class="header-cta-cell">
-          <a href="index.html#partner" class="header-cta-btn">
-            <span>Compute Grants</span>
-            <span>↗</span>
+          <a href="index.html#releases" class="header-cta-btn">
+            <span class="pixel-font" style="font-size: 0.66rem;">Model Registry</span>
+            <span>←</span>
           </a>
         </div>
       </div>
@@ -107,17 +105,17 @@
                 <rect x="2" y="2" width="4" height="1" fill="#FF3300"/>
                 <rect x="2" y="4" width="3" height="1" fill="#0E0E0E"/>
               </svg>
-              <span class="pixel-font">OFFICIAL TECHNICAL MONOGRAPH</span>
+              <span class="pixel-font">TECHNICAL MONOGRAPH &amp; MODEL CARD</span>
             </span>
-            <span class="mono pixel-font" style="color: var(--text-secondary);">[ DOC // 01 OF 01 ]</span>
+            <span class="status-pill validated">OMI-740M v1.0-PoC // COMPLETED POC</span>
           </div>
 
-          <h1 class="hero-title" style="font-size: clamp(2.4rem, 4.5vw, 4.1rem);">
-            Sovereign <span class="pixel-accent-word">740M Architecture</span> Technical Report.
+          <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.3vw, 3.9rem);">
+            <span class="pixel-accent-word">OMI-740M v1.0-PoC</span> Technical Report &amp; Model Card.
           </h1>
 
           <p class="hero-subtitle" style="margin-bottom: 0;">
-            Our foundational peer-grade publication documenting the end-to-end mathematical engineering of our 740M-parameter model—from custom byte-level BPE tokenizer design and random Gaussian weight initialization to 4-bit GGUF edge quantization and autonomous tool-use reasoning.
+            Empirical documentation of our 740M-parameter Proof-of-Concept foundation model—detailing pre-training convergence across 4B tokens, hardware test conditions, architectural separation of concerns, and known operational boundaries.
           </p>
         </div>
       </div>
@@ -125,152 +123,118 @@
       <aside class="hero-aside" style="grid-column: span 4; justify-content: center;">
         <div class="telemetry-panel" style="border-bottom: none;">
           <div class="panel-header">
-            <span class="mono pixel-font" style="font-weight: 700;">REPORT TELEMETRY</span>
-            <span class="mono pixel-font" style="color: var(--hyper-green);">[01 PUBLISHED]</span>
+            <span class="mono pixel-font" style="font-weight: 700;">VERIFIED BASELINE</span>
+            <span class="mono pixel-font" style="color: var(--hyper-green);">[v1.0-PoC]</span>
           </div>
           <div class="stat-big-grid">
             <div class="stat-box">
-              <div class="stat-value pixel-font" style="font-size: 1.65rem;">740M</div>
-              <div class="stat-label">Native Weights</div>
+              <div class="stat-value pixel-font" style="font-size: 1.55rem;">740M</div>
+              <div class="stat-label">Dense Params</div>
             </div>
             <div class="stat-box">
-              <div class="stat-value pixel-font" style="font-size: 1.65rem;">4.0B</div>
+              <div class="stat-value pixel-font" style="font-size: 1.55rem;">4.0B</div>
               <div class="stat-label">PoC Tokens</div>
             </div>
             <div class="stat-box">
-              <div class="stat-value pixel-font" style="font-size: 1.65rem;">~1GB</div>
-              <div class="stat-label">GGUF Q4_K_M</div>
+              <div class="stat-value pixel-font" style="font-size: 1.55rem;">185ms</div>
+              <div class="stat-label">TTFT (512 tok)*</div>
             </div>
             <div class="stat-box">
-              <div class="stat-value pixel-font" style="font-size: 1.65rem;">40+</div>
-              <div class="stat-label">Tokens / Sec</div>
+              <div class="stat-value pixel-font" style="font-size: 1.55rem;">42.6</div>
+              <div class="stat-label">Tok/s Decode*</div>
             </div>
           </div>
-
-          <!-- Pixel Tensor Activity Matrix -->
-          <div class="pixel-tensor-widget">
-            <span class="mono pixel-font" style="font-size: 0.62rem;">4-BIT TENSOR MAP</span>
-            <div class="pixel-matrix-grid" id="pixelTensorGrid" aria-hidden="true"></div>
+          <div style="margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.63rem; color: var(--text-secondary);">
+            *Apple M2 Max (Metal, Q4_K_M GGUF, 984 MB RSS, batch=1).
           </div>
         </div>
       </aside>
     </section>
 
-    <!-- THE SINGLE OFFICIAL TECHNICAL REPORT (SYC-TR-2026-01) -->
+    <!-- THE SINGLE OFFICIAL TECHNICAL REPORT (SYC-TR-2026-01) + MODEL CARD SPECS -->
     <section class="featured-paper grid-12" aria-labelledby="flagshipTitle">
       <div class="featured-paper-main">
         <div>
           <div class="paper-meta-row">
             <span class="paper-id-badge">SYC-TR-2026-01</span>
-            <span class="paper-cat-badge pixel-font">TRUE PRE-TRAINING &amp; EDGE AGENT TOPOLOGY</span>
-            <span class="pixel-font">OCT 2026 • 34 PAGES</span>
+            <span class="paper-cat-badge pixel-font">PRELIMINARY INTERNAL EVALUATION</span>
+            <span class="pixel-font">OCT 2026 • REV 1.2</span>
           </div>
 
-          <h2 id="flagshipTitle" class="section-heading" style="font-size: clamp(1.85rem, 2.8vw, 2.55rem); margin-bottom: 1.25rem;">
-            From-Scratch 740M Foundation Model: Convergence Stability, Custom Tokenizer Design, and GQA Edge Scaling on A100 Silicon
+          <h2 id="flagshipTitle" class="section-heading" style="font-size: clamp(1.75rem, 2.6vw, 2.35rem); margin-bottom: 1.25rem;">
+            From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC): Pre-Training Convergence, Layer Separation, and Hardware Benchmark Protocol
           </h2>
 
-          <p class="paper-abstract" style="max-width: 72ch; font-size: 1.02rem; margin-bottom: 1.25rem;">
-            <strong>Abstract —</strong> Most sub-billion parameter models on the market are superficial API wrappers or LoRA fine-tunes layered over third-party open checkpoints. In this report, we present the complete design and pre-training verification of a sovereign 740-million-parameter decoder-only transformer trained from scratch on A100 infrastructure across 4 billion curated tokens.
+          <p class="paper-abstract" style="max-width: 72ch; font-size: 1rem; margin-bottom: 1.15rem;">
+            <strong>1. Scope &amp; Pre-Training Methodology —</strong> Unlike LoRA fine-tunes or adapter wrappers built on third-party weights, <code>OMI-740M v1.0-PoC</code> was initialized from random Gaussian weights and pre-trained on single-node A100 infrastructure across a 4.0-billion-token Proof-of-Concept corpus. Training completed in native <code>bfloat16</code> precision with a final cross-entropy validation loss of <code>1.842</code>.
           </p>
 
-          <p class="paper-abstract" style="max-width: 72ch; font-size: 0.98rem;">
-            By combining <strong>Grouped-Query Attention (GQA)</strong>, <strong>FlashAttention-2</strong>, <strong>Rotary Position Embeddings (RoPE)</strong>, and <strong>SwiGLU</strong> activations with a syntax-aware custom tokenizer, the model achieves stable bfloat16 convergence. When quantized to 4-bit <strong>Q4_K_M (GGUF)</strong>, the runtime occupies only <strong>~1 GB of local RAM</strong> while sustaining <strong>40+ tokens/sec</strong> completely offline—powering deterministic function calling, repository diff analysis, and step-by-step Chain-of-Thought (CoT) agent workflows with zero external data leakage.
+          <p class="paper-abstract" style="max-width: 72ch; font-size: 0.96rem; margin-bottom: 1.15rem;">
+            <strong>2. Separation of Model vs. Host Agent Harness —</strong> To ensure scientific clarity, this report separates neural weight capabilities from external software tooling:
+            <br>• <em>Model Weights (OMI-740M):</em> Generates code diffs, Chain-of-Thought reasoning tokens, and structured JSON arguments.
+            <br>• <em>Local Inference Runtime:</em> Executes 4-bit <code>Q4_K_M</code> quantized GGUF weights within ~984 MB RAM.
+            <br>• <em>Host Agent Harness (v0.4):</em> Enforces GBNF context-free grammars on model outputs and executes sandboxed local shell/file tools.
           </p>
 
-          <div class="paper-metrics-strip" style="max-width: 640px; margin-bottom: 2rem;">
-            <div class="paper-metric-item">
-              <span>Backbone</span>
-              <strong class="pixel-font" style="font-size: 0.72rem;">Decoder-Only</strong>
-            </div>
-            <div class="paper-metric-item">
-              <span>Attention</span>
-              <strong class="pixel-font" style="font-size: 0.72rem;">GQA + Flash-2</strong>
-            </div>
-            <div class="paper-metric-item">
-              <span>Target Scale</span>
-              <strong class="pixel-font" style="font-size: 0.72rem;">1B / 100B Next</strong>
-            </div>
-          </div>
+          <p class="paper-abstract" style="max-width: 72ch; font-size: 0.96rem; margin-bottom: 1.75rem;">
+            <strong>3. Known Boundaries &amp; Phase-2 Target —</strong> At the 740M / 4B-token PoC scale, the model achieves high reliability on single-file diffs and 1–3 step tool calls within an 8K active context window. Multi-file repository refactoring across &gt;8K tokens requires host-level chunking and is the primary target of our planned <strong>OMI-1B v2.0 (1B parameters / 100B tokens)</strong> multi-GPU run.
+          </p>
         </div>
 
         <div class="paper-actions">
           <button type="button" class="btn-paper open-report-modal" data-report="tr01">
-            <span>▶ Open Interactive Full Report &amp; Telemetry</span>
+            <span>▶ Open Telemetry Log &amp; BibTeX</span>
           </button>
           <button type="button" class="btn-paper ghost open-report-modal" data-report="tr01" data-tab="bibtex">
             <span>{ } Copy BibTeX Citation</span>
           </button>
-          <a href="index.html#architecture" class="btn-paper ghost">
-            <span>Inspect Specs Table ↗</span>
-          </a>
         </div>
       </div>
 
+      <!-- MODEL CARD TECHNICAL SPECIFICATIONS TABLE (Moved from Home Page per Audit/User Rules) -->
       <aside class="featured-paper-aside">
         <div>
-          <div class="mono pixel-font" style="margin-bottom: 1rem; color: var(--accent);">MODEL CARD SPECIFICATIONS</div>
+          <div class="mono pixel-font" style="margin-bottom: 1rem; color: var(--accent);">CANONICAL MODEL CARD // OMI-740M</div>
           <div class="specs-datasheet" style="border: 1px solid var(--border-color); background: rgba(255,255,255,0.75);">
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Parameters</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">740M Dense</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Model ID &amp; Version</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">OMI-740M v1.0-PoC</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">PoC Corpus</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">4B Tokens (A100)</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Release Maturity</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem; color: var(--hyper-green);">Validated PoC</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Context Window</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">8k / 32k Dynamic</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Parameter Count</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">740,418,560 Dense</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Architecture</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">Decoder-only</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">PoC Corpus Volume</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">4.0B Tokens (A100)</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Attention</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">GQA + FlashAttn-2</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Backbone Topology</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">Decoder-only (24L)</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Positional / Act</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">RoPE / SwiGLU</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Attention Mechanism</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">GQA (16Q/4KV) + FA-2</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Precision</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem;">BF16 / Q4_K_M</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Positional / Act</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">RoPE (8k/32k) / SwiGLU</div>
             </div>
             <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.75rem 1rem; font-size: 0.7rem;">Phase-2 Target</div>
-              <div class="spec-val" style="padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--accent);">1B / 100B Tokens</div>
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Precision &amp; RAM</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">BF16 / Q4_K_M (984MB)</div>
+            </div>
+            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
+              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Planned Next Run</div>
+              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem; color: var(--accent);">OMI-1B v2.0 (100B Tok)</div>
             </div>
           </div>
         </div>
       </aside>
-    </section>
-
-    <!-- RESEARCH COLLABORATION CTA -->
-    <section class="investor-section grid-12">
-      <div class="investor-main" style="grid-column: span 8;">
-        <div>
-          <span class="mono-tag" style="background: #1A1A1A; color: #F5F4F0; border-color: #3A3A3A;">
-            <span class="status-dot"></span>
-            <span class="pixel-font">PHASE-2 SCALING // 8x A100 / H100</span>
-          </span>
-          <h2 class="investor-title" style="font-size: clamp(1.9rem, 3.2vw, 2.85rem);">
-            Partner With Us on the <span class="pixel-accent-word">1B / 100B</span> Mainline Run.
-          </h2>
-          <p class="investor-text" style="margin-bottom: 0;">
-            Having validated convergence and on-device agentic execution in SYC-TR-2026-01, we are engaging compute cluster partners and strategic investors to scale our architecture to 1 Billion parameters and 100 Billion tokens.
-          </p>
-        </div>
-      </div>
-
-      <div class="investor-action" style="grid-column: span 4; justify-content: center;">
-        <a href="index.html#partner" class="btn-investor">
-          <span class="pixel-font">Initiate Partnership</span>
-          <span>DISPATCH ↗</span>
-        </a>
-      </div>
     </section>
 
     <!-- FOOTER -->
@@ -278,22 +242,22 @@
       <div class="footer-cell" style="grid-column: span 4;">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <img
-            src="logo.jpg"
-            alt="Syclient AI monogram icon"
+            src="logo.png"
+            alt="Syclient Labs monogram icon"
             width="31"
             height="22"
             loading="lazy"
             decoding="async"
-            style="height: 22px; width: auto; mix-blend-mode: multiply;"
+            style="height: 22px; width: auto; object-fit: contain;"
           />
-          <strong class="pixel-font">SYCLIENT AI RESEARCH</strong>
+          <strong class="pixel-font">SYCLIENT LABS</strong>
         </div>
-        <span>© 2026 ALL RIGHTS RESERVED</span>
+        <span>© 2026</span>
       </div>
 
       <div class="footer-cell" style="grid-column: span 4;">
         <span class="pixel-font">REPORT // SYC-TR-2026-01</span>
-        <span>GGUF 4-BIT READY</span>
+        <span>MODEL: OMI-740M v1.0-PoC</span>
       </div>
 
       <div class="footer-cell" style="grid-column: span 4;">
@@ -307,27 +271,26 @@
     </footer>
   </div>
 
-  <!-- INTERACTIVE TECHNICAL REPORT READER MODAL (LIQUID GLASS + PIXEL ART) -->
+  <!-- INTERACTIVE TECHNICAL REPORT READER MODAL -->
   <div class="modal-backdrop" id="reportModal" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-labelledby="reportModalCode" style="max-width: 840px;">
       <div class="modal-header">
-        <span id="reportModalCode" class="pixel-font">SYC-TR-2026-01 // TECHNICAL MONOGRAPH</span>
+        <span id="reportModalCode" class="pixel-font">SYC-TR-2026-01 // PRELIMINARY TECHNICAL REPORT</span>
         <button class="modal-close pixel-font" id="closeReportModalBtn">ESC / CLOSE</button>
       </div>
       <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
         <div class="paper-meta-row" style="margin-bottom: 0.75rem;">
-          <span class="paper-cat-badge pixel-font" id="reportModalCat">PRE-TRAINING &amp; TOPOLOGY</span>
-          <span id="reportModalDate" class="mono pixel-font">OCT 2026 • 34 PAGES</span>
-          <span class="mono pixel-font" style="color: var(--hyper-green);">■ CHECKSUM VERIFIED</span>
+          <span class="paper-cat-badge pixel-font" id="reportModalCat">OMI-740M v1.0-PoC EVALUATION</span>
+          <span id="reportModalDate" class="mono pixel-font">OCT 2026 • REV 1.2</span>
         </div>
 
-        <h2 id="reportModalTitle" style="font-size: 1.55rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem;">
-          From-Scratch 740M Foundation Model: Convergence Stability, Custom Tokenizer Design, and GQA Edge Scaling on A100 Silicon
+        <h2 id="reportModalTitle" style="font-size: 1.5rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem;">
+          From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC)
         </h2>
 
         <p id="reportModalBody" style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.65; margin-bottom: 1.5rem;"></p>
 
-        <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">KEY EMPIRICAL FINDINGS &amp; TELEMETRY:</div>
+        <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">BENCHMARK CONDITIONS &amp; TELEMETRY SUMMARY:</div>
         <div class="sandbox-terminal" id="reportModalTelemetry" style="min-height: 140px; margin-bottom: 1.5rem;"></div>
 
         <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">BIBTEX CITATION RECORD:</div>

@@ -532,10 +532,10 @@ body::before {
 }
 
 .brand-logo {
-  height: 30px;
+  height: 34px;
   width: auto;
-  mix-blend-mode: multiply;
   display: block;
+  object-fit: contain;
   transition: transform 0.5s var(--ease-spring);
 }
 
@@ -2532,6 +2532,60 @@ body::before {
   white-space: pre;
   line-height: 1.55;
   margin-top: 1rem;
+}
+
+/* ==================================================
+   AUDIT IMPROVEMENTS: BENCHMARK TRANSPARENCY,
+   LAYER SEPARATION & REGISTRY STATUS BADGES
+   ================================================== */
+.benchmark-footnote {
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border-color);
+  text-transform: uppercase;
+}
+
+.status-pill.validated {
+  background: rgba(0, 168, 70, 0.12);
+  border-color: var(--hyper-green);
+  color: var(--hyper-green);
+}
+
+.status-pill.planned {
+  background: rgba(229, 131, 0, 0.12);
+  border-color: var(--hyper-amber);
+  color: var(--hyper-amber);
+}
+
+.status-pill.archived {
+  background: rgba(132, 130, 125, 0.15);
+  border-color: var(--text-muted);
+  color: var(--text-secondary);
+}
+
+.simulation-notice {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  background: rgba(236, 234, 227, 0.85);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-primary);
+  line-height: 1.5;
 }
 
 /* Reduced Motion Accessibility */

@@ -1,59 +1,57 @@
-// Syclient Neo-Swiss + HyperLocal + Liquid Glass Interactive Controller
+// Syclient Labs — Canonical Telemetry, Recorded Trace Viewer & Audit-Compliant Controller
 
 const consoleTraces = {
-  agent: `<span class="hl-dim">// LOCAL RUNTIME: OMI-740M-Q4_K_M.gguf (984 MB RAM)</span>
-<span class="hl-key">[TASK]</span> Inspect local git worktree & patch memory regression
-<span class="hl-key">[COT]</span>  1. Parse AST of src/alloc/arena.rs
-       2. Identify unfreed buffer in slice reallocation
-       3. Dispatch local tool: <span class="hl-ok">fs.apply_unified_diff()</span>
-<span class="hl-ok">[EXEC]</span> Tool call completed in 18ms (0 bytes network egress)
-<span class="hl-dim">THROUGHPUT: 44.8 tok/sec | KV-CACHE: GQA-OPTIMIZED</span>`,
+  agent: `<span class="hl-dim">// MODEL: OMI-740M-v1.0-PoC (Q4_K_M) + HOST HARNESS v0.4</span>
+<span class="hl-key">[MODEL_OUT]</span> Emits structured JSON tool call (GBNF-constrained):
+            {"tool": "fs.apply_diff", "target": "src/alloc/arena.rs"}
+<span class="hl-key">[HARNESS]</span>   Host runtime validates schema & executes local patch
+<span class="hl-ok">[METRICS]</span>   Prefill (512 tok): 185ms | Decode: 42.6 tok/s (Apple M2 Max)
+<span class="hl-dim">STATUS: Internal Evaluation Trace (Zero External Network I/O)</span>`,
 
-  diff: `<span class="hl-dim">// ALGORITHMIC REASONING TRACE // DIFF-COT</span>
-<span class="hl-key">[INPUT]</span> git diff HEAD~1 -- src/kernel/rope_embed.py
-<span class="hl-key">[REASON]</span> Rotary frequency base theta scaling mismatch detected
-         under dynamic context extension.
+  diff: `<span class="hl-dim">// RECORDED TRACE // SINGLE-FILE AST DIFF SYNTHESIS</span>
+<span class="hl-key">[INPUT]</span>     git diff HEAD~1 -- src/kernel/rope_embed.py (384 tokens)
+<span class="hl-key">[MODEL_COT]</span> Detected rotary base theta float-cast omission in slice.
 <span class="hl-ok">--- a/src/kernel/rope_embed.py</span>
 <span class="hl-ok">+++ b/src/kernel/rope_embed.py</span>
 @@ -42,2 +42,2 @@
 - inv_freq = 1.0 / (10000 ** (torch.arange(0, dim, 2) / dim))
 + inv_freq = 1.0 / (theta ** (torch.arange(0, dim, 2).float() / dim))`,
 
-  weights: `<span class="hl-dim">// TRUE PRE-TRAINING CHECKPOINT MANIFEST</span>
-<span class="hl-key">INIT_MODE:</span>      Random Gaussian (Zero Open-Weight Inheritance)
-<span class="hl-key">ARCHITECTURE:</span>   Decoder-Only Transformer (SwiGLU + RoPE)
-<span class="hl-key">ATTENTION:</span>      Grouped-Query Attention + FlashAttention-2
-<span class="hl-key">PRECISION:</span>      bfloat16 (Train) -> 4-bit Q4_K_M (Edge)
-<span class="hl-ok">STATUS:</span>         4.0B Token PoC Convergence Verified on A100`
+  weights: `<span class="hl-dim">// CANONICAL CHECKPOINT METADATA // OMI-740M v1.0-PoC</span>
+<span class="hl-key">RELEASE_STATE:</span>  Validated PoC Checkpoint (Oct 2026)
+<span class="hl-key">PARAMETERS:</span>     740,418,560 Dense (Random Gaussian Init on A100)
+<span class="hl-key">CORPUS_SIZE:</span>    4.0 Billion Tokens (Code, AST Diffs, Tool Schemas)
+<span class="hl-key">PRECISION:</span>      bfloat16 (Master) / 4-bit Q4_K_M GGUF (984 MB RSS)
+<span class="hl-ok">NEXT_PHASE:</span>     OMI-1B v2.0 (100B Tokens Planned on 8x A100/H100)`
 };
 
 const sandboxScenarios = {
-  tool: `> syclient-run --model omi-740m-q4_k_m.gguf --offline
-[INIT] Loaded 740M weights into 992 MB Unified Memory.
-[USER] "Scan local port bindings and kill any zombie Python worker."
+  tool: `[TRACE_TYPE] Recorded Evaluation Transcript (Not Live Browser Inference)
+[ENVIRONMENT] Apple M2 Max (64GB) • llama.cpp b3840 • OMI-740M-v1.0-PoC-Q4_K_M.gguf
+[PROMPT] "Inspect local port 8089 and terminate any stalled Python worker."
 
+--- LAYER 1: MODEL WEIGHT OUTPUT (OMI-740M) ---
 <thought>
-User requires local system inspection.
-Selecting native tool: system.process_inspector
+User wants to free port 8089. I should invoke system.process_inspector first.
 </thought>
-
 <tool_call>
-{"name": "system.process_inspector", "args": {"filter": "python", "state": "zombie"}}
+{"name": "system.process_inspector", "args": {"port": 8089, "filter": "python"}}
 </tool_call>
 
-[LOCAL_TOOL_OUTPUT] PID 48192 (python3 -m worker.daemon) holding :8089
-<tool_call>
-{"name": "system.terminate_pid", "args": {"pid": 48192, "signal": "SIGTERM"}}
-</tool_call>
+--- LAYER 3: HOST HARNESS EXECUTION (Syclient Harness v0.4) ---
+[HARNESS_SCHEMA_CHECK] Valid JSON (GBNF enforced). Executing read-only probe...
+[HOST_STDOUT] PID 48192 (python3 -m worker.daemon) listening on 127.0.0.1:8089
 
-[DONE] Process 48192 terminated cleanly. Speed: 43.2 tokens/sec (100% On-Device).`,
+[BENCHMARK] TTFT: 178ms | Decode Velocity: 43.2 tok/s | Peak RSS: 984 MB`,
 
-  refactor: `> syclient-run --model omi-740m-q4_k_m.gguf --mode cot-code
-[USER] "Optimize this O(N^2) token deduplication loop into O(N)."
+  refactor: `[TRACE_TYPE] Recorded Evaluation Transcript — Single-File Refactoring
+[ENVIRONMENT] NVIDIA RTX 4060 Laptop GPU • OMI-740M-v1.0-PoC-Q4_K_M.gguf
+[PROMPT] "Convert this O(N^2) list deduplication function into O(N) preserving order."
 
+--- LAYER 1: MODEL WEIGHT OUTPUT (OMI-740M) ---
 <thought>
-1. Current implementation uses nested list comprehension over sequence_ids.
-2. Preserve order while achieving O(1) lookup via hash set tracking.
+1. Input function iterates over list inside list comprehension: O(N^2).
+2. Track seen elements with a local hash set binding seen.add for O(1) lookup.
 </thought>
 
 def deduplicate_tokens(seq: list[int]) -> list[int]:
@@ -61,104 +59,56 @@ def deduplicate_tokens(seq: list[int]) -> list[int]:
     seen_add = seen.add
     return [tok for tok in seq if not (tok in seen or seen_add(tok))]
 
-[METRICS] Latency: 210ms | Memory Delta: +14MB | Cloud API Calls: 0`,
+[BENCHMARK] TTFT: 142ms | Decode Velocity: 46.8 tok/s | Syntax Check: PASS`,
 
-  offline: `> syclient-run --model omi-740m-q4_k_m.gguf --airgap-strict
-[SECURITY] Network interfaces disabled. Zero-Data-Leak guard active.
-[USER] "Audit auth_middleware.ts for timing attack vulnerabilities."
+  offline: `[TRACE_TYPE] Documented Model Limitation & Boundary Case (Audit Disclosure)
+[ENVIRONMENT] OMI-740M-v1.0-PoC-Q4_K_M.gguf (8K Active Context Window)
+[PROMPT] "Refactor cross-module dependency graph across 18 repository files simultaneously."
 
+--- LAYER 1: MODEL WEIGHT OUTPUT & BOUNDARY ---
 <thought>
-Comparing HMAC signatures using standard '===' leaks byte-mismatch timing.
-Recommend crypto.timingSafeEqual on Buffer representations.
+Context contains 18 files (~26,400 tokens). At 740M parameter scale trained on
+4B PoC tokens, long-range cross-file symbol resolution beyond 8K tokens degrades.
 </thought>
 
-[FINDING] Line 84: Replace direct string comparison with constant-time buffer verification.
-[VERIFIED] Zero bytes transmitted externally. Full compliance maintained.`
+[HARNESS_GUARD_TRIGGERED]
+Warning: Multi-file dependency graph exceeds OMI-740M v1.0-PoC reliable edit horizon
+(recommended <= 3 files / 8K context per pass).
+Action: Host harness automatically chunks task into sequential single-file AST passes.
+Note: Full 32K multi-file repository synthesis is targeted for OMI-1B v2.0 (100B tokens).`
 };
 
 // Single Official Technical Report Database for research.html
 const technicalReportsDB = {
   tr01: {
-    code: 'SYC-TR-2026-01 // TECHNICAL MONOGRAPH',
-    cat: 'PRE-TRAINING & TOPOLOGY',
-    date: 'OCTOBER 2026 • 34 PAGES',
-    title: 'From-Scratch 740M Foundation Model: Convergence Stability, Custom Tokenizer Design, and GQA Edge Scaling on A100 Silicon',
-    body: 'Most sub-billion parameter models rely on knowledge distillation or LoRA adapters atop general web checkpoints, inheriting bloated vocabularies and suboptimal attention head ratios. In this monograph, we detail the end-to-end pre-training of our 740M sovereign decoder architecture initialized from scratch. Using a custom byte-level BPE tokenizer optimized for whitespace indentation, multi-file diffs, and JSON tool schemas, we trained on 4B high-signal tokens in bfloat16 precision with zero irrecoverable gradient spikes.',
-    telemetry: `[EXPERIMENT_ID]   OMI-740M-POC-A100
-[PARAMETERS]      740,418,560 (24 Layers, 1536 Hidden Dim)
-[ATTENTION]       Grouped-Query Attention (16 Query / 4 KV Heads) + FlashAttention-2
-[ACTIVATION]      SwiGLU + RMSNorm (eps=1e-5) + RoPE (theta=10000.0)
-[QUANTIZATION]    4-Bit Q4_K_M GGUF (~984 MB RAM, 42.6+ tokens/sec)
-[FINAL_LOSS]      1.842 Cross-Entropy (4.0B Token PoC Horizon)
-[NEXT_MILESTONE]  1B Parameters / 100B Tokens on 8x A100/H100 Cluster`,
+    code: 'SYC-TR-2026-01 // PRELIMINARY TECHNICAL REPORT',
+    cat: 'OMI-740M v1.0-PoC EVALUATION',
+    date: 'OCTOBER 2026 • REVISION 1.2',
+    title: 'From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC): Pre-Training Convergence, Layer Separation, and Hardware Benchmark Protocol',
+    body: 'This technical report documents the completed Phase-1 Proof-of-Concept (OMI-740M v1.0-PoC) developed at Syclient Labs. We strictly distinguish between capabilities learned by the 740M neural weights during 4B-token pre-training on single-node A100 silicon, memory efficiency provided by 4-bit GGUF quantization in the local runtime, and deterministic schema validation enforced by the external host agent harness.',
+    telemetry: `[MODEL_IDENTIFIER]  OMI-740M v1.0-PoC (740,418,560 Dense Parameters)
+[RELEASE_STATUS]    Completed PoC Checkpoint (Internal Evaluation Verified)
+[TRAINING_CORPUS]   4.0 Billion Tokens (Code, AST Diffs, CoT, Tool Schemas)
+[HARDWARE_TESTBED]  Apple M2 Max (64GB Metal) & NVIDIA RTX 4060 Mobile
+[MEASURED_TTFT]     185ms (at 512-token prompt context, batch=1)
+[DECODE_THROUGHPUT] 42.6 tokens/sec (Q4_K_M GGUF, 984 MB Resident RAM)
+[KNOWN_BOUNDARIES]  Optimal at <=8K context (1-3 files); 32K via dynamic RoPE scaling
+[PHASE_2_ROADMAP]   OMI-1B v2.0 (1.0B Params / 100B Tokens on 8x A100/H100)`,
     bibtex: `@techreport{syclient2026omi740m,
-  title       = {From-Scratch 740M Foundation Model: Convergence Stability and GQA Scaling},
-  author      = {Syclient AI Research Lab},
+  title       = {From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC): Pre-Training Convergence and Benchmark Protocol},
+  author      = {Syclient Labs Research},
   institution = {Syclient Labs},
   number      = {SYC-TR-2026-01},
   year        = {2026},
   month       = {October},
+  note        = {Preliminary Internal Evaluation Report},
   url         = {https://syclient.ai/research.html}
 }`
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. HyperLocal Hardware & Timezone Detection
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'LOCAL-SILICON-ZONE';
-  const cores = navigator.hardwareConcurrency || 8;
-
-  const hlNodeCoord = document.getElementById('hlNodeCoord');
-  const hlHardwareThreads = document.getElementById('hlHardwareThreads');
-  const hlTimezoneStamp = document.getElementById('hlTimezoneStamp');
-  const receiptTz = document.getElementById('receiptTz');
-  const receiptCores = document.getElementById('receiptCores');
-  const hlLocalClock = document.getElementById('hlLocalClock');
-
-  if (hlNodeCoord) hlNodeCoord.textContent = `NODE.ZONE // ${tz.toUpperCase()}`;
-  if (hlHardwareThreads) hlHardwareThreads.textContent = `SILICON // ${cores} LOGICAL CORES`;
-  if (hlTimezoneStamp) hlTimezoneStamp.textContent = `ZONE // ${tz.toUpperCase()}`;
-  if (receiptTz) receiptTz.textContent = tz.toUpperCase();
-  if (receiptCores) receiptCores.textContent = `${cores} LOGICAL THREADS`;
-
-  function updateClock() {
-    if (!hlLocalClock) return;
-    const now = new Date();
-    hlLocalClock.textContent = `LOCAL.TIME // ${now.toTimeString().split(' ')[0]}`;
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  // 1.5 Live 8-Bit Pixel Art Tensor Matrix Animation (Q4_K_M Weight Visualizer)
-  const pixelTensorGrid = document.getElementById('pixelTensorGrid');
-  if (pixelTensorGrid) {
-    const totalCells = 36; // 12x3 pixel matrix
-    const cells = [];
-    for (let i = 0; i < totalCells; i++) {
-      const cell = document.createElement('div');
-      cell.className = 'px-cell';
-      pixelTensorGrid.appendChild(cell);
-      cells.push(cell);
-    }
-
-    function stepPixelMatrix() {
-      cells.forEach((c) => {
-        c.className = 'px-cell';
-        const r = Math.random();
-        if (r > 0.82) {
-          c.classList.add('active-orange');
-        } else if (r > 0.55) {
-          c.classList.add('active-dark');
-        } else if (r > 0.44) {
-          c.classList.add('active-green');
-        }
-      });
-    }
-    stepPixelMatrix();
-    setInterval(stepPixelMatrix, 420);
-  }
-
-  // 2. Smooth Scroll Reveal Observer (Spring Stagger)
+  // 1.Smooth Scroll Reveal Observer (Spring Stagger)
   const revealSelectors = [
     '.hero-eyebrow',
     '.hero-title',
@@ -169,14 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
     '.section-sidebar > div',
     '.pillar-row',
     '.hl-radar-col > div',
-    '.hyperlocal-ticket',
     '.cap-cell',
     '.spec-row',
     '.phase-col',
     '.featured-paper-main > div',
-    '.paper-card',
-    '.investor-main > div',
-    '.investor-action > div'
+    '.paper-card'
   ];
 
   const elementsToReveal = document.querySelectorAll(revealSelectors.join(', '));
@@ -204,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     elementsToReveal.forEach((el) => el.classList.add('in-view'));
   }
 
-  // 3. Liquid Glass Dynamic Cursor Specular Sheen
+  // 2. Liquid Glass Dynamic Cursor Specular Sheen
   const glassInteractiveCards = document.querySelectorAll(
-    '.cap-cell, .stat-box, .pillar-row, .phase-col, .hyperlocal-ticket, .cta-matrix, .paper-card'
+    '.cap-cell, .stat-box, .pillar-row, .phase-col, .cta-matrix, .paper-card'
   );
 
   glassInteractiveCards.forEach((card) => {
@@ -219,24 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Subtle 3D Tilt on HyperLocal Diagnostic Ticket
-  const ticket = document.querySelector('.hyperlocal-ticket');
-  if (ticket && window.matchMedia('(pointer: fine)').matches) {
-    ticket.addEventListener('mousemove', (e) => {
-      const rect = ticket.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width - 0.5;
-      const relY = (e.clientY - rect.top) / rect.height - 0.5;
-      const rotX = (relY * -7).toFixed(2);
-      const rotY = (relX * 7).toFixed(2);
-      ticket.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(-2px, -4px, 0)`;
-    });
-
-    ticket.addEventListener('mouseleave', () => {
-      ticket.style.transform = '';
-    });
-  }
-
-  // 5. Hero Console Tabs with Smooth Cross-Fade
+  // 3. Hero Console Tabs with Smooth Cross-Fade
   const consoleOutput = document.getElementById('consoleOutput');
   const tabs = document.querySelectorAll('.console-tab');
 
@@ -262,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 6. Sandbox Modal with Smooth Loading State (#12)
+  // 4. Sandbox Modal with Transparent Recorded Trace Viewer (#8 & #12)
   const modal = document.getElementById('sandboxModal');
   const openBtn = document.getElementById('openSandboxBtn');
   const mobileSandboxBtn = document.getElementById('mobileSandboxBtn');
@@ -328,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'false');
     runScenarioWithLoading(sandboxScenarios.tool);
     if (window.syclientTelemetry) {
-      window.syclientTelemetry.track('sandbox_opened', { model: 'OMI-740M-Q4_K_M' });
+      window.syclientTelemetry.track('sandbox_opened', { model: 'OMI-740M-v1.0-PoC' });
     }
   }
 
@@ -344,46 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Research Page Filtering, Live Search & Monograph Reader Modal
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const searchInput = document.getElementById('researchSearchInput');
-  const paperCards = document.querySelectorAll('.paper-card');
-
-  let activeFilter = 'all';
-  let searchQuery = '';
-
-  function filterPapers() {
-    paperCards.forEach((card) => {
-      const cat = card.getAttribute('data-category') || '';
-      const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.textContent.toLowerCase();
-      const matchesCat = activeFilter === 'all' || cat === activeFilter;
-      const matchesSearch = searchQuery === '' || keywords.includes(searchQuery);
-
-      if (matchesCat && matchesSearch) {
-        card.classList.remove('hidden-paper');
-      } else {
-        card.classList.add('hidden-paper');
-      }
-    });
-  }
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeFilter = btn.getAttribute('data-filter') || 'all';
-      filterPapers();
-    });
-  });
-
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim().toLowerCase();
-      filterPapers();
-    });
-  }
-
-  // Report Reader Modal Logic
+  // 5. Report Reader Modal Logic (research.html)
   const reportModal = document.getElementById('reportModal');
   const closeReportModalBtn = document.getElementById('closeReportModalBtn');
   const reportBtns = document.querySelectorAll('.open-report-modal');
@@ -428,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Partner Modal Logic (Triggered from Navbar & Footer)
+  // 6. Partner Modal Logic (Triggered from Model Registry & Footer)
   const partnerModal = document.getElementById('partnerModal');
   const openPartnerModalBtn = document.getElementById('openPartnerModalBtn');
   const footerPartnerBtn = document.getElementById('footerPartnerBtn');
@@ -492,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. Partnership Form Validation (#13), Loading State (#12) & Redirect to Thank You Page (#14)
+  // 7. Partnership Form Validation (#13), Loading State (#12) & Redirect to Thank You Page (#14)
   const partnershipForm = document.getElementById('partnershipForm');
   if (partnershipForm) {
     const nameInput = document.getElementById('partnerName');
@@ -564,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (submitBtn && submitBtnText && submitBtnIcon) {
         submitBtn.disabled = true;
-        submitBtnText.textContent = 'ENCRYPTING & DISPATCHING DOSSIER...';
+        submitBtnText.textContent = 'SUBMITTING INQUIRY...';
         submitBtnIcon.innerHTML = '<span class="loader-spinner"></span>';
       }
 
@@ -587,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Cookie & Telemetry Banner (#17)
+  // 8. Cookie & Storage Banner (#17)
   const cookieBanner = document.getElementById('cookieBanner');
   const cookieAcceptAll = document.getElementById('cookieAcceptAll');
   const cookieEssentialOnly = document.getElementById('cookieEssentialOnly');
