@@ -2588,6 +2588,91 @@ body::before {
   line-height: 1.5;
 }
 
+/* ==================================================
+   SEMANTIC LAYOUT HELPERS (REPLACING INLINE STYLES)
+   ================================================== */
+.benchmark-content-col {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-col-brand {
+  grid-column: span 4;
+}
+
+.footer-col-main {
+  grid-column: span 5;
+}
+
+.footer-col-legal {
+  grid-column: span 3;
+}
+
+.footer-col-third {
+  grid-column: span 4;
+}
+
+.footer-col-half {
+  grid-column: span 6;
+}
+
+.subpage-main-col {
+  grid-column: span 7;
+}
+
+.subpage-aside-col {
+  grid-column: span 5;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.model-card-spec-row {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.model-card-spec-row .spec-key {
+  padding: 0.7rem 1rem;
+  font-size: 0.68rem;
+}
+
+.model-card-spec-row .spec-val {
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+}
+
+/* Mobile Header Bar & Hamburger Toggle Button (Hidden on Desktop) */
+.mobile-menu-toggle {
+  display: none;
+  margin-left: auto;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 36px;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle[aria-expanded="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+}
+
+/* Prevent horizontal overflow on code/pre/table containers */
+code, pre, .console-body, .sandbox-terminal, .bibtex-box {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 /* Reduced Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -2601,88 +2686,711 @@ body::before {
   }
 }
 
-/* Responsive Breakpoints (#10 Mobile Responsiveness) */
-@media (max-width: 1080px) {
-  .brand-cell { grid-column: span 4; }
-  .nav-cell { grid-column: span 5; }
-  .header-cta-cell { grid-column: span 3; }
-
-  .hero-main { grid-column: span 12; border-right: none; border-bottom: 1px solid var(--border-color); }
-  .hero-aside { grid-column: span 12; }
-
-  .hl-radar-col { grid-column: span 12; border-right: none; border-bottom: 1px solid var(--border-color); padding: 2.5rem 2rem; }
-  .hl-receipt-col { grid-column: span 12; padding: 2.5rem 2rem; }
-
-  .section-sidebar { grid-column: span 12; border-right: none; border-bottom: 1px solid var(--border-color); padding: 2.5rem 2rem; }
-  .section-content { grid-column: span 12; }
-
-  .investor-main { grid-column: span 12; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 3.5rem 2rem; }
-  .investor-action { grid-column: span 12; padding: 3.5rem 2rem; }
-
-  .featured-paper-main { grid-column: span 12; border-right: none; border-bottom: 1px solid var(--border-color); padding: 2.5rem 2rem; }
-  .featured-paper-aside { grid-column: span 12; padding: 2.5rem 2rem; }
+/* Touch Device Optimizations (Prevent sticky hover states) */
+@media (hover: none) and (pointer: coarse) {
+  .liquid-glass::after,
+  .cap-cell::after,
+  .stat-box::after,
+  .pillar-row::after,
+  .phase-col::after,
+  .paper-card::after {
+    display: none !important;
+  }
+  .stat-box:hover,
+  .btn-swiss:hover,
+  .hyperlocal-ticket:hover {
+    transform: none;
+  }
 }
 
+/* ==================================================
+   1. ULTRA-WIDE & 2K/4K DISPLAYS (1720px+ & 2200px+)
+   ================================================== */
+@media (min-width: 1720px) {
+  html {
+    font-size: 17px;
+  }
+  .swiss-wrapper {
+    max-width: 1680px;
+  }
+  .hero-main {
+    padding: 5.5rem 4rem 4.5rem 4rem;
+  }
+}
+
+@media (min-width: 2200px) {
+  html {
+    font-size: 18.5px;
+  }
+  .swiss-wrapper {
+    max-width: 1920px;
+  }
+}
+
+/* ==================================================
+   2. COMPACT LAPTOPS & SMALL DESKTOPS (max-width: 1280px)
+   ================================================== */
+@media (max-width: 1280px) {
+  .brand-cell {
+    padding: 0 1.15rem;
+    gap: 0.6rem;
+  }
+  .header-cta-btn {
+    padding: 0 1.1rem;
+    font-size: 0.68rem;
+  }
+  .nav-links a {
+    font-size: 0.65rem;
+    padding: 0 0.35rem;
+    text-align: center;
+  }
+  .hero-main {
+    padding: 3.25rem 2.25rem;
+  }
+  .telemetry-panel,
+  .console-panel {
+    padding: 1.5rem;
+  }
+  .section-sidebar {
+    padding: 2.75rem 2rem;
+  }
+  .cap-cell {
+    padding: 2.25rem 1.75rem;
+    min-height: 290px;
+  }
+  .phase-col {
+    padding: 2.25rem 1.65rem;
+    min-height: 330px;
+  }
+  .benchmark-content-col {
+    padding: 2.25rem 2rem;
+  }
+  .featured-paper-main,
+  .featured-paper-aside {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* ==================================================
+   3. TABLET LANDSCAPE & SMALL LAPTOPS (max-width: 1080px)
+   ================================================== */
+@media (max-width: 1080px) {
+  .swiss-wrapper {
+    border-left: none;
+    border-right: none;
+  }
+
+  .brand-cell { grid-column: span 3; }
+  .nav-cell { grid-column: span 6; }
+  .header-cta-cell { grid-column: span 3; }
+
+  .hero-main,
+  .subpage-main-col {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 3rem 2rem;
+  }
+
+  .hero-aside,
+  .subpage-aside-col {
+    grid-column: 1 / -1 !important;
+    padding: 0;
+  }
+
+  .subpage-aside-col {
+    padding: 2.5rem 2rem !important;
+  }
+
+  /* Side-by-side telemetry and console on tablet landscape */
+  .hero-aside {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .hero-aside > .telemetry-panel {
+    border-bottom: none;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .hero-aside > .telemetry-panel:only-child {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
+
+  .hl-radar-col {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+  }
+  .hl-receipt-col {
+    grid-column: 1 / -1 !important;
+    padding: 2.5rem 2rem;
+  }
+
+  .section-sidebar {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+    gap: 1.25rem;
+  }
+
+  .section-content,
+  .benchmark-content-col {
+    grid-column: 1 / -1 !important;
+  }
+
+  .investor-main {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 3rem 2rem;
+  }
+  .investor-action {
+    grid-column: 1 / -1 !important;
+    padding: 3rem 2rem;
+  }
+
+  .featured-paper-main {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+  }
+  .featured-paper-aside {
+    grid-column: 1 / -1 !important;
+    padding: 2.5rem 2rem;
+  }
+
+  .footer-col-brand,
+  .footer-col-main,
+  .footer-col-legal,
+  .footer-col-third {
+    grid-column: span 4 !important;
+  }
+}
+
+/* ==================================================
+   4. TABLET PORTRAIT (max-width: 900px)
+   ================================================== */
+@media (max-width: 900px) {
+  .brand-cell { grid-column: span 4; }
+  .nav-cell { grid-column: span 8; border-right: none; }
+  .header-cta-cell { display: none; }
+
+  .hero-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-aside > .telemetry-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .capabilities-3grid,
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capabilities-3grid .cap-cell,
+  .roadmap-grid .phase-col {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    min-height: auto;
+    padding: 2.25rem 2rem;
+  }
+
+  .capabilities-3grid .cap-cell:last-child,
+  .roadmap-grid .phase-col:last-child {
+    border-bottom: none !important;
+  }
+
+  .hl-meter-row {
+    grid-template-columns: 145px 1fr 110px;
+    font-size: 0.7rem;
+  }
+
+  .footer-col-brand,
+  .footer-col-main,
+  .footer-col-legal,
+  .footer-col-third,
+  .footer-col-half {
+    grid-column: 1 / -1 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.35rem 2rem;
+  }
+
+  .site-footer .footer-cell:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ==================================================
+   5. MOBILE & PHABLET DEVICES (max-width: 768px)
+   ================================================== */
 @media (max-width: 768px) {
   body {
-    padding-bottom: 58px;
+    padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
   }
+
   .sticky-mobile-cta {
     display: grid;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
+
   .cookie-banner {
     left: 0.75rem;
     right: 0.75rem;
-    bottom: 4.25rem;
+    bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
     max-width: none;
+    padding: 1rem 1.15rem;
+    box-shadow: 4px 4px 0px var(--border-color), 0 16px 32px rgba(14, 14, 14, 0.22);
   }
-  .header-grid { grid-template-columns: 1fr; }
-  .brand-cell, .nav-cell, .header-cta-cell {
-    grid-column: span 1;
+
+  /* Top Metadata Ticker Strip on Mobile */
+  .hyperlocal-top-strip {
+    padding: 0.45rem 1rem;
+    font-size: 0.6rem;
+    gap: 0.35rem;
+  }
+
+  .hl-strip-group {
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Compact Sticky Header + Collapsible Mobile Menu Drawer */
+  .header-grid {
+    grid-template-columns: 1fr;
+    min-height: 56px;
+  }
+
+  .brand-cell {
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    border-bottom: none;
+    padding: 0.7rem 1rem;
+    min-height: 56px;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-cell,
+  .header-cta-cell {
+    display: none;
+    grid-column: 1 / -1 !important;
+    border-right: none;
+    padding: 0;
+  }
+
+  .site-header.menu-open .nav-cell {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .site-header.menu-open .header-cta-cell {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .nav-links li {
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-links li:nth-child(2n) {
+    border-right: none;
+  }
+
+  .nav-links li:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .nav-links a {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.68rem;
+    justify-content: flex-start;
+    min-height: 44px;
+  }
+
+  .header-cta-btn {
+    padding: 0.85rem 1rem;
+    min-height: 46px;
+  }
+
+  /* Hero Section Mobile */
+  .meta-bar { display: none; }
+
+  .hero-main,
+  .subpage-main-col {
+    padding: 2rem 1.25rem !important;
+  }
+
+  .hero-eyebrow {
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mono-tag {
+    font-size: 0.64rem;
+    padding: 0.25rem 0.55rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.85rem) !important;
+    line-height: 1.04;
+    margin-bottom: 1.25rem;
+  }
+
+  .pixel-accent-word {
+    text-shadow: 2px 2px 0px #0E0E0E;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+    margin-bottom: 1.85rem;
+  }
+
+  .cta-matrix {
+    grid-template-columns: 1fr !important;
+    max-width: 100%;
+  }
+
+  .btn-swiss {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 0.85rem 1.25rem;
+    min-height: 76px;
+    padding: 1rem 1.15rem;
   }
-  .header-cta-cell { display: none; }
-  .nav-links { flex-wrap: wrap; }
-  .nav-links a { padding: 0.55rem 0.4rem; font-size: 0.66rem; }
 
-  .meta-bar { display: none; }
-  .hero-main { padding: 2.5rem 1.5rem; }
-  .cta-matrix { grid-template-columns: 1fr; }
-  .btn-swiss { border-right: none; border-bottom: 1px solid var(--border-color); min-height: auto; }
-  .btn-swiss:last-child { border-bottom: none; }
+  .btn-swiss:last-child {
+    border-bottom: none;
+  }
 
-  .hl-meter-row { grid-template-columns: 1fr; }
-  .hl-meter-label { border-right: none; border-bottom: 1px dashed var(--border-subtle); }
-  .hl-meter-val { border-left: none; border-top: 1px dashed var(--border-subtle); text-align: left; }
+  /* Telemetry & Console Mobile */
+  .telemetry-panel,
+  .console-panel,
+  .subpage-aside-col {
+    padding: 1.5rem 1.25rem !important;
+  }
 
-  .pillar-row { grid-template-columns: 1fr; }
-  .pillar-num { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 1rem 1.5rem; justify-content: flex-start; }
-  .pillar-body { padding: 1.75rem 1.5rem; }
+  .console-body {
+    font-size: 0.7rem;
+    min-height: 175px;
+    overflow-x: auto;
+  }
+
+  /* Sections & Grids Mobile */
+  .section-sidebar,
+  .benchmark-content-col,
+  .featured-paper-main,
+  .featured-paper-aside,
+  .legal-content {
+    padding: 2rem 1.25rem !important;
+  }
+
+  .section-heading {
+    font-size: clamp(1.55rem, 6.2vw, 2rem) !important;
+  }
 
   .capabilities-matrix,
-  .capabilities-3grid { grid-template-columns: 1fr; }
-  .cap-cell { border-right: none !important; border-bottom: 1px solid var(--border-color) !important; min-height: auto; padding: 2rem 1.5rem; }
-  .cap-cell:last-child { border-bottom: none !important; }
+  .capabilities-3grid,
+  .roadmap-grid,
+  .papers-grid {
+    grid-template-columns: 1fr !important;
+  }
 
-  .spec-row { grid-template-columns: 1fr; }
-  .spec-code { display: none; }
-  .spec-key { border-right: none; border-bottom: 1px dashed var(--border-subtle); padding: 1rem 1.5rem 0.5rem 1.5rem; }
-  .spec-val { padding: 0.5rem 1.5rem 1rem 1.5rem; }
+  .cap-cell,
+  .phase-col,
+  .paper-card {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    min-height: auto !important;
+    padding: 1.75rem 1.25rem !important;
+  }
 
-  .roadmap-grid { grid-template-columns: 1fr; }
-  .phase-col { border-right: none; border-bottom: 1px solid var(--border-color); min-height: auto; padding: 2.25rem 1.5rem; }
-  .phase-col:last-child { border-bottom: none; }
+  .cap-cell:last-child,
+  .phase-col:last-child {
+    border-bottom: none !important;
+  }
 
-  .papers-grid { grid-template-columns: 1fr; }
-  .paper-card { border-right: none !important; padding: 2rem 1.5rem; }
-  .research-controls-bar { padding: 1.25rem 1.5rem; }
-  .research-search-wrap { width: 100%; min-width: 0; }
+  .cap-top,
+  .phase-header {
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-  .form-row-2, .contact-dir-grid { grid-template-columns: 1fr; }
-  .contact-dir-item { border-right: none !important; border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important; }
+  /* Benchmark Distance Meter Mobile */
+  .hl-meter-row {
+    grid-template-columns: 1fr;
+  }
 
-  .site-footer { grid-template-columns: 1fr; }
-  .footer-cell { border-right: none; border-bottom: 1px solid var(--border-color); }
+  .hl-meter-label {
+    border-right: none;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding: 0.75rem 1rem;
+  }
+
+  .hl-meter-bar-wrap {
+    padding: 0.85rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hl-meter-val {
+    border-left: none;
+    border-top: 1px dashed var(--border-subtle);
+    text-align: left;
+    padding: 0.65rem 1rem;
+  }
+
+  .benchmark-footnote {
+    padding: 0.85rem 1rem;
+    font-size: 0.64rem;
+  }
+
+  /* Spec Rows & Model Card Table Mobile */
+  .spec-row {
+    grid-template-columns: 1fr;
+  }
+  .spec-code {
+    display: none;
+  }
+  .spec-key {
+    border-right: none;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding: 0.85rem 1rem 0.4rem 1rem;
+  }
+  .spec-val {
+    padding: 0.4rem 1rem 0.85rem 1rem;
+  }
+
+  .model-card-spec-row {
+    grid-template-columns: 1fr 1.15fr !important;
+  }
+  .model-card-spec-row .spec-key {
+    border-right: 1px solid var(--border-color);
+    border-bottom: none;
+  }
+
+  /* Forms & Modals Mobile (16px font prevents iOS Safari auto-zoom) */
+  .form-row-2,
+  .contact-dir-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px;
+    padding: 0.8rem 0.9rem;
+  }
+
+  .modal-backdrop {
+    padding: 0.65rem;
+    align-items: flex-end;
+  }
+
+  .modal-window {
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .modal-header {
+    padding: 0.85rem 1rem;
+    font-size: 0.66rem;
+    gap: 0.5rem;
+  }
+
+  .modal-body {
+    padding: 1.15rem 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sandbox-terminal {
+    padding: 1rem;
+    font-size: 0.7rem;
+    min-height: 190px;
+  }
+
+  /* Footer Mobile */
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-cell,
+  .footer-col-brand,
+  .footer-col-main,
+  .footer-col-legal,
+  .footer-col-third,
+  .footer-col-half {
+    grid-column: 1 / -1 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.25rem !important;
+  }
+
+  .footer-links {
+    gap: 0.85rem 1.15rem;
+  }
 }
+
+/* ==================================================
+   6. SMALL MOBILE PHONES (max-width: 480px & 360px)
+   ================================================== */
+@media (max-width: 480px) {
+  .hyperlocal-top-strip {
+    font-size: 0.56rem;
+    padding: 0.4rem 0.85rem;
+  }
+
+  .hl-strip-group span:nth-child(2) {
+    display: none;
+  }
+
+  .hero-main,
+  .telemetry-panel,
+  .console-panel,
+  .section-sidebar,
+  .benchmark-content-col,
+  .cap-cell,
+  .phase-col,
+  .featured-paper-main,
+  .featured-paper-aside,
+  .subpage-main-col,
+  .subpage-aside-col,
+  .legal-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .stat-big-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-box {
+    padding: 0.85rem 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.35rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.58rem;
+  }
+
+  .console-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .console-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+  }
+
+  .console-tab {
+    text-align: center;
+    padding: 0.4rem 0.25rem;
+    font-size: 0.6rem;
+  }
+
+  .prompt-selector {
+    flex-direction: column;
+  }
+
+  .prompt-chip {
+    width: 100%;
+    text-align: left;
+  }
+
+  .paper-actions {
+    flex-direction: column;
+  }
+
+  .btn-paper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .model-card-spec-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .model-card-spec-row .spec-key {
+    border-right: none;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding: 0.6rem 0.85rem 0.25rem 0.85rem !important;
+  }
+
+  .model-card-spec-row .spec-val {
+    padding: 0.25rem 0.85rem 0.6rem 0.85rem !important;
+  }
+
+  .mobile-cta-btn {
+    padding: 0.85rem 0.5rem;
+    font-size: 0.66rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.75rem !important;
+  }
+  .stat-big-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+  .nav-links li {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+  }
+}
+
+/* ==================================================
+   7. SHORT VIEWPORTS / MOBILE LANDSCAPE
+   ================================================== */
+@media (max-height: 540px) and (orientation: landscape) {
+  .site-header {
+    position: relative;
+  }
+  .modal-backdrop {
+    align-items: center;
+    padding: 0.4rem;
+  }
+  .modal-window {
+    max-height: 94dvh;
+  }
+  .modal-body {
+    padding: 0.85rem 1rem;
+  }
+}
+

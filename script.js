@@ -508,4 +508,36 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cookieEssentialOnly) {
     cookieEssentialOnly.addEventListener('click', () => handleCookieChoice('essential'));
   }
+
+  // 9. Responsive Mobile Navigation Drawer Toggle
+  const siteHeader = document.querySelector('.site-header');
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+
+  if (siteHeader && mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = siteHeader.classList.toggle('menu-open');
+      mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const labelEl = mobileMenuToggle.querySelector('.menu-toggle-label');
+      const iconEl = mobileMenuToggle.querySelector('.menu-toggle-icon');
+      if (labelEl) labelEl.textContent = isOpen ? 'CLOSE' : 'MENU';
+      if (iconEl) iconEl.textContent = isOpen ? '×' : '+';
+    });
+
+    // Close mobile menu when clicking a nav link
+    siteHeader.querySelectorAll('.nav-links a, .header-cta-btn').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (siteHeader.classList.contains('menu-open')) {
+          siteHeader.classList.remove('menu-open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          const labelEl = mobileMenuToggle.querySelector('.menu-toggle-label');
+          const iconEl = mobileMenuToggle.querySelector('.menu-toggle-icon');
+          if (labelEl) labelEl.textContent = 'MENU';
+          if (iconEl) iconEl.textContent = '+';
+        }
+      });
+    });
+  }
 });
+

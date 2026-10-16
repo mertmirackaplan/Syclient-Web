@@ -2,35 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Syclient Labs - New Generation Models | Privacy Policy</title>
   <meta name="description" content="Syclient Labs Privacy Policy. Learn how our HyperLocal on-device architecture guarantees zero external data leakage and strict GDPR/CCPA compliance." />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="alternate icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="swiss-wrapper">
     <div class="hyperlocal-top-strip">
-      <span>● LEGAL PROTOCOL // PRIVACY &amp; DATA SOVEREIGNTY</span>
-      <span>EFFECTIVE // OCTOBER 16, 2026</span>
+      <div class="hl-strip-group">
+        <span class="hl-badge">● LEGAL PROTOCOL // PRIVACY</span>
+        <span>EFFECTIVE // OCTOBER 16, 2026</span>
+      </div>
     </div>
 
     <header class="site-header">
       <div class="header-grid">
-        <a href="index.html" class="brand-cell" aria-label="Return to Syclient Home">
-          <img src="logo.png" alt="Syclient AI infinity monogram logo" class="brand-logo" width="42" height="30" />
-          <span class="brand-name">SYCLIENT</span>
-          <span class="brand-sub">DOC // PRIVACY</span>
-        </a>
+        <div class="brand-cell">
+          <a href="index.html" aria-label="Return to Syclient Home" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit; flex: 1;">
+            <img src="logo.png" alt="Syclient Labs infinity monogram logo" class="brand-logo" width="34" height="34" />
+            <span class="brand-name">SYCLIENT</span>
+            <span class="brand-sub pixel-font">DOC // PRIVACY</span>
+          </a>
+          <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false" aria-label="Toggle Navigation Menu">
+            <span class="menu-toggle-label">MENU</span>
+            <span class="menu-toggle-icon">+</span>
+          </button>
+        </div>
         <nav class="nav-cell" aria-label="Legal Navigation">
           <ul class="nav-links">
             <li><a href="index.html">01. Home</a></li>
-            <li><a href="terms.html">02. Terms of Service</a></li>
-            <li><a href="index.html#partner">03. Contact</a></li>
+            <li><a href="research.html">02. Research</a></li>
+            <li><a href="terms.html">03. Terms of Service</a></li>
+            <li><a href="index.html#partner">04. Contact</a></li>
           </ul>
         </nav>
         <div class="header-cta-cell">
@@ -85,11 +94,11 @@
     </main>
 
     <footer class="site-footer">
-      <div class="footer-cell" style="grid-column: span 6;">
+      <div class="footer-cell footer-col-half">
         <strong>SYCLIENT LABS</strong>
         <span>© 2026</span>
       </div>
-      <div class="footer-cell" style="grid-column: span 6;">
+      <div class="footer-cell footer-col-half">
         <div class="footer-links">
           <a href="index.html">Home</a>
           <a href="terms.html">Terms of Service</a>
@@ -98,5 +107,6 @@
       </div>
     </footer>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>

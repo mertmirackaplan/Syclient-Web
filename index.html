@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!-- Meta Title & Meta Description -->
   <title>Syclient Labs - New Generation Models</title>
@@ -73,19 +73,25 @@
     <!-- STICKY NEO-SWISS HEADER -->
     <header class="site-header">
       <div class="header-grid">
-        <a href="index.html" class="brand-cell" aria-label="Syclient Labs Home">
-          <img
-            src="logo.png"
-            alt="Syclient Labs infinity monogram logo"
-            class="brand-logo"
-            width="34"
-            height="34"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <span class="brand-name">SYCLIENT</span>
-          <span class="brand-sub pixel-font">LABS</span>
-        </a>
+        <div class="brand-cell">
+          <a href="index.html" aria-label="Syclient Labs Home" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit; flex: 1;">
+            <img
+              src="logo.png"
+              alt="Syclient Labs infinity monogram logo"
+              class="brand-logo"
+              width="34"
+              height="34"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <span class="brand-name">SYCLIENT</span>
+            <span class="brand-sub pixel-font">LABS</span>
+          </a>
+          <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false" aria-label="Toggle Navigation Menu">
+            <span class="menu-toggle-label">MENU</span>
+            <span class="menu-toggle-icon">+</span>
+          </button>
+        </div>
 
         <nav class="nav-cell" aria-label="Primary Navigation">
           <ul class="nav-links">
@@ -329,7 +335,7 @@
         </div>
       </aside>
 
-      <div class="section-content" style="padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
+      <div class="section-content benchmark-content-col">
         <div class="hl-stamp-bar" style="margin-bottom: 1.25rem;">
           <span class="hl-municipal-badge pixel-font">
             <span class="status-dot green"></span>
@@ -448,7 +454,7 @@
          MINIMAL FOOTER: Model Card, GitHub Repo, Contact Email & Legal
          ================================================== -->
     <footer class="site-footer" id="partner">
-      <div class="footer-cell" style="grid-column: span 4;">
+      <div class="footer-cell footer-col-brand">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <img
             src="logo.png"
@@ -464,7 +470,7 @@
         <span>© 2026</span>
       </div>
 
-      <div class="footer-cell" style="grid-column: span 5;">
+      <div class="footer-cell footer-col-main">
         <nav class="footer-links" aria-label="Developer and Research Links">
           <a href="research.html" class="pixel-font" style="color: var(--accent); font-weight: 700;">Model Card &amp; Report (TR-01) ↗</a>
           <a href="https://github.com/syclient" target="_blank" rel="noopener noreferrer" class="pixel-font">GitHub Repo ↗</a>
@@ -472,7 +478,7 @@
         </nav>
       </div>
 
-      <div class="footer-cell" style="grid-column: span 3;">
+      <div class="footer-cell footer-col-legal">
         <nav class="footer-links" aria-label="Legal and System Links">
           <button type="button" id="footerPartnerBtn" style="background: none; border: none; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--text-primary); text-decoration: underline;">Compute &amp; Research Grants</button>
           <a href="privacy.html">Privacy</a>

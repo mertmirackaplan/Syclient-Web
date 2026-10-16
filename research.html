@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <!-- Meta Title & Meta Description -->
   <title>Syclient Labs - New Generation Models | Technical Report SYC-TR-2026-01</title>
@@ -56,19 +56,25 @@
     <!-- STICKY NEO-SWISS HEADER -->
     <header class="site-header">
       <div class="header-grid">
-        <a href="index.html" class="brand-cell" aria-label="Syclient Labs Home">
-          <img
-            src="logo.png"
-            alt="Syclient Labs infinity monogram logo"
-            class="brand-logo"
-            width="42"
-            height="30"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <span class="brand-name">SYCLIENT</span>
-          <span class="brand-sub pixel-font">RESEARCH</span>
-        </a>
+        <div class="brand-cell">
+          <a href="index.html" aria-label="Syclient Labs Home" style="display: flex; align-items: center; gap: 0.85rem; text-decoration: none; color: inherit; flex: 1;">
+            <img
+              src="logo.png"
+              alt="Syclient Labs infinity monogram logo"
+              class="brand-logo"
+              width="34"
+              height="34"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <span class="brand-name">SYCLIENT</span>
+            <span class="brand-sub pixel-font">RESEARCH</span>
+          </a>
+          <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false" aria-label="Toggle Navigation Menu">
+            <span class="menu-toggle-label">MENU</span>
+            <span class="menu-toggle-icon">+</span>
+          </button>
+        </div>
 
         <nav class="nav-cell" aria-label="Primary Navigation">
           <ul class="nav-links">
@@ -93,7 +99,7 @@
 
     <!-- RESEARCH HERO -->
     <section class="hero-section grid-12">
-      <div class="hero-main" style="grid-column: span 8;">
+      <div class="hero-main">
         <div>
           <div class="hero-eyebrow">
             <span class="mono-tag">
@@ -110,7 +116,7 @@
             <span class="status-pill validated">OMI-740M v1.0-PoC // COMPLETED POC</span>
           </div>
 
-          <h1 class="hero-title" style="font-size: clamp(2.3rem, 4.3vw, 3.9rem);">
+          <h1 class="hero-title" style="font-size: clamp(2.1rem, 4.3vw, 3.9rem);">
             <span class="pixel-accent-word">OMI-740M v1.0-PoC</span> Technical Report &amp; Model Card.
           </h1>
 
@@ -120,7 +126,7 @@
         </div>
       </div>
 
-      <aside class="hero-aside" style="grid-column: span 4; justify-content: center;">
+      <aside class="hero-aside" style="justify-content: center;">
         <div class="telemetry-panel" style="border-bottom: none;">
           <div class="panel-header">
             <span class="mono pixel-font" style="font-weight: 700;">VERIFIED BASELINE</span>
@@ -161,7 +167,7 @@
             <span class="pixel-font">OCT 2026 • REV 1.2</span>
           </div>
 
-          <h2 id="flagshipTitle" class="section-heading" style="font-size: clamp(1.75rem, 2.6vw, 2.35rem); margin-bottom: 1.25rem;">
+          <h2 id="flagshipTitle" class="section-heading" style="font-size: clamp(1.6rem, 2.6vw, 2.35rem); margin-bottom: 1.25rem;">
             From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC): Pre-Training Convergence, Layer Separation, and Hardware Benchmark Protocol
           </h2>
 
@@ -191,46 +197,46 @@
         </div>
       </div>
 
-      <!-- MODEL CARD TECHNICAL SPECIFICATIONS TABLE (Moved from Home Page per Audit/User Rules) -->
+      <!-- MODEL CARD TECHNICAL SPECIFICATIONS TABLE -->
       <aside class="featured-paper-aside">
         <div>
           <div class="mono pixel-font" style="margin-bottom: 1rem; color: var(--accent);">CANONICAL MODEL CARD // OMI-740M</div>
           <div class="specs-datasheet" style="border: 1px solid var(--border-color); background: rgba(255,255,255,0.75);">
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Model ID &amp; Version</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">OMI-740M v1.0-PoC</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Model ID &amp; Version</div>
+              <div class="spec-val">OMI-740M v1.0-PoC</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Release Maturity</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem; color: var(--hyper-green);">Validated PoC</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Release Maturity</div>
+              <div class="spec-val" style="color: var(--hyper-green);">Validated PoC</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Parameter Count</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">740,418,560 Dense</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Parameter Count</div>
+              <div class="spec-val">740,418,560 Dense</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">PoC Corpus Volume</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">4.0B Tokens (A100)</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">PoC Corpus Volume</div>
+              <div class="spec-val">4.0B Tokens (A100)</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Backbone Topology</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">Decoder-only (24L)</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Backbone Topology</div>
+              <div class="spec-val">Decoder-only (24L)</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Attention Mechanism</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">GQA (16Q/4KV) + FA-2</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Attention Mechanism</div>
+              <div class="spec-val">GQA (16Q/4KV) + FA-2</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Positional / Act</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">RoPE (8k/32k) / SwiGLU</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Positional / Act</div>
+              <div class="spec-val">RoPE (8k/32k) / SwiGLU</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Precision &amp; RAM</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem;">BF16 / Q4_K_M (984MB)</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Precision &amp; RAM</div>
+              <div class="spec-val">BF16 / Q4_K_M (984MB)</div>
             </div>
-            <div class="spec-row" style="grid-template-columns: 1fr 1.2fr;">
-              <div class="spec-key" style="padding: 0.7rem 1rem; font-size: 0.68rem;">Planned Next Run</div>
-              <div class="spec-val" style="padding: 0.7rem 1rem; font-size: 0.8rem; color: var(--accent);">OMI-1B v2.0 (100B Tok)</div>
+            <div class="spec-row model-card-spec-row">
+              <div class="spec-key">Planned Next Run</div>
+              <div class="spec-val" style="color: var(--accent);">OMI-1B v2.0 (100B Tok)</div>
             </div>
           </div>
         </div>
@@ -239,28 +245,28 @@
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-cell" style="grid-column: span 4;">
+      <div class="footer-cell footer-col-third">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <img
             src="logo.png"
             alt="Syclient Labs monogram icon"
-            width="31"
-            height="22"
+            width="26"
+            height="26"
             loading="lazy"
             decoding="async"
-            style="height: 22px; width: auto; object-fit: contain;"
+            style="height: 26px; width: auto; object-fit: contain;"
           />
           <strong class="pixel-font">SYCLIENT LABS</strong>
         </div>
         <span>© 2026</span>
       </div>
 
-      <div class="footer-cell" style="grid-column: span 4;">
+      <div class="footer-cell footer-col-third">
         <span class="pixel-font">REPORT // SYC-TR-2026-01</span>
         <span>MODEL: OMI-740M v1.0-PoC</span>
       </div>
 
-      <div class="footer-cell" style="grid-column: span 4;">
+      <div class="footer-cell footer-col-third">
         <nav class="footer-links" aria-label="Legal and System Links">
           <a href="index.html">Home</a>
           <a href="privacy.html">Privacy Policy</a>
@@ -271,6 +277,16 @@
     </footer>
   </div>
 
+  <!-- STICKY MOBILE CTA BAR -->
+  <div class="sticky-mobile-cta" role="region" aria-label="Quick Mobile Actions">
+    <button type="button" class="mobile-cta-btn primary pixel-font open-report-modal" data-report="tr01">
+      <span>▶ Telemetry &amp; BibTeX</span>
+    </button>
+    <a href="index.html" class="mobile-cta-btn secondary pixel-font">
+      <span>← Overview</span>
+    </a>
+  </div>
+
   <!-- INTERACTIVE TECHNICAL REPORT READER MODAL -->
   <div class="modal-backdrop" id="reportModal" aria-hidden="true">
     <div class="modal-window" role="dialog" aria-labelledby="reportModalCode" style="max-width: 840px;">
@@ -278,17 +294,17 @@
         <span id="reportModalCode" class="pixel-font">SYC-TR-2026-01 // PRELIMINARY TECHNICAL REPORT</span>
         <button class="modal-close pixel-font" id="closeReportModalBtn">ESC / CLOSE</button>
       </div>
-      <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+      <div class="modal-body">
         <div class="paper-meta-row" style="margin-bottom: 0.75rem;">
           <span class="paper-cat-badge pixel-font" id="reportModalCat">OMI-740M v1.0-PoC EVALUATION</span>
           <span id="reportModalDate" class="mono pixel-font">OCT 2026 • REV 1.2</span>
         </div>
 
-        <h2 id="reportModalTitle" style="font-size: 1.5rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem;">
+        <h2 id="reportModalTitle" style="font-size: clamp(1.2rem, 3.5vw, 1.5rem); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem;">
           From-Scratch 740M Foundation Model (OMI-740M v1.0-PoC)
         </h2>
 
-        <p id="reportModalBody" style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.65; margin-bottom: 1.5rem;"></p>
+        <p id="reportModalBody" style="color: var(--text-secondary); font-size: 0.94rem; line-height: 1.65; margin-bottom: 1.5rem;"></p>
 
         <div class="mono pixel-font" style="margin-bottom: 0.4rem; font-weight: 700;">BENCHMARK CONDITIONS &amp; TELEMETRY SUMMARY:</div>
         <div class="sandbox-terminal" id="reportModalTelemetry" style="min-height: 140px; margin-bottom: 1.5rem;"></div>
