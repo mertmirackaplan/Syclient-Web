@@ -1,9 +1,0 @@
-# SYCLIENT AI RESEARCH — ROBOTS DIRECTIVE
-# Sovereign On-Device Foundation Architecture (OMI-740M)
-
-User-agent: *
-Allow: /
-Disallow: /404.html
-Disallow: /thank-you.html
-
-Sitemap: https://syclient.ai/sitemap.xml
