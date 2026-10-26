@@ -493,6 +493,42 @@ dialog.lightbox::backdrop { background: rgba(12, 7, 4, .86); -webkit-backdrop-fi
 .faq code { font-family: var(--font-mono); font-size: .9em; background: var(--parch-2); padding: 1px 5px; }
 
 /* ---------- final CTA + form ---------- */
+/* ---------- Product Hunt (badge + launch card) ---------- */
+.ph-featured { margin-top: 40px; display: flex; justify-content: center; }
+.ph-badge {
+  display: inline-block; padding: 8px; line-height: 0; max-width: 100%;
+  background: linear-gradient(#6b4426, #4f321c);
+  box-shadow:
+    inset 0 4px 0 0 #8a5c35, inset 0 -4px 0 0 #3a2414,
+    0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink),
+    0 10px 0 0 rgba(0, 0, 0, .35);
+  transform: translateY(0); transition: transform .08s steps(2), filter .15s;
+}
+.ph-badge img { width: 250px; max-width: 100%; height: auto; aspect-ratio: 250 / 54; outline: 3px solid var(--ink); background: #fff; }
+.ph-badge:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.ph-badge:active { transform: translateY(2px); }
+.footer-brand .ph-badge { margin-top: 22px; }
+
+.ph-section { padding: 110px 0 30px;
+  background: radial-gradient(640px 360px at 78% 55%, rgba(255, 97, 84, .10), transparent 70%); }
+.ph-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 580px); gap: 56px; align-items: center; }
+.ph-copy p:not(.eyebrow) { color: var(--muted); font-size: 18.5px; max-width: 540px; text-wrap: pretty; }
+.ph-card-wrap { position: relative; padding-top: 70px; }
+.ph-sitter { position: absolute; top: 0; right: 40px; z-index: 3; }
+.ph-sitter .bit { position: relative; animation: cheer 3.2s steps(1) infinite; }
+.ph-sitter .say { bottom: calc(100% + 12px); right: -8px; }
+.ph-sitter .say::after { left: auto; right: 22px; }
+.ph-card { position: relative; padding: 26px 26px 30px; }
+.ph-card-head { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
+.ph-logo { flex: none; width: 72px; height: 72px; padding: 4px; background: var(--parch-2);
+  box-shadow: 0 -3px 0 0 var(--ink), 0 3px 0 0 var(--ink), -3px 0 0 0 var(--ink), 3px 0 0 0 var(--ink); }
+.ph-logo img { width: 64px; height: 64px; object-fit: cover; }
+.ph-card-text { min-width: 0; }
+.ph-card h3 { font-size: 24px; margin: 0 0 8px; color: var(--ink-text); line-height: 1.3; }
+.ph-card-text p { margin: 0; color: var(--ink-muted); font-size: 16px; line-height: 1.45; }
+.btn-ph { --bg-btn: #ff6154; --bg-btn-hi: #ff8a7f; --bg-btn-lo: #c9433a; --fg-btn: var(--ink); }
+.ph-card .btn-ph { width: 100%; white-space: normal; text-align: center; }
+
 .cta-section { padding: 120px 0 130px; position: relative; overflow: hidden;
   background:
     radial-gradient(800px 420px at 20% 30%, rgba(244, 198, 79, .14), transparent 70%),
@@ -657,6 +693,9 @@ dialog.lightbox::backdrop { background: rgba(12, 7, 4, .86); -webkit-backdrop-fi
   .footer-main { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 860px) {
+  .ph-grid { grid-template-columns: 1fr; gap: 28px; }
+  .ph-section { padding: 80px 0 20px; }
+  .ph-card-wrap { max-width: 580px; }
   :root { --header-h: 62px; }
   body { font-size: 16.5px; }
   .hero h1 { font-size: 32px; }
@@ -686,6 +725,10 @@ dialog.lightbox::backdrop { background: rgba(12, 7, 4, .86); -webkit-backdrop-fi
   .doc { padding: 32px 24px; margin-inline: 4px; }
 }
 @media (max-width: 600px) {
+  .ph-card { padding: 22px 18px 26px; }
+  .ph-card h3 { font-size: 16px; }
+  .ph-card .btn-ph { padding: 10px 14px; }
+  .ph-sitter { right: 20px; }
   .container { width: min(var(--maxw), 100% - 32px); }
   .hero .lead { font-size: 17px; }
   .hero h1 { font-size: 24px; line-height: 1.5; }

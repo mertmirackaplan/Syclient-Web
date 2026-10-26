@@ -1,7 +1,8 @@
 # GoBits landing page
 
 A static marketing site for GoBits: plain HTML, CSS and JavaScript. It has no build step, no
-framework and no external fonts or CDNs. Upload the folder to any static host (Netlify, Vercel,
+framework and no external fonts or CDNs. The only third-party requests are the Product Hunt badge
+images on the home page (`api.producthunt.com`, `ph-files.imgix.net`). Upload the folder to any static host (Netlify, Vercel,
 Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root.
 
 ## Before you go live
@@ -32,6 +33,28 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
    `[jurisdiction]` in `terms.html`. Have both reviewed by a lawyer before launch.
 5. **404 page.** Most hosts serve `404.html` automatically (Netlify, Vercel, Cloudflare Pages,
    GitHub Pages). On nginx, use `error_page 404 /404.html;`.
+
+## Product Hunt embeds
+
+The home page shows the Product Hunt "Featured" badge in the hero and the footer, plus a launch card in the
+"We're on Product Hunt" section (`#product-hunt`) before the early-access form. The links, UTM parameters and
+image URLs are exactly as Product Hunt issued them. The card is restyled with the site's own classes
+(`.ph-card`, `.btn-ph`, `.ph-badge` in `site.css`), so it has no inline styles. The images are plain `<img>`
+tags, not scripts or trackers, so the cookie banner doesn't gate them; `privacy.html` mentions them. Clicks
+are counted (`ph_badge_hero`, `ph_card`, `ph_badge_footer`) only if the visitor accepted analytics.
+Product Hunt's CDN sets Cloudflare's short-lived `__cf_bm` bot-protection cookie on the badge image response,
+so Lighthouse lists it under "third-party cookies" (Best Practices drops to about 78–79). It can't be removed
+without self-hosting the badge, which would freeze its live upvote count. `api.producthunt.com` sends no CORS
+headers, so `crossorigin="anonymous"` would break the image.
+
+If you add a Content-Security-Policy on your host, allow the badge images, for example:
+
+```
+Content-Security-Policy: default-src 'self'; img-src 'self' data: https://api.producthunt.com https://ph-files.imgix.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://<your-cloud>; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+```
+
+(`'unsafe-inline'` covers the small inline `class="js"` script and the sprite `style` attributes. Add your analytics
+host to `script-src` and `connect-src` if you turn analytics on.)
 
 ## Files
 
