@@ -1,0 +1,6 @@
+# GoBits landing page
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+
+Sitemap: https://gobits.example/sitemap.xml
