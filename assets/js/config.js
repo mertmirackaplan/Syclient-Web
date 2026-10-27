@@ -1,16 +1,20 @@
 /*
  * GoBits landing page — the ONE file to edit before you deploy.
  *
- * After changing SITE_URL or CONTACT_EMAIL, run:   node scripts/set-domain.js
+ * After changing SITE_URL, CONTACT_EMAIL or CLOUD_URL, run:   node scripts/set-domain.js
  * That rewrites canonical URLs, Open Graph tags, sitemap.xml, robots.txt,
- * JSON-LD and the contact links in every page so they match these values.
+ * JSON-LD, the contact links and the GoBits Cloud links (Download, Pricing,
+ * Account) in every page so they match these values.
  */
 window.GOBITS_CONFIG = {
   // Public URL of this site, no trailing slash.
   SITE_URL: 'https://gobits.example',
 
   // Where people can reach you. Shown in the footer, legal pages and the mailto fallback.
-  CONTACT_EMAIL: 'hello@gobits.example',
+  CONTACT_EMAIL: 'hello@syclient.labs',
+
+  // Public URL of GoBits Cloud (serves /download, /pricing and /account), no trailing slash.
+  CLOUD_URL: 'https://cloud.gobits.example',
 
   // Early-access form target: the GoBits Cloud waitlist endpoint, e.g.
   //   'https://cloud.gobits.example/v1/waitlist'

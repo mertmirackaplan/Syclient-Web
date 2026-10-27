@@ -7,12 +7,12 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
 
 ## Before you go live
 
-1. **Set your domain and email.** Edit `assets/js/config.js` (`SITE_URL`, `CONTACT_EMAIL`), then run:
+1. **Set your domain and email.** Edit `assets/js/config.js` (`SITE_URL`, `CONTACT_EMAIL`, `CLOUD_URL`), then run:
 
    ```bash
    node scripts/set-domain.js            # add --dry-run to preview
    # or in one go:
-   node scripts/set-domain.js --site https://your-domain.com --email hello@your-domain.com
+   node scripts/set-domain.js --site https://your-domain.com --email hello@syclient.labs --cloud https://cloud.your-domain.com
    ```
 
    This rewrites the canonical URLs, Open Graph/Twitter tags, JSON-LD, `sitemap.xml`, `robots.txt`
@@ -33,6 +33,26 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
    `[jurisdiction]` in `terms.html`. Have both reviewed by a lawyer before launch.
 5. **404 page.** Most hosts serve `404.html` automatically (Netlify, Vercel, Cloudflare Pages,
    GitHub Pages). On nginx, use `error_page 404 /404.html;`.
+
+## Download page and activation codes
+
+`download.html` offers the Windows, macOS and Linux builds. The three buttons start locked (`aria-disabled`,
+no pointer events) and `assets/js/download.js` unlocks them when a valid activation code is entered. The code
+is remembered in `localStorage` for that browser only.
+
+- The codes are **not** in the page. `download.js` stores their SHA-256 hashes (normalised to A–Z and 0–9, so
+  case, spaces and dashes do not matter). Invitees get the codes by email; keep them out of the repo.
+- To add or replace a code, hash it and paste the result into `ACCEPTED` in `download.js`:
+
+  ```bash
+  node -e "const c=require('crypto');console.log(c.createHash('sha256').update('YOUR-CODE-2026'.toUpperCase().replace(/[^A-Z0-9]/g,'')).digest('hex'))"
+  ```
+- This is a soft, client-side gate for an invite-only launch, not a security boundary: the file URLs are in the
+  page source and anyone can bypass the check. If downloads must be restricted for real, serve them from a
+  server that checks a token (the cloud's `/download` already reads `releases.json`).
+- Put the installers in `downloads/` with the names used by the links (`GoBits-Setup-1.0.2.exe`,
+  `GoBits-1.0.2.dmg`, `GoBits-1.0.2.AppImage`). The Windows installer is included; the macOS and Linux builds
+  still need to be dropped in, and the file labels and sizes in `download.html` updated when the version changes.
 
 ## Product Hunt embeds
 
@@ -61,17 +81,20 @@ host to `script-src` and `connect-src` if you turn analytics on.)
 | Path | What |
 |---|---|
 | `index.html` | The landing page |
+| `download.html` | Download page: Windows, macOS and Linux builds behind an activation code |
+| `downloads/` | Installer files linked from `download.html` (Windows is included) |
 | `thank-you.html` | Shown after a successful sign-up (noindex) |
 | `404.html` | "Lost Bit" not-found page (absolute asset paths, so it works at any URL) |
 | `privacy.html`, `terms.html` | Legal pages |
 | `robots.txt`, `sitemap.xml`, `site.webmanifest` | SEO and app metadata |
 | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.png` | Icons and the 1200×630 social card |
 | `assets/js/config.js` | **The one config file** |
-| `assets/js/site.js` | Menu, cookie consent + analytics loader, form, gallery lightbox, sticky mobile CTA |
+| `assets/js/site.js` | Menu, cookie consent + analytics loader, form, gallery lightbox, sticky mobile CTA, hash-free section scrolling |
+| `assets/js/download.js` | The activation-code gate for `download.html` |
 | `assets/js/office.js` | The live pixel office in "How it works" (static under reduced motion) |
 | `assets/css/site.css` | All styles |
 | `assets/img/` | Pixel art exported from the app, plus `shots/` (real screenshots as WebP 400–2400 w with PNG fallback) |
-| `assets/fonts/` | Press Start 2P (SIL OFL 1.1, see `OFL.txt`; the official file, converted to WOFF2 unmodified), used for headings, labels and buttons only |
+| `assets/fonts/` | Inter (variable, SIL OFL 1.1, `LICENSE-Inter.txt`) for text and Silkscreen (SIL OFL 1.1, `LICENSE-Silkscreen.txt`, converted to WOFF2 unmodified) for small pixel labels. Press Start 2P (`OFL.txt`) is kept but no longer used by the light theme |
 | `scripts/set-domain.js` | The domain and email rewriter (Node, no dependencies) |
 
 ## Preview locally

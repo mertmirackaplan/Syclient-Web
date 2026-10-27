@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var CFG = window.GOBITS_CONFIG || {};
-  var EMAIL = CFG.CONTACT_EMAIL || 'hello@gobits.example';
+  var EMAIL = CFG.CONTACT_EMAIL || 'hello@syclient.labs';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -30,6 +30,44 @@
     document.addEventListener('click', function (e) {
       if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) setNav(false);
     });
+  }
+
+  /* ---------- section links without #fragments in the address bar ---------- */
+  function stripHash() {
+    if (!window.history || !history.replaceState) return;
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* file:// in some browsers */ }
+  }
+  $$('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    a.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      if (a.classList.contains('skip-link')) {
+        // Move the reading position like a real skip link, then scroll smoothly.
+        target.setAttribute('tabindex', '-1');
+        try { target.focus({ preventScroll: true }); } catch (err) { target.focus(); }
+      }
+      try { target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }); }
+      catch (err) { target.scrollIntoView(); }
+      stripHash();
+    });
+  });
+  // A link such as index.html#pricing still lands on the right section, but the address bar is cleaned up.
+  if (location.hash.length > 1) {
+    var initialTarget = null;
+    try { initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) { /* bad escape */ }
+    var finishInitial = function () {
+      // Chrome sometimes scrolls to the fragment after `load`; do it here as well, then drop the fragment.
+      if (initialTarget) {
+        try { initialTarget.scrollIntoView({ behavior: 'auto', block: 'start' }); } catch (e) { initialTarget.scrollIntoView(); }
+      }
+      stripHash();
+    };
+    if (document.readyState === 'complete') finishInitial();
+    else window.addEventListener('load', finishInitial);
   }
 
   /* ---------- reveal on scroll ---------- */
