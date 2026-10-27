@@ -658,6 +658,9 @@ dialog.lightbox::backdrop { background: rgba(20, 17, 14, .78); -webkit-backdrop-
 .dl-note h3 { font-size: 17px; letter-spacing: -.015em; margin-bottom: 6px; }
 .dl-note p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--muted); }
 .dl-help { margin: 26px 0 0; text-align: center; font-size: 15px; color: var(--muted); }
+.dl-checksum { max-width: 860px; margin: 24px auto 0; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; border: 1px dashed var(--line-2); border-radius: 14px; background: #fff; }
+.dl-checksum .px-label { color: var(--muted-2); }
+.dl-checksum code { padding: 0; border: 0; background: none; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: var(--ink-2); overflow-wrap: anywhere; }
 
 @media (max-width: 1080px) {
   .dl-card { padding: 22px 22px 20px; }

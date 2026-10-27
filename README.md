@@ -50,9 +50,22 @@ is remembered in `localStorage` for that browser only.
 - This is a soft, client-side gate for an invite-only launch, not a security boundary: the file URLs are in the
   page source and anyone can bypass the check. If downloads must be restricted for real, serve them from a
   server that checks a token (the cloud's `/download` already reads `releases.json`).
-- Put the installers in `downloads/` with the names used by the links (`GoBits-Setup-1.0.2.exe`,
-  `GoBits-1.0.2.dmg`, `GoBits-1.0.2.AppImage`). The Windows installer is included; the macOS and Linux builds
-  still need to be dropped in, and the file labels and sizes in `download.html` updated when the version changes.
+- Installers are **not** in this repository. GitHub rejects files over 100 MB, so the buttons point at GitHub
+  Releases: `https://github.com/mertmirackaplan/Syclient-Web/releases/download/SyclientLabs/<file>`. The current
+  release (tag `SyclientLabs`) has `GoBits-Setup-1.0.2.exe` (122,339,797 bytes, SHA-256
+  `02b2f22877a1245d05e3cf8ecad9fa6f738f5e3e470df17e919551e4ba45abfd`). Attach `GoBits-1.0.2.dmg` and
+  `GoBits-1.0.2.AppImage` to the same release when they are built, or change the three `href`s in `download.html`
+  to point anywhere else (R2, S3, a CDN). Release assets allow 2 GB per file.
+- Release assets on a public repo are public: the activation code is only a soft gate. For real invite-only
+  downloads, use a host that checks a token (the cloud's `/download` already reads `releases.json`).
+
+## Clean URLs
+
+`vercel.json` turns on Vercel's clean URLs: `/download` serves `download.html`, and `/download.html` 308-redirects
+to `/download` (same for `/privacy` and `/terms`). Upload `vercel.json` with the site, or enable **Clean URLs** in
+the Vercel project settings; without it the clean paths 404. Internal links keep the `.html` so the folder also
+works with a plain static preview; on Vercel they redirect to the clean URL. On another host, add the equivalent
+rewrite.
 
 ## Product Hunt embeds
 
@@ -82,7 +95,7 @@ host to `script-src` and `connect-src` if you turn analytics on.)
 |---|---|
 | `index.html` | The landing page |
 | `download.html` | Download page: Windows, macOS and Linux builds behind an activation code |
-| `downloads/` | Installer files linked from `download.html` (Windows is included) |
+| `vercel.json` | Clean URLs on Vercel (`/download` instead of `/download.html`) |
 | `thank-you.html` | Shown after a successful sign-up (noindex) |
 | `404.html` | "Lost Bit" not-found page (absolute asset paths, so it works at any URL) |
 | `privacy.html`, `terms.html` | Legal pages |

@@ -1,6 +1,6 @@
 # GoBits landing page
 User-agent: *
 Allow: /
-Disallow: /thank-you.html
+Disallow: /thank-you
 
-Sitemap: https://gobits.example/sitemap.xml
+Sitemap: https://www.syclientlabs.com/sitemap.xml
