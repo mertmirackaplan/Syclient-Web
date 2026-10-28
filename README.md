@@ -37,8 +37,8 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
 ## Download page and activation codes
 
 `download.html` offers the Windows, macOS and Linux builds. The three buttons start locked (`aria-disabled`,
-no pointer events) and `assets/js/download.js` unlocks them when a valid activation code is entered. The code
-is remembered in `localStorage` for that browser only.
+no pointer events) and `assets/js/download.js` unlocks them when a valid activation code is entered. Nothing is
+stored: every visit starts locked and asks for the code again.
 
 - The codes are **not** in the page. `download.js` stores their SHA-256 hashes (normalised to A–Z and 0–9, so
   case, spaces and dashes do not matter). Invitees get the codes by email; keep them out of the repo.
@@ -52,8 +52,8 @@ is remembered in `localStorage` for that browser only.
   server that checks a token (the cloud's `/download` already reads `releases.json`).
 - Installers are **not** in this repository. GitHub rejects files over 100 MB, so the buttons point at GitHub
   Releases: `https://github.com/mertmirackaplan/Syclient-Web/releases/download/SyclientLabs/<file>`. The current
-  release (tag `SyclientLabs`) has `GoBits-Setup-1.0.2.exe` (122,339,797 bytes, SHA-256
-  `02b2f22877a1245d05e3cf8ecad9fa6f738f5e3e470df17e919551e4ba45abfd`). Attach `GoBits-1.0.2.dmg` and
+  release (tag `SyclientLabs`) has `GoBits-Setup-1.0.2.5.exe` (122,353,158 bytes, SHA-256
+  `27ef2c63432cfc11e0cf04fe7141903cb92b8e6777736174bbe38b878f16a07e`). Attach `GoBits-1.0.2.dmg` and
   `GoBits-1.0.2.AppImage` to the same release when they are built, or change the three `href`s in `download.html`
   to point anywhere else (R2, S3, a CDN). Release assets allow 2 GB per file.
 - Release assets on a public repo are public: the activation code is only a soft gate. For real invite-only

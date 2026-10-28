@@ -1,7 +1,7 @@
 /* GoBits download page: keeps the three platform builds locked until a valid activation code is entered.
  * Accepted codes are stored as SHA-256 hashes (normalised to A-Z0-9, so case, spaces and dashes do not
- * matter), so the codes themselves never appear in the page source. The unlocked state is remembered in
- * localStorage for this browser only. No account, no server, no cookies. */
+ * matter), so the codes themselves never appear in the page source. Nothing is stored: every visit starts
+ * locked and asks for the code again. No account, no server, no cookies. */
 (function () {
   'use strict';
 
@@ -10,7 +10,6 @@
     'c2ebec963c4ad0a45d6d4d6e149b67808c95d3a66242de68edc31f88b8bd839e',
     '16709f78f4c2b98632e3a8ab53205e2bdfa61ce6c9adc44d2061e8b2eb962389'
   ];
-  var STORE = 'gobits_downloads_unlocked';
   var MAX_TRIES = 5;
   var LOCKOUT_MS = 30000;
 
@@ -98,12 +97,6 @@
   var tries = 0;
   var busyUntil = 0;
 
-  function remembered() {
-    try { return localStorage.getItem(STORE) === '1'; } catch (e) { return false; }
-  }
-  function remember(on) {
-    try { if (on) localStorage.setItem(STORE, '1'); else localStorage.removeItem(STORE); } catch (e) { /* private mode: lasts for this page */ }
-  }
   function setFieldError(msg) {
     if (fieldError) fieldError.textContent = msg || '';
     if (field) field.classList.toggle('has-error', !!msg);
@@ -136,7 +129,6 @@
   }
   function unlock(focus) {
     paint(false);
-    remember(true);
     if (focus && success) success.focus();
     if (window.gbTrack) window.gbTrack('downloads_unlocked');
   }
@@ -155,7 +147,7 @@
     }, LOCKOUT_MS);
   }
 
-  if (remembered()) paint(false);
+  paint(true); // every page load starts locked; the code is never remembered on the site
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -181,7 +173,6 @@
   if (input) input.addEventListener('input', function () { setFieldError(''); });
 
   if (relockBtn) relockBtn.addEventListener('click', function () {
-    remember(false);
     paint(true);
     setAlert('');
     setFieldError('');
