@@ -30,11 +30,14 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
 
 ## Download page
 
-`download.html` links directly to the public Windows GitHub release. There is no activation-code gate, account, cookie or server-side check. macOS and Linux are shown as coming-soon cards until their builds exist, so the page never points at missing files.
+`download.html` links directly to the public GitHub release. There is no activation-code gate, account, cookie or server-side check.
 
-- Windows: `https://github.com/mertmirackaplan/Syclient-Web/releases/download/SyclientLabs/GoBits-Setup-1.1.1.exe`
-- Public SHA-256 is shown on the page and in `download.html`.
-- The release asset is public; do not treat the public URL as a security boundary.
+- Windows portable: `GoBits-Portable-1.1.2.exe`
+- macOS Apple Silicon: `GoBits-1.1.2-arm64.dmg`
+- macOS Intel: `GoBits-1.1.2-x64.dmg`
+
+All three URLs and their SHA-256 values are shown on the page and in `download.html`. The release assets are public; do not treat a public URL as a security boundary. There is no Linux build in this release.
+
 - Offline demo: after installation, choose Demo mode in setup. No key, account or network is needed.
 
 ## Clean URLs
@@ -72,7 +75,7 @@ host to `script-src` and `connect-src` if you turn analytics on.)
 | Path | What |
 |---|---|
 | `index.html` | The landing page |
-| `download.html` | Download page: direct Windows build, macOS/Linux coming soon |
+| `download.html` | Download page: direct Windows portable and two macOS disk images |
 | `vercel.json` | Clean URLs on Vercel (`/download` instead of `/download.html`) |
 | `thank-you.html` | Shown after a successful sign-up (noindex) |
 | `404.html` | "Lost Bit" not-found page (absolute asset paths, so it works at any URL) |
