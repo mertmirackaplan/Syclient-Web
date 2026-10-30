@@ -12,19 +12,13 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
    ```bash
    node scripts/set-domain.js            # add --dry-run to preview
    # or in one go:
-   node scripts/set-domain.js --site https://your-domain.com --email hello@syclient.labs --cloud https://cloud.your-domain.com
+   node scripts/set-domain.js --site https://your-domain.com --email hello@syclientlabs.com --cloud https://cloud.your-domain.com
    ```
 
    This rewrites the canonical URLs, Open Graph/Twitter tags, JSON-LD, `sitemap.xml`, `robots.txt`
    and the contact links in every page.
-2. **Connect the early-access form** (optional). Deploy GoBits Cloud (`../cloud`) and set:
-   - on the cloud: `LANDING_ORIGIN=https://your-domain.com` (comma-separate `www.` too if you use
-     it), and optionally `WAITLIST_PEPPER`; then run `npm run migrate`;
-   - in `config.js`: `WAITLIST_ENDPOINT: 'https://<your-cloud>/v1/waitlist'`.
+2. **No signup form.** The site has no early-access form or waitlist UI. Contact links use `CONTACT_EMAIL`; the GoBits Cloud waitlist endpoint is not wired to the static site.
 
-   If you leave it empty, the form opens the visitor's email app with a prefilled request to
-   `CONTACT_EMAIL`, and the page says so. Export sign-ups with
-   `node cloud/scripts/export-waitlist.js > waitlist.csv`.
 3. **Analytics** (optional, off by default). In `config.js`, set
    `ANALYTICS: { provider: 'plausible', domain: 'your-domain.com', src: 'https://plausible.io/js/script.js' }`.
    It loads only after a visitor clicks **Accept** in the cookie banner. `provider: 'script'`
@@ -34,30 +28,14 @@ Cloudflare Pages, GitHub Pages, S3, nginx…), with this folder as the site root
 5. **404 page.** Most hosts serve `404.html` automatically (Netlify, Vercel, Cloudflare Pages,
    GitHub Pages). On nginx, use `error_page 404 /404.html;`.
 
-## Download page and activation codes
+## Download page
 
-`download.html` offers the Windows, macOS and Linux builds. The three buttons start locked (`aria-disabled`,
-no pointer events) and `assets/js/download.js` unlocks them when a valid activation code is entered. Nothing is
-stored: every visit starts locked and asks for the code again.
+`download.html` links directly to the public Windows GitHub release. There is no activation-code gate, account, cookie or server-side check. macOS and Linux are shown as coming-soon cards until their builds exist, so the page never points at missing files.
 
-- The codes are **not** in the page. `download.js` stores their SHA-256 hashes (normalised to A–Z and 0–9, so
-  case, spaces and dashes do not matter). Invitees get the codes by email; keep them out of the repo.
-- To add or replace a code, hash it and paste the result into `ACCEPTED` in `download.js`:
-
-  ```bash
-  node -e "const c=require('crypto');console.log(c.createHash('sha256').update('YOUR-CODE-2026'.toUpperCase().replace(/[^A-Z0-9]/g,'')).digest('hex'))"
-  ```
-- This is a soft, client-side gate for an invite-only launch, not a security boundary: the file URLs are in the
-  page source and anyone can bypass the check. If downloads must be restricted for real, serve them from a
-  server that checks a token (the cloud's `/download` already reads `releases.json`).
-- Installers are **not** in this repository. GitHub rejects files over 100 MB, so the buttons point at GitHub
-  Releases: `https://github.com/mertmirackaplan/Syclient-Web/releases/download/SyclientLabs/<file>`. The current
-  release (tag `SyclientLabs`) has `GoBits-Setup-1.0.2.5.exe` (122,353,158 bytes, SHA-256
-  `27ef2c63432cfc11e0cf04fe7141903cb92b8e6777736174bbe38b878f16a07e`). Attach `GoBits-1.0.2.5.dmg` (universal)
-  and `GoBits-1.0.2.AppImage` to the same release when they are built, or change the three `href`s in `download.html`
-  to point anywhere else (R2, S3, a CDN). Release assets allow 2 GB per file.
-- Release assets on a public repo are public: the activation code is only a soft gate. For real invite-only
-  downloads, use a host that checks a token (the cloud's `/download` already reads `releases.json`).
+- Windows: `https://github.com/mertmirackaplan/Syclient-Web/releases/download/SyclientLabs/GoBits-Setup-1.1.1.exe`
+- Public SHA-256 is shown on the page and in `download.html`.
+- The release asset is public; do not treat the public URL as a security boundary.
+- Offline demo: after installation, choose Demo mode in setup. No key, account or network is needed.
 
 ## Clean URLs
 
@@ -70,7 +48,7 @@ rewrite.
 ## Product Hunt embeds
 
 The home page shows the Product Hunt "Featured" badge in the hero and the footer, plus a launch card in the
-"We're on Product Hunt" section (`#product-hunt`) before the early-access form. The links, UTM parameters and
+"We're on Product Hunt" section (`#product-hunt`). The links, UTM parameters and
 image URLs are exactly as Product Hunt issued them. The card is restyled with the site's own classes
 (`.ph-card`, `.btn-ph`, `.ph-badge` in `site.css`), so it has no inline styles. The images are plain `<img>`
 tags, not scripts or trackers, so the cookie banner doesn't gate them; `privacy.html` mentions them. Clicks
@@ -94,7 +72,7 @@ host to `script-src` and `connect-src` if you turn analytics on.)
 | Path | What |
 |---|---|
 | `index.html` | The landing page |
-| `download.html` | Download page: Windows, macOS and Linux builds behind an activation code |
+| `download.html` | Download page: direct Windows build, macOS/Linux coming soon |
 | `vercel.json` | Clean URLs on Vercel (`/download` instead of `/download.html`) |
 | `thank-you.html` | Shown after a successful sign-up (noindex) |
 | `404.html` | "Lost Bit" not-found page (absolute asset paths, so it works at any URL) |
@@ -103,7 +81,6 @@ host to `script-src` and `connect-src` if you turn analytics on.)
 | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `og-image.png` | Icons and the 1200×630 social card |
 | `assets/js/config.js` | **The one config file** |
 | `assets/js/site.js` | Menu, cookie consent + analytics loader, form, gallery lightbox, sticky mobile CTA, hash-free section scrolling |
-| `assets/js/download.js` | The activation-code gate for `download.html` |
 | `assets/js/office.js` | The live pixel office in "How it works" (static under reduced motion) |
 | `assets/css/site.css` | All styles |
 | `assets/img/` | Pixel art exported from the app, plus `shots/` (real screenshots as WebP 400–2400 w with PNG fallback) |

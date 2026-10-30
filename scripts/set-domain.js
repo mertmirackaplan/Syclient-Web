@@ -6,7 +6,7 @@
  *   1) Edit SITE_URL and CONTACT_EMAIL in assets/js/config.js, then run:
  *        node scripts/set-domain.js
  *   2) Or pass them directly (this also updates config.js):
- *        node scripts/set-domain.js --site https://gobits.app --email hello@syclient.labs --cloud https://cloud.gobits.app
+ *        node scripts/set-domain.js --site https://gobits.app --email hello@syclientlabs.com --cloud https://www.syclientlabs.com
  *   Add --dry-run to only print what would change.
  *
  * It replaces the previously applied values (remembered in scripts/domain.lock.json) in every

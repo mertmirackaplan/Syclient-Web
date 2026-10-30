@@ -1,8 +1,8 @@
-/* GoBits landing: navigation, consent + analytics, early-access form, gallery, small delights. */
+/* GoBits landing: navigation, consent + analytics, gallery, small delights. */
 (function () {
   'use strict';
   var CFG = window.GOBITS_CONFIG || {};
-  var EMAIL = CFG.CONTACT_EMAIL || 'hello@syclient.labs';
+  var EMAIL = CFG.CONTACT_EMAIL || 'hello@syclientlabs.com';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -249,7 +249,7 @@
   if (!form) return;
   var F = form.elements;
   var ENDPOINT = (CFG.WAITLIST_ENDPOINT || '').trim();
-  var ROLES = ['developer', 'founder', 'designer', 'writer', 'researcher', 'student', 'other'];
+  var ROLES = ['founder', 'team', 'operator'];
   var btn = $('#submit-btn'), label = $('.label', btn);
   var errBox = $('#form-error'), modeBox = $('#form-mode'), mailNote = $('#mailto-note');
   var note = $('#note'), count = $('#note-count');

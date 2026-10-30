@@ -11,16 +11,10 @@ window.GOBITS_CONFIG = {
   SITE_URL: 'https://www.syclientlabs.com',
 
   // Where people can reach you. Shown in the footer, legal pages and the mailto fallback.
-  CONTACT_EMAIL: 'hello@syclient.labs',
+  CONTACT_EMAIL: 'hello@syclientlabs.com',
 
-  // Public URL of GoBits Cloud (serves /download, /pricing and /account), no trailing slash.
-  CLOUD_URL: 'https://cloud.gobits.example',
-
-  // Early-access form target: the GoBits Cloud waitlist endpoint, e.g.
-  //   'https://cloud.gobits.example/v1/waitlist'
-  // Leave empty ('') and the form opens the visitor's email app with a
-  // prefilled request to CONTACT_EMAIL instead (the page says so honestly).
-  WAITLIST_ENDPOINT: '',
+  // Public site URL used for early-access links (the main site is live; cloud subdomains are not deployed yet).
+  CLOUD_URL: 'https://www.syclientlabs.com',
 
   // Privacy-friendly analytics. Disabled by default. Loaded ONLY after the
   // visitor clicks "Accept" in the cookie banner.

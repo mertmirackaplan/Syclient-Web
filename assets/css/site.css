@@ -689,3 +689,23 @@ dialog.lightbox::backdrop { background: rgba(20, 17, 14, .78); -webkit-backdrop-
 @media (prefers-reduced-motion: reduce) {
   .dl-card:hover .bit { animation: none !important; }
 }
+
+/* ---------- verifiable proof strip ---------- */
+.proof-section{background:linear-gradient(180deg,transparent,rgba(255,246,224,.55))}
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.proof-card{display:flex;flex-direction:column;gap:8px;padding:18px 18px 16px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);color:var(--ink);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+.proof-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);text-decoration:none}
+.proof-num{font:700 10px/1 var(--pixel);letter-spacing:.1em;color:var(--muted)}
+.proof-card strong{font-size:18px;line-height:1.2}
+.proof-card>span:not(.proof-num){font-size:13px;line-height:1.45;color:var(--muted)}
+.proof-card b{margin-top:auto;font-size:12.5px;color:var(--green)}
+@media(max-width:760px){.proof-grid{grid-template-columns:1fr}}
+
+/* ---------- offline demo callout ---------- */
+.dl-demo-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:28px;align-items:center;padding:26px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.dl-demo-card h2{font-size:clamp(24px,3vw,38px);margin:2px 0 10px}
+.dl-demo-card p:not(.eyebrow){color:var(--muted);max-width:58ch;line-height:1.6}
+.dl-demo-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.dl-demo-steps li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink)}
+.dl-demo-steps li span{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:700 11px/1 var(--pixel)}
+@media(max-width:760px){.dl-demo-card{grid-template-columns:1fr;padding:20px}}
